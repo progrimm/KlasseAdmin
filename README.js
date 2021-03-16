@@ -1,5 +1,4 @@
 // Klasseadmin
-// Repo for at gutta kan utvikle programmet for klasseadministrasjon sammen.
 
 // HER KOMMER NOEN EKSEMPLER PÅ KODEBITER VI VIL/KAN FÅ BRUK FOR:
 
