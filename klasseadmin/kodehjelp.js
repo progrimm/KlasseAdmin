@@ -1,6 +1,6 @@
 // HER KOMMER NOEN EKSEMPLER PÅ KODEBITER VI VIL/KAN FÅ BRUK FOR:
 
-// Hente data fra json-fil
+// Gjør om data.json til js-objekt med navn "data". Behandler så objektet slik vi er vant med.
 const fs = require("fs");
 const dataFilename = __dirname + "/js/data.json";
 var data = JSON.parse(fs.readFileSync(dataFilename));
@@ -8,22 +8,27 @@ var data = JSON.parse(fs.readFileSync(dataFilename));
 // Legge til data i json-fil (her legge til elev "Per" i klasse "3STA")
 let klasse = "3STA"
 let navn = "Per";
-data[klasse]["elever"].push(navn);
+data["klasser"][klasse]["elever"].push(navn);
 let dataOppdatert = JSON.stringify(data, null, '\t');
 fs.writeFile(dataFilename, dataOppdatert, function (err) {
   if (err) throw err;
   console.log('Oppdatert!');
 });
 
+// Legge til ny klasse i json-fil. Må her legge til et nytt objekt i "data", istedenfor å pushe til en array slik som i eksempelet over
+let klasseNavn = "3STB"
+let nyKlasse = {[klasseNavn]:{elever:[],klassekart:[]}};
+data = Object.assign(nyKlasse, data);
+
 // Legge til data i sessionStorage og hente det ut igjen
 sessionStorage.setItem("status", true);
-var status = sessionStorage.getItem("status"); // => status = true
+var retrievedStatus = sessionStorage.getItem("status"); // => retrievedStatus = true
 
 // Legger ved template.js som inneholder kode for å enkelt bruke elementer med id/class, og en fade funksjon (som jeg såklart har stjelt)
-// Førstnevnte fungerer slik:
+// Førstnevnte fungerer slik i forhold til det vi er vant til:
 $("#navn") = document.getElementById("navn");
 $(".boks") = document.getElementsByClassName("boks");
 
-// Trenger dere å bytte stilark i et tilfelle kan dere bruke dette (forutsatt at stilarket er på første link i head)
+// Trenger vi noen gang å bytte stilark kan dette benyttes (forutsatt at stilarket er på første link i head)
 var stilark = document.getElementsByTagName('link')[0];
 theme.setAttribute('href', 'css/nytt_stilark.css');
