@@ -1,6 +1,18 @@
+/* main.css: stilark for generelle egenskaper (farger, fonts, størrelser, skygger etc.) */
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+}
+
+/* Hvordan bruke variabler i CSS. :root gir global scope, variablene kan da brukes i alle css-filer */
+:root {
+  --primaryColor: blue;
+  --secondaryColor: red;
+}
+
+h1 {
+  color: var(--primaryColor);
 }

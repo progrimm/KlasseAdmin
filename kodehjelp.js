@@ -22,7 +22,11 @@ data = Object.assign(nyKlasse, data);
 
 // Legge til data i sessionStorage og hente det ut igjen
 sessionStorage.setItem("status", true);
-var retrievedStatus = sessionStorage.getItem("status"); // => retrievedStatus = true
+var retrievedStatus_session = sessionStorage.getItem("status"); // => retrievedStatus_session = true
+
+// Veldig likt med localStorage (kan brukes når bestemte innstillinger (som darkmode) må lagres)
+localStorage.setItem("status", true);
+var retrievedStatus_local = localStorage.getItem("status"); // => retrievedStatus_local = true
 
 // Legger ved template.js som inneholder kode for å enkelt bruke elementer med id/class, og en fade funksjon (som jeg såklart har stjelt)
 // Førstnevnte fungerer slik i forhold til det vi er vant til:
@@ -32,3 +36,11 @@ $(".boks") = document.getElementsByClassName("boks");
 // Trenger vi noen gang å bytte stilark kan dette benyttes (forutsatt at stilarket er på første link i head)
 var stilark = document.getElementsByTagName('link')[0];
 theme.setAttribute('href', 'css/nytt_stilark.css');
+
+// Endre css variabler med css
+function myFunction_set() {
+  var r = document.querySelector(':root');
+  r.style.setProperty('--blue', 'lightblue');
+}
+
+
