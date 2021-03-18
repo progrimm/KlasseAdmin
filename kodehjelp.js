@@ -37,7 +37,7 @@ $(".boks") = document.getElementsByClassName("boks");
 var stilark = document.getElementsByTagName('link')[0];
 theme.setAttribute('href', 'css/nytt_stilark.css');
 
-// Endre css variabler med css
+// Endre css variabler med js
 function myFunction_set() {
   var r = document.querySelector(':root');
   r.style.setProperty('--blue', 'lightblue');
