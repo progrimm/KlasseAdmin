@@ -1,7 +1,3 @@
-# Klasseadmin
-
-Her tenker jeg vi kan legge til dokumentasjon...
-
 ## Under utvikling:
 - Start og test appen ved å skrive "npm start" i terminalen i vscode. Skriv "rs" for å restarte et vindu som allerede er åpent
 - Trykk "Pull" før du begynner å endre på kode selv
