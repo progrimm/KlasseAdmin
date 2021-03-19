@@ -3,8 +3,8 @@
 ## Kravspesifikaksjon
 
 ### Overordnet beskrivelse
-Klasseadmin skal være en app hvor læreren kan utføre ulike funksjonelle handlinger med sin klasse.
-Gruppeinndeling, klassekart, tilfeldig utvalg, nedtelling, bursdagshilsen og fravær.
+Klasseadmin skal være en app hvor læreren kan utføre ulike funksjonelle handlinger for sine klasser.
+Inkluderer da gruppeinndeling, klassekart, tilfeldig utvalg, nedtelling, bursdagshilsen og fravær.
 Læreren skal kunne legge til/endre/slette klasser, og elever.
 
 ### Hensikt
@@ -12,10 +12,11 @@ Hensikten er at læreren skal ha et nytt og moderne verktøy som kan utføre han
 
 ### Funksjonelle krav
 - Velge klasse
+  - Ta fravær
   - Gruppeinndeling
   - Velge antall tilfeldige elever
   - Lage/endre klassekart
-  - Ta fravær
+  - Nedtelling
 - Administrer klasser
   - Legge til klasse
     - Legge til elever (fornavn)
