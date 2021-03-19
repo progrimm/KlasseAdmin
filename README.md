@@ -9,3 +9,5 @@ Her tenker jeg vi kan legge til dokumentasjon...
 - Spør/send melding om du lurer på noe angående andres kode
 - OG IKKE GLEM Å PUSH ENDRINGENE DU HAR GJORT
 
+## jon notes
+- særdeles bra repo gutta
