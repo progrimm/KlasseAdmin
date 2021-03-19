@@ -9,6 +9,6 @@
 - særdeles bra repo gutta
 
 ## Fordeling av arbeidsoppgaver
-Erik: fravær, gruppeinndeling
-Jon: nedtelling, tilfeldig elev
-Åmund: klassekart
+- Erik: fravær, gruppeinndeling
+- Jon: nedtelling, tilfeldig elev
+- Åmund: klassekart
