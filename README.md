@@ -1,4 +1,4 @@
-# Dokumentasjon
+# Klasseadmin
 
 ## Kravspesifikaksjon
 
