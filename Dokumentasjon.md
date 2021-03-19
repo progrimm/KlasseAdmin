@@ -35,4 +35,8 @@ De skal laste ned programmet og bruke det.
 
 ## Planlegging
 
-### 
+### Wireframe
+Se egen fil.
+
+### Handlingsdiagram
+Se egen fil.
