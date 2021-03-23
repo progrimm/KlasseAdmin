@@ -23,16 +23,16 @@ function nyttKlassekart() {
         lagKlassekart();  // Kaller funksjonen
     }
 }
-
+// Fyller inn tabellen for klassekartet
 function lagKlassekart() {
 
     $("#tableKlassekart").innerHTML = "";
 
-    let klasse = testKlasse.map((elev) => elev);
+    let klasse = testKlasse.map((elev) => elev); // kopierer elevene i klassa
 
-    klasse = shuffleStudents(klasse);     // Stokker elevene
+    klasse = stokkElever(klasse);     // Stokker elevene
 
-    let laererbord = lagLaererbord();
+    let laererbord = lagLaererbord(); // Lager plassen til læreren
     $("#tableKlassekart").appendChild(laererbord);
 
     let elevID = 0; // Løpetall for elevene
@@ -46,7 +46,7 @@ function lagKlassekart() {
             let bord = document.createElement("td");
             bord.id = "rad" + i + "kolonne" + j;
             $("#rad" + i).appendChild(bord);
-            // Så elevene som knapper
+            // Så elevene som knapper i tabellcellene
             for (let k = 0; k < perBord; k++) {
                 let btnElev = document.createElement("button");
                 btnElev.id = "rad" + i + "kolonne" + j + "nr" + k;
@@ -62,7 +62,7 @@ function lagKlassekart() {
 }
 
 // Durstenfelds sorteringsalgoritme
-function shuffleStudents(arr) {
+function stokkElever(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         let temp = arr[i];
@@ -71,6 +71,7 @@ function shuffleStudents(arr) {
     }
     return arr;
 }
+
 
 function lagLaererbord() {
     let laererbord = document.createElement("th");
@@ -81,20 +82,14 @@ function lagLaererbord() {
     return rad;
 }
 
-// Henter ut elev
-function velgerElev(arr, id) {
-    let valgtElev = (arr[id] !== undefined ? arr[id] : ".");
-    return valgtElev;
-}
-
 // Funksjon for å bytte plasser
 function byttePlass(evt) {
     if (antallKlikk === 1) {
-        let elev1 = evt.target.innerHTML;
-        let elev2 = $("#" + elev1ID).innerHTML;
-        $("#" + elev1ID).innerHTML = elev1;
+        let elev1 = $("#" + elev1ID).innerHTML;
+        let elev2 = evt.target.innerHTML;
+        $("#" + elev1ID).innerHTML = elev2;
         $("#" + elev1ID).style.backgroundColor = "";
-        evt.target.innerHTML = elev2;
+        evt.target.innerHTML = elev1;
         antallKlikk--;
     }
     else {
@@ -107,13 +102,15 @@ function byttePlass(evt) {
 function snuKlassekart() {
     let tabell = $("#tableKlassekart");
     let rader = [];
+
     for (let i = 0, rad; rad = tabell.rows[i]; i++) {
 
         let celler = [];
+
         for (let j = 0, celle; celle = rad.cells[j]; j++) {
-            if (celle.nodeName !== "TH") {
-                console.log(celle.childNodes.length);
-                switch (celle.childNodes.length) {
+
+            if (celle.nodeName !== "TH") { // Tar ikke med lærerplassen
+                switch (celle.childNodes.length) {  // Bytter plass på knappene (elevene) per tabellcelle
                     case 2:
                         celle.insertBefore(celle.childNodes[1], celle.childNodes[0]);
                         break;
@@ -121,27 +118,29 @@ function snuKlassekart() {
                         celle.insertBefore(celle.childNodes[2], celle.childNodes[0]);
                         celle.insertBefore(celle.childNodes[2], celle.childNodes[1]);
                         break;
-
+                    default:
+                        break;
                 }
             }
+
             celler.push(celle.innerHTML);
         }
-        celler.reverse();
+        celler.reverse(); // Omvendt rekkefølge på tabellcellene (bordene) per rad
         for (let j = 0, celle; celle = rad.cells[j]; j++) {
             celle.innerHTML = celler[j];
         }
 
-        rader.push(rad.innerHTML);
+        rader.push(rad.innerHTML); 
     }
-    rader.reverse();
+    rader.reverse(); // Omvendt rekkefølge på radene
     for (let i = 0, rad; rad = tabell.rows[i]; i++) {
         rad.innerHTML = rader[i];
     }
 
     let elever = document.querySelectorAll('button.elev');
 
-    for (let i = 0; i < nodes.length; i++) {
-        elever[i].addEventListener('click', byttePlass);
+    for (let i = 0; i < elever.length; i++) {
+        elever[i].addEventListener('click', byttePlass); // Må legge til hendeleslyttere på nytt
     }
 }
 
