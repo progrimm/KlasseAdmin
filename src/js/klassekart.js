@@ -28,7 +28,7 @@ function lagKlassekart() {
 
     $("#tableKlassekart").innerHTML = "";
 
-    var klasse = testKlasse.map((elev) => elev);
+    let klasse = testKlasse.map((elev) => elev);
 
     klasse = shuffleStudents(klasse);     // Stokker elevene
 
@@ -64,8 +64,8 @@ function lagKlassekart() {
 // Durstenfelds sorteringsalgoritme
 function shuffleStudents(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = arr[i];
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
@@ -105,11 +105,11 @@ function byttePlass(evt) {
 }
 
 function snuKlassekart() {
-    var tabell = $("#tableKlassekart");
-    var rader = [];
+    let tabell = $("#tableKlassekart");
+    let rader = [];
     for (let i = 0, rad; rad = tabell.rows[i]; i++) {
 
-        var celler = [];
+        let celler = [];
         for (let j = 0, celle; celle = rad.cells[j]; j++) {
             if (celle.nodeName !== "TH") {
                 console.log(celle.childNodes.length);
@@ -136,6 +136,12 @@ function snuKlassekart() {
     rader.reverse();
     for (let i = 0, rad; rad = tabell.rows[i]; i++) {
         rad.innerHTML = rader[i];
+    }
+
+    let elever = document.querySelectorAll('button.elev');
+
+    for (let i = 0; i < nodes.length; i++) {
+        elever[i].addEventListener('click', byttePlass);
     }
 }
 
