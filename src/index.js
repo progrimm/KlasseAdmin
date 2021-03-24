@@ -14,6 +14,7 @@ const createWindow = () => {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
     },
     // icon: __dirname + '/imgs/logo.png',
     // resizable: false,

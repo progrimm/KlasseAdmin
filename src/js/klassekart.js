@@ -2,17 +2,42 @@ const testKlasse = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven",
 const laerer = "Kjell";
 let antallKlikk = 0;
 
-let perBord, rader, kolonner;
+let klasse, elever, perBord, rader, kolonner;
 
 const fs = require("fs");
 const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
 
+
 window.onload = () => {
     lagSelKlasse();
+    $("#selKlasse").onchange = function () {
+        $("#btnNyttKlassekart"). disabled = false;
+        $("#btnSnuKlassekart").disabled = false;
+
+        klasse = data[$("#selKlasse").value];
+        elever = klasse["elever"];
+
+        if (klasse["klassekart"].length === 0) {
+            $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
+        }
+
+        else if (klasse["klassekart"].length < klasse["elever"].length) {
+            $("#tableKlassekart").innerHTML = "Nye elever i klassa, lag nytt kart.";
+        }
+        else {
+            perBord = klasse["klassekart_oppsett"]["per_bord"];
+            rader = klasse["klassekart_oppsett"]["rader"];
+            kolonner = klasse["klassekart_oppsett"]["kolonner"];    
+            lagKlassekart("eksisterende");
+        }
+
+    }
     $("#btnNyttKlassekart").onclick = nyttKlassekart;
     $("#btnSnuKlassekart").onclick = snuKlassekart;
 }
+
+
 
 function lagSelKlasse() {
     $("#selKlasse").innerHTML = ""; 
@@ -20,11 +45,12 @@ function lagSelKlasse() {
     let options = "<option disabled selected>Velg Klasse</option>";
 
     for (klasse in data) {
-        options += "<option value'" + klasse + "'>" + klasse + "</option";
+        options += "<option value'" + klasse + "'>" + klasse + "</option>";
     }
 
     $("#selKlasse").innerHTML = options;
 }
+
 
 
 function nyttKlassekart() {
@@ -37,17 +63,19 @@ function nyttKlassekart() {
         alert("Klasserommet er for lite i forhold til antall elever.")
     }
     else {
-        lagKlassekart();  // Kaller funksjonen
+        elever = stokkElever(elever); // Stokker elevene
+        lagKlassekart("nytt");  // Kaller funksjonen
     }
 }
+
+
+
 // Fyller inn tabellen for klassekartet
-function lagKlassekart() {
+function lagKlassekart(status) {
 
     $("#tableKlassekart").innerHTML = "";
 
-    let klasse = testKlasse.map((elev) => elev); // kopierer elevene i klassa
-
-    klasse = stokkElever(klasse);     // Stokker elevene
+    // let klasse = testKlasse.map((elev) => elev); // kopierer elevene i klassa
 
     let laererbord = lagLaererbord(); // Lager plassen til læreren
     $("#tableKlassekart").appendChild(laererbord);
@@ -71,7 +99,14 @@ function lagKlassekart() {
                 let btnElev = document.createElement("button");
                 btnElev.id = "rad" + i + "kolonne" + j + "nr" + k;
                 btnElev.classList.add("elev");
-                let elevNavn = (klasse[elevID] !== undefined ? klasse[elevID] : ".");
+
+                if (status === "nytt") {
+                    var elevNavn = (elever[elevID] !== undefined ? elever[elevID] : ".");
+                    // READ TO FILE kode skal legges til
+                }
+                else if (status === "eksisterende") {
+                    var elevNavn = (klasse["klassekart"][elevID] !== undefined ? klasse["klassekart"][elevID] : ".");
+                }
                 btnElev.innerHTML = elevNavn;
                 btnElev.addEventListener("click", byttePlass);   // Legger til hendelseslytter på elevene så man kan bytte plasser
                 elevID++
@@ -80,6 +115,8 @@ function lagKlassekart() {
         }
     }
 }
+
+
 
 // Durstenfelds sorteringsalgoritme
 function stokkElever(arr) {
@@ -102,6 +139,7 @@ function lagLaererbord() {
     return rad;
 }
 
+
 // Funksjon for å bytte plasser
 function byttePlass(evt) {
     if (antallKlikk === 1) {
@@ -118,6 +156,7 @@ function byttePlass(evt) {
         antallKlikk++
     }
 }
+
 
 function snuKlassekart() {
     let tabell = $("#tableKlassekart");
@@ -157,10 +196,10 @@ function snuKlassekart() {
         rad.innerHTML = rader[i];
     }
 
-    let elever = document.querySelectorAll('button.elev');
+    let btnsElever = document.querySelectorAll('button.elev');
 
-    for (let i = 0; i < elever.length; i++) {
-        elever[i].addEventListener('click', byttePlass); // Må legge til hendeleslyttere på nytt
+    for (let i = 0; i < btnsElever.length; i++) {
+        btnsElever[i].addEventListener('click', byttePlass); // Må legge til hendeleslyttere på nytt
     }
 }
 
