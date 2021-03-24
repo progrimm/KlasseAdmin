@@ -4,9 +4,26 @@ let antallKlikk = 0;
 
 let perBord, rader, kolonner;
 
+const fs = require("fs");
+const dataFilename = __dirname + "/js/data.json";
+let data = JSON.parse(fs.readFileSync(dataFilename));
+
 window.onload = () => {
+    lagSelKlasse();
     $("#btnNyttKlassekart").onclick = nyttKlassekart;
     $("#btnSnuKlassekart").onclick = snuKlassekart;
+}
+
+function lagSelKlasse() {
+    $("#selKlasse").innerHTML = ""; 
+
+    let options = "<option disabled selected>Velg Klasse</option>";
+
+    for (klasse in data) {
+        options += "<option value'" + klasse + "'>" + klasse + "</option";
+    }
+
+    $("#selKlasse").innerHTML = options;
 }
 
 
@@ -36,16 +53,19 @@ function lagKlassekart() {
     $("#tableKlassekart").appendChild(laererbord);
 
     let elevID = 0; // Løpetall for elevene
+
     for (let i = 0; i < rader; i++) {    // Lager tabell-struktur og setter inn elevene
         // Først radene som tabellrader
         let rad = document.createElement("tr");
         rad.id = "rad" + i;
         $("#tableKlassekart").appendChild(rad);
+
         // Så bordene som tabellceller
         for (let j = 0; j < kolonner; j++) {
             let bord = document.createElement("td");
             bord.id = "rad" + i + "kolonne" + j;
             $("#rad" + i).appendChild(bord);
+
             // Så elevene som knapper i tabellcellene
             for (let k = 0; k < perBord; k++) {
                 let btnElev = document.createElement("button");
@@ -130,7 +150,7 @@ function snuKlassekart() {
             celle.innerHTML = celler[j];
         }
 
-        rader.push(rad.innerHTML); 
+        rader.push(rad.innerHTML);
     }
     rader.reverse(); // Omvendt rekkefølge på radene
     for (let i = 0, rad; rad = tabell.rows[i]; i++) {
