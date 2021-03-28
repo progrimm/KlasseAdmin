@@ -1,7 +1,5 @@
-const laerer = "Kjell";
-
-let klasse, elever, perBord, rader, kolonner;
-let antallKlikk = 0; // hører til byttPlass
+let klasse, elever, perBord, rader, kolonner;  // Globale variabler
+let antallKlikk = 0;  // Hører til byttPlass
 
 // Henter data fra fil
 const fs = require("fs");
@@ -11,30 +9,50 @@ let data = JSON.parse(fs.readFileSync(dataFilename));
 
 window.onload = () => {
     lagSelKlasse();
-    $("#selKlasse").onchange = function () {
-        $("#btnNyttKlassekart").disabled = false;
+    $("#selKlasse").onchange = function () {  // Når en klasse blir valgt
+        $("#btnVisModalStruktur").disabled = false;  // Gjør knappene trykkbare
         $("#btnSnuKlassekart").disabled = false;
 
-        klasse = data[$("#selKlasse").value];
-        elever = klasse["elever"];
+        klasse = data[$("#selKlasse").value];  // Hent klassekode
+        elever = klasse["elever"];  // Hent elevene i valgt klasse
 
+        // Sjekker om klassa har klassekart fra før, eller om det må lages nytt
         if (klasse["klassekart"].length === 0) {
             $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
         }
 
-        else if (klasse["klassekart"].length < klasse["elever"].length) {
-            $("#tableKlassekart").innerHTML = "Nye elever i klassa, lag nytt kart.";
+        else if (klasse["klassekart"].length !== klasse["elever"].length) {
+            $("#tableKlassekart").innerHTML = "Det har skjedd en endring i klassa, lag nytt kart";
         }
+
+        // Viser klassekart om det finnes fra før
         else {
             perBord = klasse["klassekart_oppsett"]["per_bord"];
             rader = klasse["klassekart_oppsett"]["rader"];
             kolonner = klasse["klassekart_oppsett"]["kolonner"];
             lagKlassekart("eksisterende");
         }
-
     }
+
+    $("#btnVisModalStruktur").onclick = () => {
+        $("#modalStrukturKlassekart").style.display = "block";
+    }
+
     $("#btnNyttKlassekart").onclick = nyttKlassekart;
+
+    $("#btnLukkModal").onclick = () => {
+        $("#modalStrukturKlassekart").style.display = "none";
+    }
+
     $("#btnSnuKlassekart").onclick = snuKlassekart;
+
+    // Lukk modal ved trykk utenfor innholdet
+    window.onclick = (evt) => {
+        let modal = $("#modalStrukturKlassekart");
+        if (evt.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
 
 
@@ -51,21 +69,21 @@ function lagSelKlasse() {
     $("#selKlasse").innerHTML = options;
 }
 
-
-
 function nyttKlassekart() {
-
-    perBord = parseInt($("#inputEleverPerBord").value);     // Henter strukturen klassekartet skal genereres på
+    
+    // Henter strukturen klassekartet skal genereres på
+    perBord = parseInt($("#inputEleverPerBord").value);    
     rader = parseInt($("#inputAntallRader").value);
     kolonner = parseInt($("#inputAntallKolonner").value);
 
-    if (rader * kolonner * perBord < testKlasse.length) {
+    if (rader * kolonner * perBord < elever.length) {
         alert("Klasserommet er for lite i forhold til antall elever.")
     }
     else {
-        elever = stokkElever(elever); // Stokker elevene
+        elever = stokkElever(elever);  // Stokker elevene
         lagKlassekart("nytt");  // Kaller funksjonen
     }
+    $("#modalStrukturKlassekart").style.display = "none";
 }
 
 
@@ -80,7 +98,7 @@ function lagKlassekart(status) {
     let laererbord = lagLaererbord(); // Lager plassen til læreren
     $("#tableKlassekart").appendChild(laererbord);
 
-    let elevID = 0; // Løpetall for elevene
+    let elevID = 0;  // Løpetall for elevene
 
     for (let i = 0; i < rader; i++) {    // Lager tabell-struktur og setter inn elevene
         // Først radene som tabellrader
@@ -108,7 +126,7 @@ function lagKlassekart(status) {
                     var elevNavn = (klasse["klassekart"][elevID] !== undefined ? klasse["klassekart"][elevID] : ".");
                 }
                 btnElev.innerHTML = elevNavn;
-                btnElev.addEventListener("click", byttePlass);   // Legger til hendelseslytter på elevene så man kan bytte plasser
+                btnElev.addEventListener("click", byttePlass);  // Legger til hendelseslytter på elevene så man kan bytte plasser
                 elevID++
                 $("#rad" + i + "kolonne" + j).appendChild(btnElev);
             }
@@ -132,7 +150,7 @@ function stokkElever(arr) {
 
 function lagLaererbord() {
     let laererbord = document.createElement("th");
-    laererbord.innerHTML = laerer;
+    laererbord.innerHTML = "Lærer";
     laererbord.colSpan = "" + kolonner;
     let rad = document.createElement("tr");
     rad.appendChild(laererbord);

@@ -15,13 +15,20 @@
     <h1>Klassekart</h1>
     <p><a href="index.html">Index</a></p>
     <select id="selKlasse"></select>
-    <p>Elever per bord: <input type="number" id="inputEleverPerBord" value="2"></p>
-    <p>Antall rader: <input type="number" id="inputAntallRader" value="4"></p>
-    <p>Antall kolonner: <input type="number" id="inputAntallKolonner" value="4"></p>
-    <button disabled id="btnNyttKlassekart">Nytt klassekart</button>
-    <button disabled id=btnSnuKlassekart>Snu klassekart</button>
+    <button disabled id="btnVisModalStruktur">Nytt klassekart</button>
+    <button disabled id="btnSnuKlassekart">Snu klassekart</button>
     <table class="snu" id="tableKlassekart"></table>
 
+    <div id="modalStrukturKlassekart" class="modal">
+        <div class="modal-content">
+            <h2>Innstillinger</h2>
+            <p>Elever per bord: <input type="number" id="inputEleverPerBord" value="2"></p>
+            <p>Antall rader: <input type="number" id="inputAntallRader" value="4"></p>
+            <p>Antall kolonner: <input type="number" id="inputAntallKolonner" value="4"></p>
+            <button id="btnNyttKlassekart">Nytt klassekart</button>
+            <button id="btnLukkModal">Lukk</button>
+        </div>
+    </div>
 </body>
 
 
