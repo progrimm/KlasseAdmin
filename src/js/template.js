@@ -13,7 +13,7 @@ function $(element) {
 function fade(obj, type) {
 
 	//velger verdiene som skal forrandres ut ifra fade type
-	if(type === "inn") {
+	if (type === "inn") {
 		var opacity = 1;
 		var marginTop = 0;
 	} else if (type === "out") {
@@ -36,7 +36,7 @@ function fade(obj, type) {
 		var i = 0;
 
 		//looper igjennom array og gir alle elementene med en class verdiene med en delay mellom hver
-		setInterval(function() {
+		setInterval(function () {
 			if (i >= elem.length) return;
 
 			elem[i].style.opacity = opacity;
@@ -48,5 +48,5 @@ function fade(obj, type) {
 	} else {
 		console.log("elementet " + obj + " finnes ikke");
 		return;
-	}		
+	}
 }

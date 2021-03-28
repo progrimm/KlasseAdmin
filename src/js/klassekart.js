@@ -1,9 +1,9 @@
-const testKlasse = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Bonsa"];
 const laerer = "Kjell";
-let antallKlikk = 0;
 
 let klasse, elever, perBord, rader, kolonner;
+let antallKlikk = 0; // hører til byttPlass
 
+// Henter data fra fil
 const fs = require("fs");
 const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
@@ -12,7 +12,7 @@ let data = JSON.parse(fs.readFileSync(dataFilename));
 window.onload = () => {
     lagSelKlasse();
     $("#selKlasse").onchange = function () {
-        $("#btnNyttKlassekart"). disabled = false;
+        $("#btnNyttKlassekart").disabled = false;
         $("#btnSnuKlassekart").disabled = false;
 
         klasse = data[$("#selKlasse").value];
@@ -28,7 +28,7 @@ window.onload = () => {
         else {
             perBord = klasse["klassekart_oppsett"]["per_bord"];
             rader = klasse["klassekart_oppsett"]["rader"];
-            kolonner = klasse["klassekart_oppsett"]["kolonner"];    
+            kolonner = klasse["klassekart_oppsett"]["kolonner"];
             lagKlassekart("eksisterende");
         }
 
@@ -38,9 +38,9 @@ window.onload = () => {
 }
 
 
-
+// Midlertidig valg av klasse
 function lagSelKlasse() {
-    $("#selKlasse").innerHTML = ""; 
+    $("#selKlasse").innerHTML = "";
 
     let options = "<option disabled selected>Velg Klasse</option>";
 
@@ -157,15 +157,17 @@ function byttePlass(evt) {
     }
 }
 
-
+// Funksjon for å snu klassekartet
 function snuKlassekart() {
     let tabell = $("#tableKlassekart");
     let rader = [];
 
+    // Går gjennom radene
     for (let i = 0, rad; rad = tabell.rows[i]; i++) {
 
         let celler = [];
 
+        // Går gjennom tabellcellene 
         for (let j = 0, celle; celle = rad.cells[j]; j++) {
 
             if (celle.nodeName !== "TH") { // Tar ikke med lærerplassen
