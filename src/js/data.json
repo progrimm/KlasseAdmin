@@ -2,27 +2,43 @@
 	"3sta": {
 		"elever": [
 			"åmund",
+			"adrian",
 			"erik",
-			"adrian"
+			"anton"
 		],
-		"klassekart": [],
+		"klassekart": [
+			".",
+			"adrian",
+			"åmund",
+			".",
+			".",
+			"erik",
+			"anton"
+		],
 		"klassekart_oppsett": {
-			"per_bord": "0",
-			"rader": "0",
-			"kolonner": "0"
+			"per_bord": "1",
+			"rader": "2",
+			"kolonner": "4"
 		}
 	},
 	"3stb": {
 		"elever": [
-			"jon",
+			"mikkel",
 			"sven",
-			"mikkel"
+			"jon"
 		],
-		"klassekart": ["sven","mikkel","jon"],
+		"klassekart": [
+			".",
+			"jon",
+			"mikkel",
+			".",
+			".",
+			"sven"
+		],
 		"klassekart_oppsett": {
 			"per_bord": "2",
-			"rader": "4",
-			"kolonner": "4"
+			"rader": "2",
+			"kolonner": "2"
 		}
 	}
 }

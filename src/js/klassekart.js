@@ -1,5 +1,7 @@
-let klasse, elever, perBord, rader, kolonner;  // Globale variabler
+let klasseKode, klasse, elever, perBord, rader, kolonner;  // Globale variabler
 let antallKlikk = 0;  // Hører til byttPlass
+let elev1ID;
+let snudd = false; // Om kartet er snudd eller ikke
 
 // Henter data fra fil
 const fs = require("fs");
@@ -9,31 +11,10 @@ let data = JSON.parse(fs.readFileSync(dataFilename));
 
 window.onload = () => {
     lagSelKlasse();
-    $("#selKlasse").onchange = function () {  // Når en klasse blir valgt
-        $("#btnVisModalStruktur").disabled = false;  // Gjør knappene trykkbare
-        $("#btnSnuKlassekart").disabled = false;
 
-        klasse = data[$("#selKlasse").value];  // Hent klassekode
-        elever = klasse["elever"];  // Hent elevene i valgt klasse
+    $("#selKlasse").onchange = hentKlasse;  // Når en klasse blir valgt fra nedtrekksliste (MIDLERTIDIG LØSNING)
 
-        // Sjekker om klassa har klassekart fra før, eller om det må lages nytt
-        if (klasse["klassekart"].length === 0) {
-            $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
-        }
-
-        else if (klasse["klassekart"].length !== klasse["elever"].length) {
-            $("#tableKlassekart").innerHTML = "Det har skjedd en endring i klassa, lag nytt kart";
-        }
-
-        // Viser klassekart om det finnes fra før
-        else {
-            perBord = klasse["klassekart_oppsett"]["per_bord"];
-            rader = klasse["klassekart_oppsett"]["rader"];
-            kolonner = klasse["klassekart_oppsett"]["kolonner"];
-            lagKlassekart("eksisterende");
-        }
-    }
-
+    // Vise modal
     $("#btnVisModalStruktur").onclick = () => {
         $("#modalStrukturKlassekart").style.display = "block";
     }
@@ -53,47 +34,89 @@ window.onload = () => {
             modal.style.display = "none";
         }
     }
+
+    $("#btnLagreKlassekart").onclick = lagrePlassbytter;
 }
 
 
-// Midlertidig valg av klasse
+// Midlertidig valg av klasse, fyller select-elementet
 function lagSelKlasse() {
     $("#selKlasse").innerHTML = "";
 
     let options = "<option disabled selected>Velg Klasse</option>";
 
-    for (klasse in data) {
-        options += "<option value'" + klasse + "'>" + klasse + "</option>";
+    for (klasseKode in data) {
+        options += "<option value'" + klasseKode + "'>" + klasseKode + "</option>";
     }
 
     $("#selKlasse").innerHTML = options;
 }
 
+// Henter info om valgt klasse og gjør noen endringer
+function hentKlasse() {
+
+    // Gjør knapper trykkbare
+    $("#btnVisModalStruktur").disabled = false;
+    $("#btnSnuKlassekart").disabled = false;
+
+    klasseKode = $("#selKlasse").value;
+    klasse = data[klasseKode];  // Henter alt om klasse etter valgt klassekode
+    elever = [...klasse["elever"]];  // Henter elevene i valgt klasse ved array-kopiering (Spread operator)
+    // elever = klasse["elever"].map((elev) => elev);
+
+    let eleverKlassekartKunNavn = klasse["klassekart"].filter(navn => navn !== ".");
+
+    // Sjekker om valgt klasse har klassekart fra før, eller om det må lages nytt
+    if (klasse["klassekart"].length === 0) {
+        $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
+    }
+    else if (eleverKlassekartKunNavn.length !== elever.length) {
+        $("#tableKlassekart").innerHTML = "Det har skjedd en endring i klassa, lag nytt kart";
+    }
+
+    // Viser klassekart om det finnes fra før
+    else {
+        visKlassekart();
+    }
+}
+
 function nyttKlassekart() {
-    
-    // Henter strukturen klassekartet skal genereres på
-    perBord = parseInt($("#inputEleverPerBord").value);    
+
+    // Henter strukturen klassekartet skal genereres på fra input-felt
+    perBord = parseInt($("#inputEleverPerBord").value);
     rader = parseInt($("#inputAntallRader").value);
     kolonner = parseInt($("#inputAntallKolonner").value);
 
+    elever = elever.filter(navn => navn !== "."); // Fjerner de tomme plassene, slik at bare navnene gjenstår
+
+    // Sjekker om strukturen oppgitt er gyldig
     if (rader * kolonner * perBord < elever.length) {
-        alert("Klasserommet er for lite i forhold til antall elever.")
+        alert("Klassekart for lite i forhold til antall elever.")
     }
     else {
-        elever = stokkElever(elever);  // Stokker elevene
-        lagKlassekart("nytt");  // Kaller funksjonen
+        elever = stokkElever(elever);  // Stokker elevene tilfeldig til klassekartet
+        // Endrer data 
+        klasse["klassekart"] = elever;
+        klasse["klassekart_oppsett"]["per_bord"] = perBord + "";
+        klasse["klassekart_oppsett"]["rader"] = rader + "";
+        klasse["klassekart_oppsett"]["kolonner"] = kolonner + "";
+        lagreKlassekart(); // Lagrer ny data om klassekartet i data.json
     }
-    $("#modalStrukturKlassekart").style.display = "none";
+    $("#modalStrukturKlassekart").style.display = "none"; // Skjuler modalen
+    visKlassekart();  // Viser det nye klassekartet
 }
 
 
 
-// Fyller inn tabellen for klassekartet
-function lagKlassekart(status) {
+// Viser klassekartet i form av en tabell med knapper
+function visKlassekart() {
 
-    $("#tableKlassekart").innerHTML = "";
+    // Henter strukturen
+    perBord = klasse["klassekart_oppsett"]["per_bord"];
+    rader = klasse["klassekart_oppsett"]["rader"];
+    kolonner = klasse["klassekart_oppsett"]["kolonner"];
 
-    // let klasse = testKlasse.map((elev) => elev); // kopierer elevene i klassa
+    $("#tableKlassekart").innerHTML = ""; // Rensker tidligere kart
 
     let laererbord = lagLaererbord(); // Lager plassen til læreren
     $("#tableKlassekart").appendChild(laererbord);
@@ -118,13 +141,11 @@ function lagKlassekart(status) {
                 btnElev.id = "rad" + i + "kolonne" + j + "nr" + k;
                 btnElev.classList.add("elev");
 
-                if (status === "nytt") {
-                    var elevNavn = (elever[elevID] !== undefined ? elever[elevID] : ".");
-                    // READ TO FILE kode skal legges til
+                let elevNavn = klasse["klassekart"][elevID];
+                if (elevNavn === undefined) {
+                    elevNavn = ".";
                 }
-                else if (status === "eksisterende") {
-                    var elevNavn = (klasse["klassekart"][elevID] !== undefined ? klasse["klassekart"][elevID] : ".");
-                }
+
                 btnElev.innerHTML = elevNavn;
                 btnElev.addEventListener("click", byttePlass);  // Legger til hendelseslytter på elevene så man kan bytte plasser
                 elevID++
@@ -163,16 +184,59 @@ function byttePlass(evt) {
     if (antallKlikk === 1) {
         let elev1 = $("#" + elev1ID).innerHTML;
         let elev2 = evt.target.innerHTML;
-        $("#" + elev1ID).innerHTML = elev2;
         $("#" + elev1ID).style.backgroundColor = "";
-        evt.target.innerHTML = elev1;
         antallKlikk--;
+        // Bytt kun hvis det er forskjellige personer og ikke to tomme plasser
+        if (elev1ID !== evt.target.id && !(elev1 === "." && elev2 === ".")) {
+            $("#" + elev1ID).innerHTML = elev2;
+            evt.target.innerHTML = elev1;
+            $("#btnLagreKlassekart").disabled = false; // Gjør knapp for lagring klikkbar
+        }
     }
     else {
         elev1ID = evt.target.id;
         $("#" + elev1ID).style.backgroundColor = "lime";
         antallKlikk++
     }
+}
+
+// Funksjon som henter det nye klassekartet etter plassbytte, for deretter å lagre det.
+// Tar hensyn til at det er ledige pulter mellom elevene.
+function lagrePlassbytter() {
+    elever = [];
+    let btnsElever = document.querySelectorAll("button.elev");
+    for (btn of btnsElever) {
+        elever.push(btn.innerHTML);
+    }
+    if (snudd === false) elever.reverse(); // Avhenger av om kartet er snudd eller ikke
+
+    // Looper gjennom navnene, og fjerner alle "." under siste navn på kartet. Lagrer resten.
+    for (let i = 0; i < elever.length; i++) {
+        if (elever[i] !== ".") {
+            elever.splice(0, i);
+            break;
+        }
+    }
+
+    elever.reverse(); // Snur lista til riktig veg
+
+    klasse["klassekart"] = elever;
+    $("#btnLagreKlassekart").disabled = true;
+    lagreKlassekart(); // Skriver til fil
+}
+
+// Funksjon for å lagre de endringene som er gjort, og deklarere data og klasse på nytt
+function lagreKlassekart() {
+
+    let dataOppdatert = JSON.stringify(data, null, '\t');
+
+    fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
+        if (err) throw err;
+        console.log("Oppdatert kart!");
+    });
+
+    data = JSON.parse(fs.readFileSync(dataFilename)); // Oppdaterer variabelen data 
+    klasse = data[klasseKode]; // Henter ut klassa på nytt
 }
 
 // Funksjon for å snu klassekartet
@@ -221,6 +285,8 @@ function snuKlassekart() {
     for (let i = 0; i < btnsElever.length; i++) {
         btnsElever[i].addEventListener('click', byttePlass); // Må legge til hendeleslyttere på nytt
     }
+
+    snudd = !snudd; // Toggler snudd
 }
 
 

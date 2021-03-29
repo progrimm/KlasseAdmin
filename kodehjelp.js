@@ -8,9 +8,9 @@ var data = JSON.parse(fs.readFileSync(dataFilename));
 // Legge til data i json-fil (her legge til elev "Per" i klasse "3STA")
 let klasse = "3STA"
 let navn = "Per";
-data["klasser"][klasse]["elever"].push(navn);
+data[klasse]["elever"].push(navn);
 let dataOppdatert = JSON.stringify(data, null, '\t');
-fs.writeFile(dataFilename, dataOppdatert, function (err) {
+fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
   if (err) throw err;
   console.log('Oppdatert!');
 });
