@@ -3,22 +3,18 @@
 		"elever": [
 			"åmund",
 			"adrian",
-			"erik",
-			"anton"
+			"erik"
 		],
 		"klassekart": [
 			".",
-			"adrian",
-			"åmund",
-			".",
-			".",
 			"erik",
-			"anton"
+			"åmund",
+			"adrian"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "1",
-			"rader": "2",
-			"kolonner": "4"
+			"rader": "3",
+			"kolonner": "2"
 		}
 	},
 	"3stb": {
@@ -28,16 +24,13 @@
 			"jon"
 		],
 		"klassekart": [
-			".",
-			"jon",
 			"mikkel",
-			".",
-			".",
-			"sven"
+			"sven",
+			"jon"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "2",
-			"rader": "2",
+			"per_bord": "1",
+			"rader": "3",
 			"kolonner": "2"
 		}
 	}

@@ -1,6 +1,8 @@
 let klasseKode, klasse, elever, perBord, rader, kolonner;  // Globale variabler
-let antallKlikk = 0;  // Hører til byttPlass
+// Hører til byttPlass
+let antallKlikk = 0;
 let elev1ID;
+
 let snudd = false; // Om kartet er snudd eller ikke
 
 // Henter data fra fil
@@ -52,7 +54,7 @@ function lagSelKlasse() {
     $("#selKlasse").innerHTML = options;
 }
 
-// Henter info om valgt klasse og gjør noen endringer
+// Henter info om valgt klasse og viser eventuelt eksisterende kart, samt initialiserer noen variabler
 function hentKlasse() {
 
     // Gjør knapper trykkbare
@@ -64,7 +66,7 @@ function hentKlasse() {
     elever = [...klasse["elever"]];  // Henter elevene i valgt klasse ved array-kopiering (Spread operator)
     // elever = klasse["elever"].map((elev) => elev);
 
-    let eleverKlassekartKunNavn = klasse["klassekart"].filter(navn => navn !== ".");
+    let eleverKlassekartKunNavn = klasse["klassekart"].filter(navn => navn !== "."); // Filtrerer ut de tomme plassene
 
     // Sjekker om valgt klasse har klassekart fra før, eller om det må lages nytt
     if (klasse["klassekart"].length === 0) {
@@ -80,6 +82,7 @@ function hentKlasse() {
     }
 }
 
+// Funksjon som lager det nye klassekartet
 function nyttKlassekart() {
 
     // Henter strukturen klassekartet skal genereres på fra input-felt
@@ -200,7 +203,7 @@ function byttePlass(evt) {
     }
 }
 
-// Funksjon som henter det nye klassekartet etter plassbytte, for deretter å lagre det.
+// Funksjon som henter de nye elevplasseringene etter plassbytte, for deretter å lagre det.
 // Tar hensyn til at det er ledige pulter mellom elevene.
 function lagrePlassbytter() {
     elever = [];
@@ -225,7 +228,7 @@ function lagrePlassbytter() {
     lagreKlassekart(); // Skriver til fil
 }
 
-// Funksjon for å lagre de endringene som er gjort, og deklarere data og klasse på nytt
+// Funksjon for å lagre de endringene som er gjort, og oppdatere variablene data og klasse
 function lagreKlassekart() {
 
     let dataOppdatert = JSON.stringify(data, null, '\t');
