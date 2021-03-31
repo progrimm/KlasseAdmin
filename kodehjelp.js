@@ -17,7 +17,7 @@ fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
 
 // Legge til ny klasse i json-fil. Må her legge til et nytt objekt i "data", istedenfor å pushe til en array slik som i eksempelet over
 let klasseNavn = "3STB"
-let nyKlasse = {[klasseNavn]:{elever:[],klassekart:[]}};
+let nyKlasse = { [klasseNavn]: { elever: [], klassekart: [], klassekart_oppsett: { per_bord: 0, rader: 0, kolonner: 0 } } };
 data = Object.assign(nyKlasse, data);
 
 // Legge til data i sessionStorage og hente det ut igjen

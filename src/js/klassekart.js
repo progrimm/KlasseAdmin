@@ -109,8 +109,6 @@ function nyttKlassekart() {
     visKlassekart();  // Viser det nye klassekartet
 }
 
-
-
 // Viser klassekartet i form av en tabell med knapper
 function visKlassekart() {
 
@@ -158,11 +156,9 @@ function visKlassekart() {
     }
 }
 
-
-
 // Durstenfelds sorteringsalgoritme
 function stokkElever(arr) {
-    for (var i = arr.length - 1; i > 0; i--) {
+    for (let i = arr.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         let temp = arr[i];
         arr[i] = arr[j];
@@ -170,7 +166,6 @@ function stokkElever(arr) {
     }
     return arr;
 }
-
 
 function lagLaererbord() {
     let laererbord = document.createElement("th");
@@ -180,7 +175,6 @@ function lagLaererbord() {
     rad.appendChild(laererbord);
     return rad;
 }
-
 
 // Funksjon for å bytte plasser
 function byttePlass(evt) {
