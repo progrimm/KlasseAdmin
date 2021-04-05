@@ -6,10 +6,10 @@
 			"erik"
 		],
 		"klassekart": [
-			".",
 			"erik",
-			"åmund",
-			"adrian"
+			"adrian",
+			".",
+			"åmund"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "1",
@@ -29,9 +29,9 @@
 			"jon"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "1",
-			"rader": "3",
-			"kolonner": "2"
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
 		}
 	}
 }
