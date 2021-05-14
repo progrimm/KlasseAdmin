@@ -38,6 +38,11 @@ window.onload = () => {
     }
 
     $("#btnLagreKlassekart").onclick = lagrePlassbytter;
+
+    $("#btnFjerneEndringer").onclick = () => {
+        $("#btnFjerneEndringer").disabled = true;
+        hentKlasse();
+    }
 }
 
 
@@ -187,7 +192,8 @@ function byttePlass(evt) {
         if (elev1ID !== evt.target.id && !(elev1 === "." && elev2 === ".")) {
             $("#" + elev1ID).innerHTML = elev2;
             evt.target.innerHTML = elev1;
-            $("#btnLagreKlassekart").disabled = false; // Gjør knapp for lagring klikkbar
+            $("#btnLagreKlassekart").disabled = false; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
+            $("#btnFjerneEndringer").disabled = false;
         }
     }
     else {
