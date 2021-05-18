@@ -5,10 +5,12 @@ let data = JSON.parse(fs.readFileSync(dataFilename));
 
 window.onload = () => {
     lagSelKlasse();
-
     $("#btnVelgKlasse").onclick = () => {
-        let klasseKode = $("#selKlasse").value;
-        sessionStorage.setItem("valgtKlasse", klasseKode);
+        let klasse = {
+            klassekode: $("#selKlasse").value,
+            elever: data[$("#selKlasse").value].elever
+        }
+        sessionStorage.setItem("valgtKlasse", JSON.stringify(klasse));
         window.location = "klassebehandling.html";
     }
 }

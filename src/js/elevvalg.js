@@ -1,11 +1,11 @@
-// se 'kodehjelp.js' for forklaring på skriving/lesing av fil
-const valgtKlasse = sessionStorage.getItem("valgtKlasse");
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data.json";
-var data = JSON.parse(fs.readFileSync(dataFilename));
-elever = data[valgtKlasse].elever;
+// henter klasse fra session storage
+const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
+const klasse = valgtKlasse.klassekode;
+const elever = valgtKlasse.elever;
 
+// console.log((valgtKlasse.klassekode));
 window.onload = () => {
+    document.getElementById('klasse').innerHTML =`Klasse: ${klasse}`;
     antall_elever = document.getElementById('antall_elever');
     antall_elever.focus();  // fokuserer på inputfeltet
     document.getElementById('btn_elever').onclick = velg_elever;
