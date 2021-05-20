@@ -1,12 +1,10 @@
 // henter klasse fra session storage
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
 const klasse = valgtKlasse.klassekode;
-const elever = valgtKlasse.elever;
+let elever = valgtKlasse.elever;
 
 document.title = valgtKlasse.klassekode + " - Fravær";
 window.onload = oppstart;
-
-// Klasse = ["Erik","Åmund","Jon","Kjell","Bryan","Sindre","Bonsa","Mathilde","Sven","Magnus","Adrian","Julianne","Ola","Anders","Mikkel","Andreas","Herman","Ulrik"]; //Ordentlig klasse med elever
 
 let eleverFravaer = [];                                                                     //Lagrer de som ikke har vært tilstede for seinere bruk
 
@@ -67,6 +65,12 @@ function eleverTilstede() {                                                     
     console.log("Elever som er tilstede: " + elever);
     console.log("Fravær: " + eleverFravaer);
     console.log("----------------------------");
+
+    // sessionStorage.getItem('valgtKlasse').elever = elever;
+    sessionStorage.setItem("valgtKlasse", JSON.stringify({
+        klassekode: klasse,
+        elever: elever
+    }));
     window.location = 'klassebehandling.html'
 }
 
