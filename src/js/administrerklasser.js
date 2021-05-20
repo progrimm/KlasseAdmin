@@ -18,11 +18,11 @@ window.onload = () => {
 function oppdaterTabell() {
     $("#tableOversiktKlasser").innerHTML = "";
 
-    for (let klasseKode in data) {
+    for (let klassekode in data) {
         let radKlasse = document.createElement("tr");
 
         let kode = document.createElement("td");
-        kode.innerHTML = klasseKode;
+        kode.innerHTML = klassekode;
 
         let elever = document.createElement("td");
         let arrElever = data[klasseKode]["elever"]
@@ -31,14 +31,14 @@ function oppdaterTabell() {
         let btnRediger = document.createElement("td");
         btnRediger.innerHTML = "Rediger";
         btnRediger.onclick = () => {
-            valgtKlasse = klasseKode;
+            valgtKlasse = klassekode;
             addAndEdit(arrElever)
         };
 
         let btnSlett = document.createElement("td");
         btnSlett.innerHTML = "Slett";
         btnSlett.onclick = () => { 
-            slettKlasse(klasseKode) 
+            slettKlasse(klassekode) 
         };
 
         radKlasse.appendChild(kode);
@@ -50,8 +50,8 @@ function oppdaterTabell() {
     }
 }
 
-function slettKlasse(klasseKode) {
-    console.log("Slett: " + klasseKode);
+function slettKlasse(klassekode) {
+    console.log("Slett: " + klassekode);
     oppdaterTabell();
 }
 

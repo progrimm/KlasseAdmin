@@ -1,7 +1,7 @@
 /*Testvariabler*/
 var testKlasse = ["Julianne","Adrian","Smil","Hege","Sine","Lisa","Sven","Jon","Magnus","Åmund","Erik","Mikkel","Anders","Ulrik"];         //Bare en testklasse
-var testAntall = 3;                                                         //Enten antall grupper som skal lages, eller antall elever som skal være i gruppene
-var testSortering = "gruppe";                                                 //"gruppe" eller "elev"
+var testAntall = 11;                                                         //Enten antall grupper som skal lages, eller antall elever som skal være i gruppene
+var testSortering = "elev";                                                 //"gruppe" eller "elev"
 
 /*Gruppefunskjonen*/
 function gruppe(klasse, grupper, sortering) {
@@ -43,6 +43,8 @@ function gruppe(klasse, grupper, sortering) {
         var antallPerGruppe = antallGrupper; 
         var personForMye = elever.length % antallGrupper;
         antallGrupper = parseInt(elever.length / antallGrupper);
+        
+
         if(parseInt(elever.length / antallPerGruppe) < 2) {                 //Enda mer idiotsikring, hvis læreren skulle velge ett antall som blir for høyt logisk
             var maksMuligeAntallPerGruppe = 0;
             for(var m = 1; m < 1000; m++) {                                 //Finner det høyeste tallet for elever per gruppe
@@ -110,4 +112,4 @@ function gruppe(klasse, grupper, sortering) {
 }
 
 /*Midlertidlig. Kun for å se gruppene*/
-console.log(gruppe(testKlasse, testAntall, testSortering));
+gruppe(testKlasse, testAntall, testSortering);
