@@ -11,7 +11,7 @@ window.onload = () => {
             elever: data[$("#selKlasse").value].elever
         }
         sessionStorage.setItem("valgtKlasse", JSON.stringify(klasse));
-        window.location = "klassebehandling.html";
+        window.location = "fravaer.html";
     }
 }
 

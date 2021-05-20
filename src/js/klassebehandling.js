@@ -1,5 +1,5 @@
-const valgtKlasse = sessionStorage.getItem("valgtKlasse");
-document.title = valgtKlasse + " - Klassebehandling";
+const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
+document.title = valgtKlasse.klassekode + " - Klassebehandling";
 
 window.onload = () => {
     $("#btnStartside").onclick = () => {
