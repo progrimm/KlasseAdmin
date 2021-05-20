@@ -1,4 +1,5 @@
-let klasseKode, klasse, elever, perBord, rader, kolonner;  // Globale variabler
+let perBord, rader, kolonner;  // Globale variabler
+
 // Hører til byttPlass
 let antallKlikk = 0;
 let elev1ID;
@@ -10,11 +11,13 @@ const fs = require("fs");
 const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
 
+const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter valgte klassa
+let klasse = data[valgtKlasse.klassekode]; // Henter objektet fra data
+let elever = klasse["elever"]; // Henter elevene
+let klassekart = klasse["klassekart"]; // Henter klassekartet
 
 window.onload = () => {
-    lagSelKlasse();
-
-    $("#selKlasse").onchange = hentKlasse;  // Når en klasse blir valgt fra nedtrekksliste (MIDLERTIDIG LØSNING)
+    hentKlasse();
 
     // Vise modal
     $("#btnVisModalStruktur").onclick = () => {
@@ -41,40 +44,16 @@ window.onload = () => {
 
     $("#btnFjerneEndringer").onclick = () => {
         $("#btnFjerneEndringer").disabled = true;
-        hentKlasse();
     }
-}
-
-
-// Midlertidig valg av klasse, fyller select-elementet
-function lagSelKlasse() {
-    $("#selKlasse").innerHTML = "";
-
-    let options = "<option disabled selected>Velg Klasse</option>";
-
-    for (klasseKode in data) {
-        options += "<option value'" + klasseKode + "'>" + klasseKode + "</option>";
-    }
-
-    $("#selKlasse").innerHTML = options;
 }
 
 // Henter info om valgt klasse og viser eventuelt eksisterende kart, samt initialiserer noen variabler
 function hentKlasse() {
 
-    // Gjør knapper trykkbare
-    $("#btnVisModalStruktur").disabled = false;
-    $("#btnSnuKlassekart").disabled = false;
-
-    klasseKode = $("#selKlasse").value;
-    klasse = data[klasseKode];  // Henter alt om klasse etter valgt klassekode
-    elever = [...klasse["elever"]];  // Henter elevene i valgt klasse ved array-kopiering (Spread operator)
-    // elever = klasse["elever"].map((elev) => elev);
-
-    let eleverKlassekartKunNavn = klasse["klassekart"].filter(navn => navn !== "."); // Filtrerer ut de tomme plassene
+    let eleverKlassekartKunNavn = klassekart.filter(navn => navn !== "."); // Filtrerer ut de tomme plassene
 
     // Sjekker om valgt klasse har klassekart fra før, eller om det må lages nytt
-    if (klasse["klassekart"].length === 0) {
+    if (klassekart.length === 0) {
         $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
     }
     else if (eleverKlassekartKunNavn.length !== elever.length) {
@@ -147,7 +126,7 @@ function visKlassekart() {
                 btnElev.id = "rad" + i + "kolonne" + j + "nr" + k;
                 btnElev.classList.add("elev");
 
-                let elevNavn = klasse["klassekart"][elevID];
+                let elevNavn = klassekart[elevID];
                 if (elevNavn === undefined) {
                     elevNavn = ".";
                 }
@@ -223,7 +202,7 @@ function lagrePlassbytter() {
 
     elever.reverse(); // Snur lista til riktig veg
 
-    klasse["klassekart"] = elever;
+    data[valgtKlasse.klassekode]["klassekart"] = elever;
     $("#btnLagreKlassekart").disabled = true;
     lagreKlassekart(); // Skriver til fil
 }
@@ -238,8 +217,10 @@ function lagreKlassekart() {
         console.log("Oppdatert kart!");
     });
 
-    data = JSON.parse(fs.readFileSync(dataFilename)); // Oppdaterer variabelen data 
-    klasse = data[klasseKode]; // Henter ut klassa på nytt
+    data = JSON.parse(fs.readFileSync(dataFilename)); // Oppdaterer variablene våre 
+    klasse = data[valgtKlasse.klassekode];
+    elever = klasse["elever"];
+    klassekart = klasse["klassekart"]; // Henter ut klassa på nytt
 }
 
 // Funksjon for å snu klassekartet
