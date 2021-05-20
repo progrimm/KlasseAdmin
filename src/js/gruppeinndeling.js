@@ -1,19 +1,19 @@
 /*Testvariabler*/
-var testKlasse = ["Julianne","Adrian","Smil","Hege","Sine","Lisa"];         //Bare en testklasse
-var testAntall = 1;                                                         //Enten antall grupper som skal lages, eller antall elever som skal være i gruppene
-var testSortering = "elev";                                                 //"gruppe" eller "elev"
+var testKlasse = ["Julianne","Adrian","Smil","Hege","Sine","Lisa","Sven","Jon","Magnus","Åmund","Erik","Mikkel","Anders","Ulrik"];         //Bare en testklasse
+var testAntall = 3;                                                         //Enten antall grupper som skal lages, eller antall elever som skal være i gruppene
+var testSortering = "gruppe";                                                 //"gruppe" eller "elev"
 
 /*Gruppefunskjonen*/
 function gruppe(klasse, grupper, sortering) {
     var feil = false;                                                           //Registrering av en feil
-    var feilmelding = "";                                                   //Mulighet for feilmelding 
+    var feilmelding = "";                                                       //Mulighet for feilmelding 
     var reverseringAvFerdigListe = false;                                       //Gjør det mulig å ikke reversere listen
     
     var lagUtIfra = sortering;                                              //Variabel som forteller programmet om den skal regne ut ifra antall grupper eller elever   
     var elever = klasse;                                                    //Klassen som et array
     var antallGrupper = grupper;                                            //Hvor mange grupper som skal lages, eller hvor mange elever per gruppe
     if(isNaN(antallGrupper)) {                                              //Sjekker at antallet oppgitt er en gyldig verdi     
-        feil = true;                                                           //Hvis ikke gyldig, registreres feilen, og feilmelding returneres neders
+        feil = true;                                                        //Hvis ikke gyldig, registreres feilen, og feilmelding returneres neders
         feilmelding = 'Beklager, men "' + antallGrupper + '" er ikke et antall.';
     }
     else {
@@ -56,7 +56,7 @@ function gruppe(klasse, grupper, sortering) {
             antallPerGruppe = maksMuligeAntallPerGruppe;                    //Antall per gruppe blir nå det maksimale mulige
             antallGrupper = parseInt(elever.length / antallPerGruppe);      //Antall grupper blir nå hvor mange elever det er delt på antall elever per gruppe
             personForMye = elever.length % antallPerGruppe;                 //Person for mye blir resten
-            reverseringAvFerdigListe = true;                                   //Forhindrer reversering av løkka, slik at den gruppa med flest i kommer først
+            reverseringAvFerdigListe = true;                                //Forhindrer reversering av løkka, slik at den gruppa med flest i kommer først
         }
         if(personForMye > antallGrupper && elever.length % 2 !== 0 && antallPerGruppe - personForMye !== 1) {       //Idiotsikring. Hvis det er flere personer til overs, enn det er grupper, endres verdiene for å passe bedre
             console.log("Faen");
@@ -96,12 +96,12 @@ function gruppe(klasse, grupper, sortering) {
         undergruppe = [];                                                   //Tømmer det midlertidlige array, slik at neste gruppe kan lages
     }
 
-    if(reverseringAvFerdigListe === true && sortering === "elev") {}           //Forhindrer at listen reverseres, slik at læreren får riktig antall øverst    
+    if(reverseringAvFerdigListe === true && sortering === "elev") {}        //Forhindrer at listen reverseres, slik at læreren får riktig antall øverst    
     else {
         ferdigGrupper.reverse();                                            //Reverserer ferdige lista, for å få "riktig" antall øverst
     }
     
-    if(feil === true) {                                                        //Hvis en feil er registrert, vil den returnere feilmeldingen
+    if(feil === true) {                                                     //Hvis en feil er registrert, vil den returnere feilmeldingen
         return feilmelding;                                                 //Returnerer feilmeldingen laget lenger oppe
     }
     else {
