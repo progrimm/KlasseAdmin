@@ -16,6 +16,8 @@ let klasse = data[valgtKlasse.klassekode]; // Henter objektet fra data
 let elever = klasse["elever"]; // Henter elevene
 let klassekart = klasse["klassekart"]; // Henter klassekartet
 
+document.title = valgtKlasse.klassekode + " - Klassekart";
+
 window.onload = () => {
     hentKlasse();
 
@@ -40,10 +42,12 @@ window.onload = () => {
         }
     }
 
-    $("#btnLagreKlassekart").onclick = lagrePlassbytter;
+    $("#btnLagreEndringer").onclick = lagrePlassbytter;
 
     $("#btnFjerneEndringer").onclick = () => {
         $("#btnFjerneEndringer").disabled = true;
+        $("#btnLagreEndringer").disabled = true;
+        visKlassekart();
     }
 }
 
@@ -171,7 +175,7 @@ function byttePlass(evt) {
         if (elev1ID !== evt.target.id && !(elev1 === "." && elev2 === ".")) {
             $("#" + elev1ID).innerHTML = elev2;
             evt.target.innerHTML = elev1;
-            $("#btnLagreKlassekart").disabled = false; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
+            $("#btnLagreEndringer").disabled = false; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
             $("#btnFjerneEndringer").disabled = false;
         }
     }
@@ -202,12 +206,13 @@ function lagrePlassbytter() {
 
     elever.reverse(); // Snur lista til riktig veg
 
-    data[valgtKlasse.klassekode]["klassekart"] = elever;
+    klasse["klassekart"] = elever; // Oppdaterer klassekartet
     $("#btnLagreKlassekart").disabled = true;
+    $("#btnFjerneEndringer").disabled = true;
     lagreKlassekart(); // Skriver til fil
 }
 
-// Funksjon for å lagre de endringene som er gjort, og oppdatere variablene data og klasse
+// Funksjon for å lagre de endringene som er gjort til data.js, og oppdatere variabler
 function lagreKlassekart() {
 
     let dataOppdatert = JSON.stringify(data, null, '\t');
@@ -217,10 +222,11 @@ function lagreKlassekart() {
         console.log("Oppdatert kart!");
     });
 
-    data = JSON.parse(fs.readFileSync(dataFilename)); // Oppdaterer variablene våre 
+    // Oppdaterer variablene våre for sikkerhets skyld
+    data = JSON.parse(fs.readFileSync(dataFilename));
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
-    klassekart = klasse["klassekart"]; // Henter ut klassa på nytt
+    klassekart = klasse["klassekart"];
 }
 
 // Funksjon for å snu klassekartet
