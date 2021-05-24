@@ -25,7 +25,7 @@ function oppdaterTabell() {
         kode.innerHTML = klassekode;
 
         let elever = document.createElement("td");
-        let arrElever = data[klasseKode]["elever"]
+        let arrElever = data[klassekode]["elever"]
         elever.innerHTML = arrElever;
 
         let btnRediger = document.createElement("td");
@@ -37,8 +37,8 @@ function oppdaterTabell() {
 
         let btnSlett = document.createElement("td");
         btnSlett.innerHTML = "Slett";
-        btnSlett.onclick = () => { 
-            slettKlasse(klassekode) 
+        btnSlett.onclick = () => {
+            slettKlasse(klassekode)
         };
 
         radKlasse.appendChild(kode);
