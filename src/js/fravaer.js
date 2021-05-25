@@ -1,7 +1,12 @@
-// henter klasse fra session storage
+// Henter data fra fil
+const fs = require("fs");
+const dataFilename = __dirname + "/js/data.json";
+let data = JSON.parse(fs.readFileSync(dataFilename));
+// henter valgt klasse fra session storage
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
-const klasse = valgtKlasse.klassekode;
-let elever = valgtKlasse.elever;
+// henter ut elever både fra fil og session
+let elever = data[valgtKlasse.klassekode].elever
+let elever_tilstede = valgtKlasse.elever;
 
 document.title = valgtKlasse.klassekode + " - Fravær";
 window.onload = oppstart;
@@ -11,9 +16,8 @@ let eleverFravaer = [];                                                         
 function oppstart() {
     document.getElementById("elevListe").innerHTML = "";    // sletter alt i hoveddiven
     eleverFravaer = [];     // tømmer lista med fraværende elever
-    document.getElementById('valgt_klasse').innerHTML =klasse;
 
-    const listeLengde = elever.length;
+    let listeLengde = elever.length;
     for(let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
         let elevDiv = document.createElement("div");
         elevDiv.id = elever[i];
@@ -25,13 +29,28 @@ function oppstart() {
         let nyBtnFravaer = document.createElement("button");
         nyBtnFravaer.id = "btnFravaer" + elever[i];
         nyBtnFravaer.className = "btnFravaer";
-        nyBtnFravaer.value = "green";
-        nyBtnFravaer.innerHTML = "Tilstede";
+
+        if(elever_tilstede.includes(elever[i])) {   // hvis eleven er tilstedeværende
+            nyBtnFravaer.value = "green";
+            nyBtnFravaer.innerHTML = "Tilstede";
+        }
+        else {  // hvis fraværende
+            nyBtnFravaer.value = "red";
+            nyBtnFravaer.innerHTML = "Fravær";
+            nyBtnFravaer.style.backgroundColor = "red";
+            elevDiv.style.borderColor = "red";
+            eleverFravaer.push(elever[i]);
+        }
         nyBtnFravaer.onclick = fravaer;                                                     //Kjører funskjonen fravaer() når buttonen blir trykket
 
         document.getElementById("elevListe").appendChild(elevDiv);                          //Legger til diven for eleven på nettsiden
         document.getElementById(elever[i]).appendChild(nyElevNavn);                         //Legger til navnet i den diven nettopp lagt til
         document.getElementById(elever[i]).appendChild(nyBtnFravaer);                       //Legger til knappen også :)
+    }
+    // kjører gjennom fraværende elever og sletter de fra elevlista
+    for (const elev of eleverFravaer) {
+        index = elever.indexOf(elev);
+        elever.splice(index,1);
     }
 }
 
@@ -66,9 +85,8 @@ function eleverTilstede() {                                                     
     console.log("Fravær: " + eleverFravaer);
     console.log("----------------------------");
 
-    // sessionStorage.getItem('valgtKlasse').elever = elever;
     sessionStorage.setItem("valgtKlasse", JSON.stringify({
-        klassekode: klasse,
+        klassekode: valgtKlasse.klassekode,
         elever: elever
     }));
     window.location = 'klassebehandling.html'
