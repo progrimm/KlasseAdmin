@@ -3,7 +3,7 @@ const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
 const klasse = valgtKlasse.klassekode;
 const elever = valgtKlasse.elever;
 
-// console.log((valgtKlasse.klassekode));
+document.title = valgtKlasse.klassekode + " - Tilfeldig valg";
 window.onload = () => {
     document.getElementById('klasse').innerHTML =`Klasse: ${klasse}`;
     antall_elever = document.getElementById('antall_elever');

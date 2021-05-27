@@ -92,7 +92,7 @@ function leggTilKlasse() {
     $("#inpElever").value = "";
 
     $("#inpKlassekode").placeholder = "Eks: 2MATR";
-    $("#inpElever").placeholder = "Skill elevene med komma";
+    $("#inpElever").placeholder = "Skill elevene med komma, bruk mellomrom ved behov";
 }
 
 function redigerKlasse(klassekode) {
@@ -110,7 +110,7 @@ function lagreKlasse() {
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;
     let nyeElever = $("#inpElever").value;
-    nyeElever = [tekstbehandling(nyeElever)]; // Formaterer input-tekst til matrise
+    nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
     if (valgtKlasse !== "") {
         delete data[valgtKlasse];
@@ -127,7 +127,7 @@ function lagreKlasse() {
     // Lager objekt for den nye klassa
     let nyKlasse = {
         [nyKlassekode]: {
-            elever: [...nyeElever],
+            elever: nyeElever,
             klassekart: [],
             klassekart_oppsett: {
                 per_bord: 0,
@@ -145,20 +145,26 @@ function lagreKlasse() {
     oppdaterTabell();
 }
 
-// Takk til Jon for kreativt innslag
+// Takk til Jon for kreativt innslag                    // bare hyggelig :) - Jon
 function tekstbehandling(nye_elever) {
-    let elever = nye_elever.split(',');                               // deler opp på komma
-    for (let i=0; i<elever.length; i++) {
-        elever[i] = elever[i].split(' ');                               // deler opp på mellomrom
-        
-        let j = 0;
-        while (j<elever[i].length) {
-            elever[i][j] = elever[i][j].split('\n').join('');           // tar bort linjeskift
-            if (elever[i][j] === '')
-                elever[i].splice(j,1);                                  // sletter tomme elementer
-            else j++;
+    let elever = nye_elever.split(',');                 // deler opp på komma
+    console.log(elever)
+    let i =0;
+    while (i<elever.length) {
+        elever[i] = elever[i].split('\n').join('');     // tar bort linjeskift
+        if (elever[i] === ''){
+            elever.splice(i,1);                         // sletter tomme elev-elementer
+            continue;
         }
-        elever[i] = elever[i].join(' ');                                // setter de sammmen igjen med mellomrom mellom
+        elever[i] = elever[i].split(' ');               // deler opp på mellomrom
+        let j =0;
+        while (j<elever[i].length) {
+            if (elever[i][j] === ''){
+                elever[i].splice(j,1);                  // sletter tomme elementer
+            } else j++;
+        }
+        elever[i] = elever[i].join(' ');                // setter de sammmen igjen med mellomrom mellom
+        i++;
     }
     return elever;
 }
