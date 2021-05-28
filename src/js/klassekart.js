@@ -54,15 +54,15 @@ window.onload = () => {
 // Henter info om valgt klasse og viser eventuelt eksisterende kart, samt initialiserer noen variabler
 function hentKlasse() {
 
-    let eleverKlassekartKunNavn = klassekart.filter(navn => navn !== "."); // Filtrerer ut de tomme plassene
+    // let eleverKlassekartKunNavn = klassekart.filter(navn => navn !== "."); // Filtrerer ut de tomme plassene
 
     // Sjekker om valgt klasse har klassekart fra før, eller om det må lages nytt
     if (klassekart.length === 0) {
         $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
     }
-    else if (eleverKlassekartKunNavn.length !== elever.length) {
-        $("#tableKlassekart").innerHTML = "Det har skjedd en endring i klassa, lag nytt kart";
-    }
+    // else if (eleverKlassekartKunNavn.length !== elever.length) {
+    //     $("#tableKlassekart").innerHTML = "Det har skjedd en endring i klassa, lag nytt kart";
+    // }
 
     // Viser klassekart om det finnes fra før
     else {
@@ -207,7 +207,7 @@ function lagrePlassbytter() {
     elever.reverse(); // Snur lista til riktig veg
 
     klasse["klassekart"] = elever; // Oppdaterer klassekartet
-    $("#btnLagreKlassekart").disabled = true;
+    $("#btnLagreEndringer").disabled = true;
     $("#btnFjerneEndringer").disabled = true;
     lagreKlassekart(); // Skriver til fil
 }
@@ -224,6 +224,7 @@ function lagreKlassekart() {
 
     // Oppdaterer variablene våre for sikkerhets skyld
     data = JSON.parse(fs.readFileSync(dataFilename));
+    console.log(data);  
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
     klassekart = klasse["klassekart"];

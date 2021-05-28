@@ -1,11 +1,10 @@
 {
-	"3STB": {
+	"matte": {
 		"elever": [
-			"Sven",
-			"Jon",
-			"Mikkel GS",
-			"Bonsa",
-			"Mikkel WS"
+			"sdf",
+			"asdf",
+			"sadf",
+			"sd"
 		],
 		"klassekart": [],
 		"klassekart_oppsett": {
@@ -19,18 +18,43 @@
 			"Åmund",
 			"Erik",
 			"Jon",
-			"Bonsa"
+			"Bonsa",
+			"Bryan"
 		],
 		"klassekart": [
 			"Erik",
-			"Jon",
+			"Bryan",
 			"Bonsa",
-			"Åmund"
+			"Åmund",
+			"Jon"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "1",
-			"rader": "2",
+			"rader": "4",
 			"kolonner": "2"
+		}
+	},
+	"3STB": {
+		"elever": [
+			"Sven",
+			"Jon",
+			"Mikkel GS",
+			"Bonsa",
+			"Mikkel WS",
+			"Hanna"
+		],
+		"klassekart": [
+			"Bonsa",
+			"Jon",
+			"Sven",
+			"Hanna",
+			"Mikkel WS",
+			"Mikkel GS"
+		],
+		"klassekart_oppsett": {
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
 		}
 	},
 	"3sta": {
