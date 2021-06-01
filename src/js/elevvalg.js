@@ -1,24 +1,31 @@
+// Henter data fra fil
+const fs = require("fs");
+const dataFilename = __dirname + "/js/data.json";
+let data = JSON.parse(fs.readFileSync(dataFilename));
 // henter klasse fra session storage
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
 const klasse = valgtKlasse.klassekode;
 const elever = valgtKlasse.elever;
+const alle_elever = data[klasse].elever;
 
 document.title = valgtKlasse.klassekode + " - Tilfeldig valg";
 window.onload = () => {
-    document.getElementById('klasse').innerHTML =`Klasse: ${klasse}`;
-    antall_elever = document.getElementById('antall_elever');
+    $('#klasse').innerHTML =`Klasse: ${klasse}`;
+    antall_elever = $('#antall_elever');
     antall_elever.focus();  // fokuserer på inputfeltet
-    document.getElementById('btn_elever').onclick = velg_elever;
+    $('#btn_elever').onclick = velg_elever;
     onkeydown = function (evt) {    // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && antall_elever === document.activeElement) velg_elever();
     }
 }
 
 function velg_elever() {
-    let em = document.getElementById('elev_utvalg');
-    while (em.lastChild) em.removeChild(em.lastChild);   // sletter alle child-elements
-    // lager egen liste av elever til å hente og slette elementer fra
-    let jobbe_liste_elever = elever.slice(0);    // liste som det kan slettes elever fra under utvalg
+    let jobbe_liste_elever = alle_elever.slice(0);      // liste som det kan slettes elever fra under utvalg
+    if ($('#bare_tilstedevaerende').checked) {        // hvis bare tilstedeværende elever skal velges
+        jobbe_liste_elever = elever.slice(0);
+    }
+    let em = $('#elev_utvalg');
+    while (em.lastChild) em.removeChild(em.lastChild);  // sletter alle child-elements
     let antall = (+antall_elever.value < elever.length ? +antall_elever.value : elever.length);
 
     for (var i=0; i<antall; i++) {
@@ -28,6 +35,6 @@ function velg_elever() {
         // genererer nytt element
         let nytt_em = document.createElement('div');
         nytt_em.innerHTML = "<h3>"+tilfeldig_valgt_elev+"</h3>";   
-        document.getElementById('elev_utvalg').appendChild(nytt_em);
+        $('#elev_utvalg').appendChild(nytt_em);
     }
 }

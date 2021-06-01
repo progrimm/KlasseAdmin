@@ -16,20 +16,15 @@
 <body>
     <p><a href="klassebehandling.html">Tilbake</a></p>
     <div>
-        <h1 class='my-5'>Tilfeldig valg av elever</h1>
+        <h1>Tilfeldig valg av elever</h1>
+        <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'> Velg bare tilstedeværende elever</label>
         <p id='klasse'>Klasse:</p>
-        <div class="row">
-            <div class="input-group mb-2 col-8">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">Skriv inn antall elever:</div>
-                </div>
-                <input type="number" id="antall_elever" class="form-control" min='1' value='1'>
-            </div>
-            <button class='btn btn-lg btn-secondary' id='btn_elever'>Velg</button>
-        </div>
+        <p>Skriv inn antall elever:</p>
+        <input type="number" id="antall_elever" min='1' value='1'>
+        <button id='btn_elever'>Velg</button>
 
         <h2>Elever:</h2>
-        <div id='elev_utvalg' class='row justify-content-around'>
+        <div id='elev_utvalg'>
             <!-- genererte div-tagger -->
         </div>
     </div>
