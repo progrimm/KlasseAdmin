@@ -5,6 +5,11 @@ body {
   margin: auto;
   max-width: 38rem;
   padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Hvordan bruke variabler i CSS. :root gir global scope, variablene kan da brukes i alle css-filer */
