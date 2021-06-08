@@ -1,44 +1,69 @@
-let klokka_gaar = false
-let min = 0;
-let sek = 0;
+let klokka_gaar =false
+let min = start_min =4;
+let sek = start_sek =0;
+let nedteller_intervall;
 
-window.onload = () => {
-    nedteller =$('#nedteller');
-    start_stopp = $('#start_stopp');
-    start_stopp.onclick = start_eller_stopp;
-        
-}
-function sleep(ms) {    // setter programmet på vent i x millisekunder
-  return new Promise(resolve => setTimeout(resolve, ms));s
-}
-
-async function start_eller_stopp() {
-    tid = (new Date()).getTime()
-    min = +$('#minutt').value;
-    sek = +$('#sek').value;
-    if (klokka_gaar) {
-        // sette nedtelling på pause
-        klokka_gaar = false;
-        start_stopp.innerHTML ='Start';
-    } else {
-        // starte/fortsette nedtelling
-        start_stopp.innerHTML = 'Stopp';
-        klokka_gaar = true;
-        while(klokka_gaar) {
-            await sleep(1000)   // venter 1 sek
-            sek--;
-            if (sek<0) {
-                sek = 59;
-                min--;
-                if (min<0) {    // timer ferdig
-                    klokka_gaar = false;
-                    min = 4;
-                    sek = 0;
-                    return
-                }
-            }
-            $('#minutt').value = min;
-            $('#sek').value = sek;
-        }
+window.onload =() => {
+    veksle =$('#veksle_start_stopp');
+    minutt =$('#minutt');
+    sekund =$('#sekund');
+    // lyttere
+    $('#nullstill').onclick =nullstill;
+    veksle.onclick =start_eller_stopp;
+    // stopper klokka hvis bruker fokuserer på inputfeltene
+    minutt.onclick =() => {
+        clearInterval(nedteller_intervall);
     }
+    sekund.onclick =() => {
+        clearInterval(nedteller_intervall);
+    }
+    // setter nye startverdier for min og sek hvis bruker gjør endringer
+    minutt.onchange =() => {
+        start_min =minutt.value;
+    }
+    sekund.onchange =() => {
+        start_sek =sekund.value;
+    }
+
+}
+
+function nedteller() {
+    // starte/fortsette nedtelling
+    klokka_gaar;
+    veksle.innerHTML ='Stopp';
+    sek--;
+    if (sek < 0) {
+        sek =59;
+        min--;
+        console.log(klokka_gaar)
+    }
+    minutt.value =min;
+    sekund.value =sek;
+    if (min < 0) {    // nedtelling ferdig
+        nullstill();
+        // fortsette med negative tall
+    }
+}
+
+function start_eller_stopp() {
+    min =Math.floor(minutt.value);
+    sek =Math.floor(sekund.value);
+
+    if (klokka_gaar) {  // stopper klokka
+        clearInterval(nedteller_intervall);
+        klokka_gaar =false;
+        veksle.innerHTML ='Start';
+    } else {  // setter i gang klokka
+        nedteller_intervall =setInterval(nedteller, 1000);  // kjører nedtellerfunksjonen hvert sek
+        klokka_gaar =true;
+        veksle.innerHTML ='Stopp';
+    }
+}
+
+function nullstill() {
+    clearInterval(nedteller_intervall);
+    klokka_gaar =false;
+    veksle.innerHTML ='Start';
+    minutt.value =start_min;
+    sekund.value =start_sek;
 }
