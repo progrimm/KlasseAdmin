@@ -1,8 +1,13 @@
+const fs = require("fs");
+const dataFilename = __dirname + "/js/data.json";
+let data = JSON.parse(fs.readFileSync(dataFilename));
+const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter valgte klassa
+let klasse = data[valgtKlasse.klassekode];
+let elever = klasse["elever"]; // Henter elevene
+
 window.onload = () => {
     document.getElementById("slcInndeling").onchange = valgfelt;
 }
-
-let testKlasse = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33];
 
 function valgfelt() {
     let typInndeling = document.getElementById("slcInndeling").value;
@@ -17,7 +22,7 @@ function valgfelt() {
         divAntall.innerHTML = "<p>Antall elever per gruppe: <select id='slcAntall'><option selected disabled>Velg antall elever</option></select></p>"
     }
 
-    for(let i = 2; i <= ~~(testKlasse.length / 2); i++) {
+    for(let i = 2; i <= ~~(elever.length / 2); i++) {
         let option = document.createElement("option");
         option.innerHTML = i;
         option.value = i;
@@ -50,7 +55,7 @@ function sortRandom(element) {
 function gruppeinndeling(antall, type) {
     let lagUtIFra = type;
     let antallPerInndeling = antall;
-    let klasse = sortRandom([...testKlasse]);
+    let klasse = sortRandom([...elever]);
     let grupper = [];
     
     if(lagUtIFra === "gruppe") {
@@ -135,5 +140,17 @@ function gruppeinndeling(antall, type) {
 
 function utskrift(grupper) {
     let utskriftGrupper = grupper;
-    console.log(utskriftGrupper);
+    let utskriftArea = document.getElementById("utskrift");
+    utskriftArea.innerHTML = "";
+    
+    utskriftGrupper.forEach((x, key) => {
+        utskriftArea.innerHTML += "<p id='gruppe" + (key + 1) + "'><span class='printaGrupper'>Gruppe " + (key + 1) + ":<span> </p>";
+        x.forEach((y, last) => {
+            if(x.length - 1 > last) {
+                document.getElementById("gruppe" + (key + 1)).innerHTML += y + ", ";
+            } else {
+                document.getElementById("gruppe" + (key + 1)).innerHTML += y + ".";
+            }
+        });
+    });
 }

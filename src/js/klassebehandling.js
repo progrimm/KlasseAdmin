@@ -5,4 +5,5 @@ window.onload = () => {
     $("#btnStartside").onclick = () => {
         window.location = "index.html";
     }
+    document.getElementById("overskrift").innerHTML = (valgtKlasse["klassekode"]);
 }
