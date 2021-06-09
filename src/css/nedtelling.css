@@ -1,0 +1,16 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input {
+    /* Firefox */
+    -moz-appearance: textfield;
+    
+    width: 40px;
+    font-size: 32px;
+    text-align: center;
+}
