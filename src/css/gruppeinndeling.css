@@ -1,3 +1,9 @@
-#btnAntallSubmit {
+#btnUserSubmit {
     cursor: not-allowed;
+    margin: 16px;
+}
+
+.printaGrupper {
+    color: var(--headerColor);
+    font-weight: bold;
 }
