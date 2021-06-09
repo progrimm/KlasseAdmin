@@ -38,10 +38,19 @@ function enableBtn() {
     }
 }
 
+function sortRandom(element) {
+    let liste = element, indeks = [], randomListe = [...Array(liste.length).keys()];    //Deklarerer tre arrayer som brukes og gir viktige verdier
+    while(indeks.length < liste.length){                                                //Løkke for å fylle indeks med like mange randome indekser som lengden på innsendt liste
+        let randomIndex = ~~(Math.random() * liste.length);                             //Lager random tall. ~~ = Math.floor
+        indeks.includes(randomIndex) ? null : indeks.push(randomIndex)};                //Hvis array for random indeks inneholder random tall, legges det ikke til i arrayet
+    randomListe = randomListe.map(x => liste[indeks[x]]);                               //For hvert element i randomListe, henter den et element i innsendt liste som tilsvarer indeks i arrayet indeks
+    return randomListe;
+}
+
 function gruppeinndeling(antall, type) {
     let lagUtIFra = type;
     let antallPerInndeling = antall;
-    let klasse = [...testKlasse];
+    let klasse = sortRandom([...testKlasse]);
     let grupper = [];
     
     if(lagUtIFra === "gruppe") {
@@ -64,13 +73,12 @@ function gruppeinndeling(antall, type) {
                 j = 0;
             }
         }
-
-        console.log(grupper.map(i => i.length));
-        let sum = 0;
-        grupper.forEach(x => {
-            sum += x.length;
-        });
-        console.log(sum);
+        // console.log(grupper.map(i => i.length));
+        // let sum = 0;
+        // grupper.forEach(x => {
+        //     sum += x.length;
+        // });
+        // console.log(sum);
     } else {
         if(~~(klasse.length / 2) < antallPerInndeling) {
             antallPerInndeling = ~~(klasse.length / 2);
@@ -115,11 +123,17 @@ function gruppeinndeling(antall, type) {
                 grupper.push(klasse);
             }
         }
-        console.log(grupper.map(i => i.length));
-        let sum = 0;
-        grupper.forEach(x => {
-            sum += x.length;
-        });
-        console.log(sum);
+        // console.log(grupper.map(i => i.length));
+        // let sum = 0;
+        // grupper.forEach(x => {
+        //     sum += x.length;
+        // });
+        // console.log(sum);
     }
+    utskrift(grupper);
+}
+
+function utskrift(grupper) {
+    let utskriftGrupper = grupper;
+    console.log(utskriftGrupper);
 }
