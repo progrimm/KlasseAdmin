@@ -1,5 +1,6 @@
 /*Testvariabler*/
-var testKlasse = ["Julianne","Adrian","Smil","Hege","Sine","Lisa","Sven","Jon","Magnus","Åmund","Erik","Mikkel","Anders","Ulrik"];         //Bare en testklasse
+//var testKlasse = ["Julianne","Adrian","Smil","Hege","Sine","Lisa","Sven","Jon","Magnus","Åmund","Erik","Mikkel","Anders"];         //Bare en testklasse
+var testKlasse = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];         //Bare en testklasse
 var testAntall = 11;                                                         //Enten antall grupper som skal lages, eller antall elever som skal være i gruppene
 var testSortering = "elev";                                                 //"gruppe" eller "elev"
 
@@ -43,7 +44,6 @@ function gruppe(klasse, grupper, sortering) {
         var antallPerGruppe = antallGrupper; 
         var personForMye = elever.length % antallGrupper;
         antallGrupper = parseInt(elever.length / antallGrupper);
-        
 
         if(parseInt(elever.length / antallPerGruppe) < 2) {                 //Enda mer idiotsikring, hvis læreren skulle velge ett antall som blir for høyt logisk
             var maksMuligeAntallPerGruppe = 0;
@@ -61,22 +61,22 @@ function gruppe(klasse, grupper, sortering) {
             reverseringAvFerdigListe = true;                                //Forhindrer reversering av løkka, slik at den gruppa med flest i kommer først
         }
         if(personForMye > antallGrupper && elever.length % 2 !== 0 && antallPerGruppe - personForMye !== 1) {       //Idiotsikring. Hvis det er flere personer til overs, enn det er grupper, endres verdiene for å passe bedre
-            console.log("Faen");
             antallPerGruppe = parseInt(elever.length / personForMye);       //antallPerGruppe blir nå antall elever delt på hvor mange til overs
             personForMye = elever.length % personForMye;                    //Finner nå ut hvor mange det er til overs, når det er flere per gruppe
             antallGrupper = parseInt(elever.length / antallPerGruppe);      //Finner nytt antall grupper den skal lage
             reverseringAvFerdigListe = true;
-            console.log(antallPerGruppe);
-            console.log(personForMye);
-            console.log(antallGrupper);
         }
         else if(personForMye > antallGrupper && antallPerGruppe - personForMye === 1){ //Idiotsikring til helvete og lenger, ekstra gruppe hvis mange  
-            console.log("Jaha?");
             antallGrupper++;                                                //Lager ekstra gruppe hvor ekstraelevene blir plassert i
             personForMye = 0;                                               //Gjør at det er ingen blir ekstra, fordi de legges nå i en egen gruppe
             reverseringAvFerdigListe = true;
         }
     }
+
+    console.log("Gammel versjon");
+    console.log("Antall per gruppe: " + antallPerGruppe);
+    console.log("Antall grupper: " + antallGrupper);
+    console.log("Antall til overs: " + personForMye);
                                                                             
     for(var i = 0; i < antallGrupper; i++) {                                //Kjører for hvor mange grupper det skal lages. Fordeler elevene random på x-antall grupper
         for(var j = 0; j < antallPerGruppe; j++) {                          //Kjører for hvor mange elever det skal være per gruppe
