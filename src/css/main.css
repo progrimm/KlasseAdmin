@@ -51,3 +51,18 @@ button:hover {
 hr {
   width: 100%;
 }
+
+table ,th, td {
+  border: 1px solid var(--darkColor);
+  border-collapse: collapse;  
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-weight: normal;
+}
+
+tr:nth-child(odd) {
+  background-color: var(--lightColor);
+}
