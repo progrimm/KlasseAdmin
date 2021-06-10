@@ -10,7 +10,12 @@ input {
     /* Firefox */
     -moz-appearance: textfield;
     
-    width: 40px;
-    font-size: 32px;
+    width: 80px;
+    font-size: 72px;
     text-align: center;
+}
+
+#minus {
+    font-size: 72px;
+    color: red;
 }

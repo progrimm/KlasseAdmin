@@ -1,6 +1,11 @@
+// Henter data fra fil
+const fs = require("fs");
+const dataFilename = __dirname + "/js/data_nedtelling.json";
+let data = JSON.parse(fs.readFileSync(dataFilename));
+
 let klokka_gaar = paa_overtid =false;
-let min = start_min =4;
-let sek = start_sek =0;
+let min = start_min =data.min;
+let sek = start_sek =data.sek;
 let nedteller_intervall, overtid_intervall;
 let lyd = new Audio('multimedia/gong.mp3');
 
@@ -8,6 +13,8 @@ window.onload =() => {
     veksle =$('#veksle_start_stopp');
     minutt =$('#minutt');
     sekund =$('#sekund');
+    minutt.value = nuller_foran(min);
+    sekund.value = nuller_foran(sek);
     // lyttere
     $('#nullstill').onclick =nullstill;
     veksle.onclick =start_eller_stopp;
@@ -21,14 +28,17 @@ window.onload =() => {
         sekund.select() // markerer tall
     }
     // setter nye startverdier for min og sek hvis bruker gjør endringer
-    minutt.onchange =() => {
+    minutt.onchange = sekund.onchange =() => {
         start_min =Math.abs(Math.floor(minutt.value));
-    }
-    sekund.onchange =() => {
         start_sek =Math.abs(Math.floor(sekund.value));
     }
-    // behandler input slik at det bare er to siffer i input
-    minutt.oninput = sekund.oninput =bare2siffer;
+    minutt.oninput = sekund.oninput =() => {
+        // behandler input slik at det bare er to siffer i input
+        bare2siffer();
+        // formatering?
+    }
+
+    $('#lagre_tid').onclick = oppdater_standard_tid;
 }
 
 function nedteller() {
@@ -41,36 +51,29 @@ function nedteller() {
     minutt.value =nuller_foran(min);
     sekund.value =nuller_foran(sek);
     if (min ===0 && sek ===0) { // nedtelling ferdig
-        lyd.play()
-        minutt.style.color = sekund.style.color ='red'; // negative tall blir rød
         clearInterval(nedteller_intervall);
         // teller hvor mye nedtellingen er på overtid
-        paa_overtid = true;
         overtid_intervall = setInterval(overtid_stoppeklokke, 1000);
+        paa_overtid = true;
+
+        if (lyd.paused) lyd.play();
+        else new Audio('multimedia/gong.mp3').play();
+
+        setTimeout(()=>{$('#minus').innerHTML ='-';}, 1000);    // minus foran tallene
+        minutt.style.color = sekund.style.color ='red'; // negative tall blir rød
     }
 }
 
 function start_eller_stopp() {
     min =Math.abs(Math.floor(minutt.value));
     sek =Math.abs(Math.floor(sekund.value));
-    // dumt å gjenta denne kodebolken, flyten burde endres på
-    if (min ===0 && sek ===0) { // nedtelling ferdig
-        lyd.play()
-        $('#nedteller').style.color = minutt.style.color = sekund.style.color ='red'; // negative tall blir rød
-        clearInterval(nedteller_intervall);
-        veksle.innerHTML ='Stopp';
-        klokka_gaar =true;
-        // teller hvor mye nedtellingen er på overtid
-        paa_overtid = true;
-        overtid_intervall = setInterval(overtid_stoppeklokke, 1000);
-        return;
-    }
 
     if (klokka_gaar) {
         stopp_nedtelling();
         if (paa_overtid) nullstill()    // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
     }
     else {  // setter i gang klokka
+        if (min ===0 && sek ===0) return; // setter ikke i gang nedtelling fra 00:00
         nedteller_intervall =setInterval(nedteller, 1000);  // kjører nedtellerfunksjonen hvert sek
         klokka_gaar =true;
         veksle.innerHTML ='Stopp';
@@ -86,6 +89,7 @@ function stopp_nedtelling () {
 }
 
 function nullstill() {
+    $('#minus').innerHTML ='';
     stopp_nedtelling();
     paa_overtid = false;
     minutt.value =nuller_foran(start_min);
@@ -119,4 +123,16 @@ function bare2siffer() {  // lar det til en hver tid bare være to siffer i inpu
     if (sek_str.length >2) {
         sekund.value = sek_str.substr(sek_str.length - 2);
     } else sekund.value = nuller_foran(sek_str);
+}
+
+function oppdater_standard_tid() {
+    let tid = {
+        min: minutt.value,
+        sek: sekund.value
+    }
+    let oppdatert_tid = JSON.stringify(tid, null, '\t');
+
+    fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
+        if (err) throw err;
+    });
 }
