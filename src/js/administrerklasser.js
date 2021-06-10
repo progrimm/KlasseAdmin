@@ -41,6 +41,7 @@ function oppdaterTabell() {
 
         let kode = document.createElement("td");
         kode.innerHTML = klassekode;
+        kode.style.color = "#e63946";
 
         let elever = document.createElement("td");
         let arrElever = data[klassekode]["elever"]
