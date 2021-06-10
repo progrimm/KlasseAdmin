@@ -26,7 +26,7 @@ function velg_elever() {
     }
     let em = $('#elev_utvalg');
     while (em.lastChild) em.removeChild(em.lastChild);  // sletter alle child-elements
-    let antall = (+antall_elever.value < elever.length ? +antall_elever.value : elever.length);
+    let antall = (+antall_elever.value < jobbe_liste_elever.length ? +antall_elever.value : jobbe_liste_elever.length);
 
     for (var i=0; i<antall; i++) {
         let tilfeldig_index = Math.floor((Math.random() * jobbe_liste_elever.length));  // tilfeldig valg av 

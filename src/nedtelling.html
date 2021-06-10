@@ -8,6 +8,7 @@
     <script type="application/json" src="js\data.json"></script>
     <script src="js\nedtelling.js"></script>
     <script src="js\template.js"></script>
+    <link rel='stylesheet' href="css/nedtelling.css">
 </head>
 
 <body>
@@ -15,12 +16,13 @@
     <a href='klassebehandling.html'>Tilbake</a>
     <hr>
     <p id='nedteller'>
-        <label><input id='minutt' type='number' value='4'> m</label>
-        <label><input id='sekund' type='number' value='0'> s</label>
+        <span id='minus'></span>
+        <label><input id='minutt' type='number' value='00' placeholder="00"> m</label>
+        <label><input id='sekund' type='number' value='00' placeholder="00"> s</label>
     </p>
     <button id='veksle_start_stopp'>Start</button>
     <button id='nullstill'>Nullstill</button>
-    <button id='default'>Legg til som standard tid</button>
+    <button id='lagre_tid'>Lagre tid</button>
     
 </body>
 

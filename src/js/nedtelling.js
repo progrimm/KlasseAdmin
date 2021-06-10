@@ -1,69 +1,138 @@
-let klokka_gaar =false
-let min = start_min =4;
-let sek = start_sek =0;
-let nedteller_intervall;
+// Henter data fra fil
+const fs = require("fs");
+const dataFilename = __dirname + "/js/data_nedtelling.json";
+let data = JSON.parse(fs.readFileSync(dataFilename));
+
+let klokka_gaar = paa_overtid =false;
+let min = start_min =data.min;
+let sek = start_sek =data.sek;
+let nedteller_intervall, overtid_intervall;
+let lyd = new Audio('multimedia/gong.mp3');
 
 window.onload =() => {
     veksle =$('#veksle_start_stopp');
     minutt =$('#minutt');
     sekund =$('#sekund');
+    minutt.value = nuller_foran(min);
+    sekund.value = nuller_foran(sek);
     // lyttere
     $('#nullstill').onclick =nullstill;
     veksle.onclick =start_eller_stopp;
     // stopper klokka hvis bruker fokuserer på inputfeltene
-    minutt.onclick =() => {
-        clearInterval(nedteller_intervall);
+    minutt.onfocus =() => {
+        stopp_nedtelling();
+        minutt.select() // markerer tall
     }
-    sekund.onclick =() => {
-        clearInterval(nedteller_intervall);
+    sekund.onfocus =() => {
+        stopp_nedtelling();
+        sekund.select() // markerer tall
     }
     // setter nye startverdier for min og sek hvis bruker gjør endringer
-    minutt.onchange =() => {
-        start_min =minutt.value;
+    minutt.onchange = sekund.onchange =() => {
+        start_min =Math.abs(Math.floor(minutt.value));
+        start_sek =Math.abs(Math.floor(sekund.value));
     }
-    sekund.onchange =() => {
-        start_sek =sekund.value;
+    minutt.oninput = sekund.oninput =() => {
+        // behandler input slik at det bare er to siffer i input
+        bare2siffer();
+        // formatering?
     }
 
+    $('#lagre_tid').onclick = oppdater_standard_tid;
 }
 
 function nedteller() {
-    // starte/fortsette nedtelling
-    klokka_gaar;
-    veksle.innerHTML ='Stopp';
     sek--;
-    if (sek < 0) {
+    // ved minuttskifte
+    if (sek <0) {
         sek =59;
         min--;
-        console.log(klokka_gaar)
     }
-    minutt.value =min;
-    sekund.value =sek;
-    if (min < 0) {    // nedtelling ferdig
-        nullstill();
-        // fortsette med negative tall
+    minutt.value =nuller_foran(min);
+    sekund.value =nuller_foran(sek);
+    if (min ===0 && sek ===0) { // nedtelling ferdig
+        clearInterval(nedteller_intervall);
+        // teller hvor mye nedtellingen er på overtid
+        overtid_intervall = setInterval(overtid_stoppeklokke, 1000);
+        paa_overtid = true;
+
+        if (lyd.paused) lyd.play();
+        else new Audio('multimedia/gong.mp3').play();
+
+        setTimeout(()=>{$('#minus').innerHTML ='-';}, 1000);    // minus foran tallene
+        minutt.style.color = sekund.style.color ='red'; // negative tall blir rød
     }
 }
 
 function start_eller_stopp() {
-    min =Math.floor(minutt.value);
-    sek =Math.floor(sekund.value);
+    min =Math.abs(Math.floor(minutt.value));
+    sek =Math.abs(Math.floor(sekund.value));
 
-    if (klokka_gaar) {  // stopper klokka
-        clearInterval(nedteller_intervall);
-        klokka_gaar =false;
-        veksle.innerHTML ='Start';
-    } else {  // setter i gang klokka
+    if (klokka_gaar) {
+        stopp_nedtelling();
+        if (paa_overtid) nullstill()    // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
+    }
+    else {  // setter i gang klokka
+        if (min ===0 && sek ===0) return; // setter ikke i gang nedtelling fra 00:00
         nedteller_intervall =setInterval(nedteller, 1000);  // kjører nedtellerfunksjonen hvert sek
         klokka_gaar =true;
         veksle.innerHTML ='Stopp';
     }
 }
 
-function nullstill() {
-    clearInterval(nedteller_intervall);
+function stopp_nedtelling () {
     klokka_gaar =false;
     veksle.innerHTML ='Start';
-    minutt.value =start_min;
-    sekund.value =start_sek;
+    $('#nedteller').style.color = minutt.style.color = sekund.style.color ='black';
+    clearInterval(nedteller_intervall);
+    clearInterval(overtid_intervall);
+}
+
+function nullstill() {
+    $('#minus').innerHTML ='';
+    stopp_nedtelling();
+    paa_overtid = false;
+    minutt.value =nuller_foran(start_min);
+    sekund.value =nuller_foran(start_sek);
+}
+
+function overtid_stoppeklokke() {
+    sek++;
+    // ved minuttskifte
+    if (sek ===60) {
+        sek =0;
+        min++;
+    }
+    minutt.value =nuller_foran(min);
+    sekund.value =nuller_foran(sek);
+}
+
+function nuller_foran(tall) {   // legger til nuller foran
+    let plasser = 2;
+    let tall_med_0 = "00" + tall;
+    // tar med så mange nuller som trengs
+    return tall_med_0.substr(tall_med_0.length - plasser);
+}
+
+function bare2siffer() {  // lar det til en hver tid bare være to siffer i input
+    let min_str = minutt.value;
+    if (min_str.length >2) {
+        minutt.value = min_str.substr(min_str.length - 2);
+    } else minutt.value = nuller_foran(min_str);
+    let sek_str = sekund.value;
+    if (sek_str.length >2) {
+        sekund.value = sek_str.substr(sek_str.length - 2);
+    } else sekund.value = nuller_foran(sek_str);
+}
+
+function oppdater_standard_tid() {
+    let tid = {
+        min: minutt.value,
+        sek: sekund.value
+    }
+    let oppdatert_tid = JSON.stringify(tid, null, '\t');
+
+    fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
+        if (err) throw err;
+    });
 }

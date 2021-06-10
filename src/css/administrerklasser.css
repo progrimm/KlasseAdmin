@@ -38,4 +38,8 @@
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
-  }
+}
+
+textarea {
+  width: 90%;
+}

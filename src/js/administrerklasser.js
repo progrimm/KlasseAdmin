@@ -69,6 +69,23 @@ function oppdaterTabell() {
 }
 
 function oppdaterData() {
+    // flytter data over i liste for å sortere
+    let klasseliste = [];
+    for (const klassekode in data) {
+        klasseliste.push([klassekode, data[klassekode]]);   // [klassekode, klasseobjekt]
+    }
+    // sorterer klasser alfabetisk ut fra klassekode, som er element [0]
+    klasseliste.sort((a, b) => {
+        return b[0].localeCompare(a[0]);
+    })
+    // legger til objektene i data igjen, nå i alfabetisk rekkefølge
+    data = {};
+    for (const klasse of klasseliste) {
+        data = Object.assign({
+            [klasse[0]]: klasse[1]
+        }, data);
+    }
+
     let dataOppdatert = JSON.stringify(data, null, '\t');
 
     fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
@@ -107,9 +124,9 @@ function redigerKlasse(klassekode) {
 }
 
 function lagreKlasse() {
-
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;
+    if (!nyKlassekode) return   // hvis klassekode ikke er skrevet inn
     let nyeElever = $("#inpElever").value;
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
@@ -146,26 +163,28 @@ function lagreKlasse() {
     oppdaterTabell();
 }
 
-// Takk til Jon for kreativt innslag                    // bare hyggelig :) - Jon
+// Takk til Jon for kreativt innslag                // bare hyggelig :) - Jon
 function tekstbehandling(nye_elever) {
-    let elever = nye_elever.split(',');                 // deler opp på komma
-    console.log(elever)
+    let elever = nye_elever.split(',');             // deler opp på komma
     let i =0;
     while (i<elever.length) {
-        elever[i] = elever[i].split('\n').join('');     // tar bort linjeskift
-        if (elever[i] === ''){
-            elever.splice(i,1);                         // sletter tomme elev-elementer
-            continue;
-        }
-        elever[i] = elever[i].split(' ');               // deler opp på mellomrom
+        elever[i] = elever[i].split('\n').join(''); // tar bort linjeskift
+        elever[i] = elever[i].split(' ');           // deler opp på mellomrom
         let j =0;
         while (j<elever[i].length) {
             if (elever[i][j] === ''){
-                elever[i].splice(j,1);                  // sletter tomme elementer
+                elever[i].splice(j,1);              // sletter tomme elementer
             } else j++;
         }
-        elever[i] = elever[i].join(' ');                // setter de sammmen igjen med mellomrom mellom
-        i++;
+        elever[i] = elever[i].join(' ');            // setter de sammen igjen med mellomrom mellom
+        
+        if (elever[i] === ''){
+            elever.splice(i,1);                     // sletter tomme elev-elementer
+        } else i++;
     }
+    elever.sort((a, b) => {                         // sorterer alfabetisk
+        return a.localeCompare(b);
+    })
+
     return elever;
 }

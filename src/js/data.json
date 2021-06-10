@@ -1,43 +1,69 @@
 {
 	"3STA": {
 		"elever": [
-			"åmund",
 			"adrian",
-			"erik",
-			"anton",
-			"vildan",
-			"corne",
-			"sebastian",
-			"elias",
-			"gaute",
-			"even",
-			"marius",
-			"julianne",
-			"lisa",
 			"alex",
-			"thea",
-			"synne",
-			"malin",
-			"kristin",
-			"tina",
-			"ane",
 			"amalie",
+			"ane",
+			"anton",
+			"corne",
+			"elias",
+			"erik",
+			"even",
+			"gaute",
+			"ida sofie",
+			"julianne",
+			"kristin",
+			"lisa",
+			"malin",
+			"marius",
 			"mia",
-			"ida sofie"
+			"sebastian",
+			"synne",
+			"thea",
+			"tina",
+			"vildan",
+			"åmund"
 		],
-		"klassekart": [],
+		"klassekart": [
+			"adrian",
+			"amalie",
+			"vildan",
+			"marius",
+			"tina",
+			"even",
+			"thea",
+			"alex",
+			"corne",
+			"lisa",
+			"anton",
+			"gaute",
+			"synne",
+			"elias",
+			"ida sofie",
+			"ane",
+			"mia",
+			"kristin",
+			"åmund",
+			"sebastian",
+			"erik",
+			"julianne",
+			"malin"
+		],
 		"klassekart_oppsett": {
-			"per_bord": 0,
-			"rader": 0,
-			"kolonner": 0
+			"per_bord": "1",
+			"rader": "5",
+			"kolonner": "6"
 		}
 	},
-	"matte": {
+	"3STB": {
 		"elever": [
-			"sdf",
-			"asdf",
-			"sadf",
-			"sd"
+			"Bonsa",
+			"Hanna",
+			"Jon",
+			"Mikkel GS",
+			"Mikkel WS",
+			"Sven"
 		],
 		"klassekart": [],
 		"klassekart_oppsett": {
@@ -48,46 +74,17 @@
 	},
 	"IT": {
 		"elever": [
-			"Åmund",
-			"Erik",
-			"Jon",
 			"Bonsa",
-			"Bryan"
-		],
-		"klassekart": [
-			"Erik",
 			"Bryan",
-			"Bonsa",
-			"Åmund",
-			"Jon"
-		],
-		"klassekart_oppsett": {
-			"per_bord": "1",
-			"rader": "4",
-			"kolonner": "2"
-		}
-	},
-	"3STB": {
-		"elever": [
-			"Sven",
+			"Erik",
 			"Jon",
-			"Mikkel GS",
-			"Bonsa",
-			"Mikkel WS",
-			"Hanna"
+			"Åmund"
 		],
-		"klassekart": [
-			"Bonsa",
-			"Jon",
-			"Sven",
-			"Hanna",
-			"Mikkel WS",
-			"Mikkel GS"
-		],
+		"klassekart": [],
 		"klassekart_oppsett": {
-			"per_bord": "2",
-			"rader": "4",
-			"kolonner": "4"
+			"per_bord": 0,
+			"rader": 0,
+			"kolonner": 0
 		}
 	}
 }
