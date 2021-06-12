@@ -131,7 +131,17 @@ function lagreKlasse() {
     let nyeElever = $("#inpElever").value;
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
-    if (valgtKlasse !== "") {
+    // klassekart til den nye klassa
+    let klassekart = [];
+    let klassekart_oppsett = {
+        per_bord: 0,
+        rader: 0,
+        kolonner: 0
+    };
+
+    if (valgtKlasse !== "") {   // hvis klassen redigeres
+        klassekart = data[valgtKlasse].klassekart   // tar vare på klassekartet
+        klassekart_oppsett = data[valgtKlasse].klassekart_oppsett
         delete data[valgtKlasse];
     }
 
@@ -147,12 +157,8 @@ function lagreKlasse() {
     let nyKlasse = {
         [nyKlassekode]: {
             elever: nyeElever,
-            klassekart: [],
-            klassekart_oppsett: {
-                per_bord: 0,
-                rader: 0,
-                kolonner: 0
-            }
+            klassekart: klassekart,
+            klassekart_oppsett: klassekart_oppsett
         }
     };
 
@@ -162,6 +168,10 @@ function lagreKlasse() {
     $("#modalLogR").style.display = "none";
     oppdaterData();
     oppdaterTabell();
+
+    // 
+    // gi link til klassekart
+    // 
 }
 
 // Takk til Jon for kreativt innslag                // bare hyggelig :) - Jon

@@ -78,13 +78,21 @@
 			"Bryan",
 			"Erik",
 			"Jon",
+			"Simon",
 			"Åmund"
 		],
-		"klassekart": [],
+		"klassekart": [
+			"Erik",
+			"Åmund",
+			"Bonsa",
+			"Simon",
+			"Jon",
+			"Bryan"
+		],
 		"klassekart_oppsett": {
-			"per_bord": 0,
-			"rader": 0,
-			"kolonner": 0
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
 		}
 	}
 }
