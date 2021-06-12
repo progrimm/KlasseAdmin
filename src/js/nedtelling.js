@@ -59,7 +59,9 @@ function nedteller() {
         if (lyd.paused) lyd.play();
         else new Audio('multimedia/gong.mp3').play();
 
-        setTimeout(()=>{$('#minus').innerHTML ='-';}, 1000);    // minus foran tallene
+        setTimeout(()=> {
+            if (klokka_gaar) $('#minus').innerHTML ='-';
+        }, 1000);    // minus foran tallene
         minutt.style.color = sekund.style.color ='red'; // negative tall blir rød
     }
 }

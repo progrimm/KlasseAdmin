@@ -16,11 +16,11 @@ body {
 
 /* Hvordan bruke variabler i CSS. :root gir global scope, variablene kan da brukes i alle css-filer */
 :root {
-  --backgroundColor: #f1faee;
-  --headerColor: #e63946;
-  --linkColor: #457b9d;
-  --darkColor: #1d3557;
-  --lightColor: #a8dadc;
+  --backgroundColor: #e6e5ec;
+  --headerColor: #557a95;
+  --linkColor: #7395ae;
+  --darkColor: #5d5c61;
+  --lightColor: #9ac7e7;
 }
 
 h1 {
