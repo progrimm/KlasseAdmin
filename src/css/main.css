@@ -23,9 +23,21 @@ body {
   --lightColor: #9ac7e7;
 }
 
-h1 {
+.header h1 {
   color: var(--headerColor);
+  font-size: 50px;
+  margin: 0px;
 }
+
+
+.header img {
+  height: 40px;
+}
+
+.header hr {
+  margin: 30px 0px;
+}
+
 
 a {
   color: var(--linkColor);
@@ -248,5 +260,4 @@ h3, h4 {
 
 .card .arrowRight img {
   height: 25px;
-
 }
