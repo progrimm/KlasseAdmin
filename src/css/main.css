@@ -162,3 +162,7 @@ tr:nth-child(odd) {
 h3 {
   color: var(--darkColor);
 }
+
+.hrU {
+  width: 75%;
+}
