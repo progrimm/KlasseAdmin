@@ -15,8 +15,32 @@
   <p>Velg klasse:
     <select id="selKlasse"></select>
     <button type="submit" id="btnVelgKlasse">Videre</button>
-    <p><a href="administrerklasser.html">Administrer klasser</a></p>
   </p>
+  <a href="administrerklasser.html" id="option">
+    <img src="multimedia/cog-solid.svg" alt="option">
+  </a>
+  <img src="multimedia/info-circle-solid.svg" alt="info" id="BtnOpenModal" onClick='document.getElementById(`wholeModal`).style.display = `block`'>
+
+  <div id='wholeModal' class='modal'>
+    <div class='modalContent'>
+      <div class='modalHeader'>
+        <span class='modalClose' onClick='document.getElementById(`wholeModal`).style.display = `none`'>&times;</span>
+        <h2 id='modalHeaderText'>Utviklere</h2>
+      </div>
+      <div class='modalBody'>
+          <div id="jon" class="utvikler">
+            <h1>Jon</h1>
+          </div>
+          <div id="erik" class="utvikler">
+            <h1>Erik</h1>
+          </div>
+          <div id="aamund" class="utvikler">
+            <h1>Åmund</h1>
+          </div>
+      </div>
+    </div>
+  </div>
+  
 </body>
 
 </html>

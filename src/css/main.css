@@ -66,3 +66,85 @@ th, td {
 tr:nth-child(odd) {
   background-color: var(--lightColor);
 }
+
+#option {
+  width: 5%;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+#BtnOpenModal {
+  width: 5%;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+#BtnOpenModal:hover {
+  cursor: pointer;
+}
+
+.modal {    
+  display: block;
+  position: fixed;
+  z-index: 999 !important;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modalContent {
+  position: relative;
+  background-color: #eee;
+  margin: auto;
+  padding: 0;
+  width: 50%;
+  box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.35);
+  animation: modalSlideIn 0.75s;
+}
+
+@keyframes modalSlideIn {
+  0% {top: -100%; opacity: 0}
+  100% {top: 0; opacity: 1}
+}
+
+.modalClose {
+  color: var(--backgroundColor);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  height: 25px;
+  transition: 0.25s;
+}
+
+.modalClose:hover {
+  color: #ff4136;
+  cursor: pointer;
+}
+
+.modalHeader {
+  padding: 2px 16px;
+  background-color: var(--headerColor);
+  color: var(--backgroundColor);
+  font-size: 20px;
+}
+
+#modalHeaderText {
+  margin: 15px 0px;
+}
+
+.modalBody {
+  padding: 2px 16px;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: var(--backgroundColor);
+  display: flex;
+}
+
+.utvikler {
+  width: 33%;
+}
