@@ -1,10 +1,23 @@
 button.elev {
-    width: 80px;
+    width: 100px;
     height: 40px;
+    font-size: 11pt;
+    padding-left: 2px;
+    padding-right: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 td, tr {
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+th {
+  border: 0;
 }
 
 /* TEMPLATE FRA W3SCHOOL, MIDLERTIDIG LØSNING

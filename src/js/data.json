@@ -26,50 +26,57 @@
 			"åmund"
 		],
 		"klassekart": [
-			"adrian",
-			"amalie",
-			"vildan",
-			"marius",
-			"tina",
-			"even",
-			"thea",
-			"alex",
-			"corne",
-			"lisa",
-			"anton",
-			"gaute",
-			"synne",
-			"elias",
-			"ida sofie",
-			"ane",
-			"mia",
-			"kristin",
 			"åmund",
-			"sebastian",
-			"erik",
+			"anton",
+			"ida sofie",
+			"elias",
+			"amalie",
+			"even",
+			"corne",
+			"thea",
+			"tina",
 			"julianne",
-			"malin"
+			"synne",
+			"lisa",
+			"marius",
+			"mia",
+			"sebastian",
+			"adrian",
+			"malin",
+			"alex",
+			"kristin",
+			"ane",
+			"gaute",
+			"vildan",
+			"erik"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "1",
-			"rader": "5",
-			"kolonner": "6"
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
 		}
 	},
 	"3STB": {
 		"elever": [
-			"Bonsa",
+			"Bonsa Ammanuell Bajsa",
 			"Hanna",
 			"Jon",
 			"Mikkel GS",
 			"Mikkel WS",
 			"Sven"
 		],
-		"klassekart": [],
+		"klassekart": [
+			"Sven",
+			"Hanna",
+			"Mikkel WS",
+			"Mikkel GS",
+			"Bonsa Ammanuell Bajsa",
+			"Jon"
+		],
 		"klassekart_oppsett": {
-			"per_bord": 0,
-			"rader": 0,
-			"kolonner": 0
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
 		}
 	},
 	"IT": {

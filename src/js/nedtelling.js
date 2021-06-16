@@ -45,12 +45,15 @@ function nedteller() {
     sek--;
     // ved minuttskifte
     if (sek <0) {
-        sek =59;
+        sek = 59;
         min--;
+    }
+    else if (sek >= 60) { // ved ugyldig input (for mange minutter)
+        sek = 59;
     }
     minutt.value =nuller_foran(min);
     sekund.value =nuller_foran(sek);
-    if (min ===0 && sek ===0) { // nedtelling ferdig
+    if (min === 0 && sek === 0) { // nedtelling ferdig
         clearInterval(nedteller_intervall);
         // teller hvor mye nedtellingen er på overtid
         overtid_intervall = setInterval(overtid_stoppeklokke, 1000);
