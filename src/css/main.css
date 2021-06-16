@@ -105,6 +105,7 @@ tr:nth-child(odd) {
   width: 50%;
   box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.35);
   animation: modalSlideIn 0.75s;
+  min-width: 630px;
 }
 
 @keyframes modalSlideIn {
@@ -149,6 +150,7 @@ tr:nth-child(odd) {
 .utvikler {
   width: calc(100% / 3);
   text-align: center;
+  min-width: 210px;
 }
 
 .imgProfil {
