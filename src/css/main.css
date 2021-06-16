@@ -86,7 +86,7 @@ tr:nth-child(odd) {
 }
 
 .modal {    
-  display: block;
+  display: none;
   position: fixed;
   z-index: 999 !important;
   padding-top: 100px;
@@ -105,7 +105,7 @@ tr:nth-child(odd) {
   width: 50%;
   box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.35);
   animation: modalSlideIn 0.75s;
-  min-width: 630px;
+  min-width: 650px;
 }
 
 @keyframes modalSlideIn {
@@ -159,10 +159,50 @@ tr:nth-child(odd) {
   border: 3px solid var(--darkColor);
 }
 
-h3 {
+h3, h4 {
   color: var(--darkColor);
 }
 
 .hrU {
-  width: 75%;
+  width: 85%;
+}
+
+.imgMail {
+  width: 20px;
+  vertical-align: middle;
+}
+
+.ePost {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--darkColor);
+  transition: 0.4s;
+}
+
+.ePost:hover {
+  animation: AniEpost 2s infinite;
+}
+
+@keyframes AniEpost {
+  0% {color: #ff0000;}
+  14.3% {color: #f59f00;}
+  28.6% {color: gold;}
+  42.9% {color: #008000;}
+  57.2% {color: #0000ff;}
+  71.5% {color: #4b0082;}
+  85.8% {color: #ee82ee;}
+}
+
+.ansvarsomraade h4 {
+  margin-bottom: 5px;
+}
+
+.ansvarsomraade ul {
+  list-style: none;
+  padding: 0px;
+}
+
+.ansvarsomraade ul li {
+  color: var(--darkColor);
+  font-weight: 500;
 }
