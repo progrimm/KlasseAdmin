@@ -218,6 +218,7 @@ h3, h4 {
   cursor: pointer;
   transition: box-shadow 200ms linear;
   margin-bottom: 20px;
+  overflow: auto;
 }
 
 .card:hover {
