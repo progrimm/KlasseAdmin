@@ -68,14 +68,14 @@ tr:nth-child(odd) {
 }
 
 #option {
-  width: 5%;
+  width: 50px;
   position: absolute;
   bottom: 15px;
   right: 15px;
 }
 
 #BtnOpenModal {
-  width: 5%;
+  width: 50px;
   position: absolute;
   bottom: 15px;
   left: 15px;
@@ -205,4 +205,47 @@ h3, h4 {
 .ansvarsomraade ul li {
   color: var(--darkColor);
   font-weight: 500;
+}
+
+.card {
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 16px;
+  min-width: 500px;
+  cursor: pointer;
+  transition: box-shadow 200ms linear;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 1px 3px 1px rgb(66 66 66 / 20%), 0 2px 8px 4px rgb(66 66 66 / 10%);
+}
+
+.card h2 {
+  margin: 0px;
+  color: var(--headerColor);
+  font-weight: 500;
+}
+
+.card p {
+  margin: 0px;
+  color: var(--darkColor);
+}
+
+.card .textArea {
+  float: left;
+}
+
+.card .arrowRight {
+  float: right;
+  height: 25px;
+  padding-top: 14px;
+}
+
+.card .arrowRight img {
+  height: 25px;
+
 }
