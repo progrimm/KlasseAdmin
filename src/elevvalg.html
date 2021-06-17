@@ -1,21 +1,23 @@
 <!doctype html>
 <html lang='no'>
 
-<head>
-    <title>Tilfeldig valg</title>
-    <meta charset="utf-8" />
-    <title>Klasseadmin - Elevvalg</title>
-    <script type="application/json" src="js\data.json"></script>
-    <script src="js\template.js"></script>
-    <link rel='stylesheet' href='css/main.css'>
-    <link rel='stylesheet' href='css/elevvalg.css'>
+    <head>
+        <title>Tilfeldig valg</title>
+        <meta charset="utf-8" />
+        <title>Klasseadmin - Elevvalg</title>
+        <script type="application/json" src="js\data.json"></script>
+        <script src="js\template.js"></script>
+        <link rel='stylesheet' href='css/main.css'>
+        <link rel='stylesheet' href='css/elevvalg.css'>
 
-<script src='js/elevvalg.js'></script>
-</head>
+    <script src='js/elevvalg.js'></script>
+    </head>
 
-<body>
-        <h1>Tilfeldig valg av elever</h1>
-        <hr>
+    <body>
+        <div class="header">
+            <h1>Tilfeldig valg av elever</h1>
+            <hr>
+        </div>
         <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'> Velg bare tilstedeværende elever</label>
         <p id='klasse'>Klasse:</p>
         <p>Skriv inn antall elever:</p>
@@ -30,6 +32,5 @@
         <div class="back" onclick="window.location = 'klassebehandling.html'">
             <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
         </div>
-</body>
-
+    </body>
 </html>
