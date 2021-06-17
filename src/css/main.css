@@ -248,14 +248,16 @@ h3, h4 {
   color: var(--darkColor);
 }
 
-.card .textArea {
+.card .textArea { 
   float: left;
+  pointer-events: none;
 }
 
 .card .arrowRight {
   float: right;
   height: 25px;
   padding-top: 14px;
+  pointer-events: none;
 }
 
 .card .arrowRight img {
