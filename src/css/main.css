@@ -261,3 +261,30 @@ h3, h4 {
 .card .arrowRight img {
   height: 25px;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--headerColor);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--darkColor);
+  border-radius: 25px;
+}
+
+.back {
+  height: 100px;
+  width: 125px;
+  padding-left: 25px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  cursor: pointer;
+}
+
+.back img {
+  height: 100%;
+}
