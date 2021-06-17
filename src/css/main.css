@@ -276,11 +276,11 @@ h3, h4 {
 }
 
 .back {
-  height: 100px;
-  width: 125px;
+  height: 75px;
+  width: 85px;
   padding-left: 25px;
   position: absolute;
-  bottom: 0px;
+  top: 0px;
   left: 0px;
   cursor: pointer;
 }
