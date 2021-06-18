@@ -13,9 +13,11 @@
 </head>
 
 <body>
-    <h1>Klassekart</h1>
-    <p><a href="klassebehandling.html">Tilbake</a></p>
-    <hr>
+    <div class="header">
+        <h1>Klassekart</h1>
+        <hr>
+    </div>
+    
     <button id="btnVisModalStruktur">Nytt klassekart</button>
     <button id="btnSnuKlassekart">Snu klassekart</button>
     <table id="tableKlassekart"></table>
@@ -31,6 +33,10 @@
             <button id="btnNyttKlassekart">Nytt klassekart</button>
             <button id="btnLukkModal">Lukk</button>
         </div>
+    </div>
+
+    <div class="back" onclick="window.location = 'klassebehandling.html'">
+        <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
     </div>
 </body>
 

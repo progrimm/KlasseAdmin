@@ -8,11 +8,6 @@ let valgtKlasse = ""; // Husker valgt klasse ved redigering, brukes som sjekk om
 window.onload = () => {
     oppdaterTabell();
 
-    // Tilbakeknapp
-    $("#btnStartside").onclick = () => {
-        window.location = "index.html";
-    }
-
     $("#btnLeggTil").onclick = leggTilKlasse;
 
     $("#btnLagreKlasse").onclick = lagreKlasse;

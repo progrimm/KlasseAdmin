@@ -248,16 +248,45 @@ h3, h4 {
   color: var(--darkColor);
 }
 
-.card .textArea {
+.card .textArea { 
   float: left;
+  pointer-events: none;
 }
 
 .card .arrowRight {
   float: right;
   height: 25px;
   padding-top: 14px;
+  pointer-events: none;
 }
 
 .card .arrowRight img {
   height: 25px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--headerColor);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--darkColor);
+  border-radius: 25px;
+}
+
+.back {
+  height: 75px;
+  width: 85px;
+  padding-left: 25px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+}
+
+.back img {
+  height: 100%;
 }

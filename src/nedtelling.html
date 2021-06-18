@@ -12,9 +12,10 @@
 </head>
 
 <body>
-    <h1>Nedtelling</h1>
-    <a href='klassebehandling.html'>Tilbake</a>
-    <hr>
+    <div class="header">
+        <h1>Nedtelling</h1>
+        <hr>
+    </div>
     <p id='nedteller'>
         <span id='minus'></span>
         <label><input id='minutt' type='number' value='00' placeholder="00"> m</label>
@@ -23,7 +24,9 @@
     <button id='veksle_start_stopp'>Start</button>
     <button id='nullstill'>Nullstill</button>
     <button id='lagre_tid'>Lagre tid</button>
-    
-</body>
 
+    <div class="back" onclick="window.location = 'klassebehandling.html'">
+        <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
+    </div>
+</body>
 </html>

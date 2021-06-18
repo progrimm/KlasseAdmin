@@ -12,11 +12,13 @@
 </head>
 
 <body>
-    <h1>Administrerklasser</h1>
+    <div class="header">
+        <h1>Administrasjon</h1>
+        <hr>
+    </div>
     <table id="tableOversiktKlasser">
     </table>
     <button id="btnLeggTil">Legg til</button>
-    <button id="btnStartside">Tilbake</button>
 
      <!-- Legg til og rediger deler samme modal -->
     <div id="modalLogR" class="modal">
@@ -27,6 +29,10 @@
             <button id="btnLagreKlasse">Lagre</button>
             <button id="btnLukkModal">Lukk</button>
         </div>
+    </div>
+
+    <div class="back" onclick="window.location = 'index.html'">
+        <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
     </div>
 </body>
 
