@@ -4,86 +4,101 @@
 <head>
   <meta charset="UTF-8">
   <title>Klasseadmin</title>
+  <link rel="stylesheet" href="css\startside_ani.css">
   <link rel="stylesheet" href="css\main.css">
   <script src="js\startside.js"></script>
   <script src="js\template.js"></script>
 </head>
 
 <body>
-  <div class="header">
-    <h1><img src="multimedia/klasseadminLogo.png" alt="logo"> KlasseAdmin</h1>
+  <div class="header" id="header">
+    <h1><img src="multimedia/klasseadminLogo.svg" alt="logo"> KlasseAdmin</h1>
     <hr>
   </div>
 
-  <div id="klasseliste"></div>
+  <div id="content">
 
-  <a href="administrerklasser.html" id="option">
-    <img src="multimedia/cog-solid.svg" alt="option">
-  </a>
-  <img src="multimedia/info-circle-solid.svg" alt="info" id="BtnOpenModal" onClick='document.getElementById(`wholeModal`).style.display = `block`'>
+    <div id="klasseliste"></div>
 
-  <div id='wholeModal' class='modal'>
-    <div class='modalContent'>
-      <div class='modalHeader'>
-        <span class='modalClose' onClick='document.getElementById(`wholeModal`).style.display = `none`'>&times;</span>
-        <h2 id='modalHeaderText'>Utviklere</h2>
-      </div>
-      <div class='modalBody'>
-        <div id="jon" class="utvikler">
-          <img src="multimedia/jon.png" class="imgProfil" alt="jon">
-          <h3>Jon Tomter</h3>
-          <hr class="hrU">
-          <a class="ePost" href="mailto:jon.tomter@gmail.com?subject=Henvendelse%20angående%20KlasseAdmin&cc=aamgrim@gmail.com,erik.haave@hotmail.no">Send e-post</a>
-          <br>
-          <br>
-          <div class="ansvarsomraade">
-            <h4>&nbsp;</h4>
-            <hr>
-            <ul>
-              <li>Velg elev</li>
-              <li>Nedtelling</li>
-              <li>Generell koding</li>
-            </ul>
-          </div>
+    <a href="administrerklasser.html" id="option">
+      <img src="multimedia/cog-solid.svg" alt="option">
+    </a>
+    <img src="multimedia/info-circle-solid.svg" alt="info" id="BtnOpenModal"
+      onClick='document.getElementById(`wholeModal`).style.display = `block`'>
+
+    <div id='wholeModal' class='modal'>
+      <div class='modalContent'>
+        <div class='modalHeader'>
+          <span class='modalClose' onClick='document.getElementById(`wholeModal`).style.display = `none`'>&times;</span>
+          <h2 id='modalHeaderText'>Utviklere</h2>
         </div>
-        <div id="erik" class="utvikler">
-          <img src="multimedia/erik.png" class="imgProfil" alt="erik">
-          <h3>Erik Masovn Haave</h3>
-          <hr class="hrU">
-          <a class="ePost" href="mailto:erik.haave@hotmail.no?subject=Henvendelse%20angående%20KlasseAdmin&cc=aamgrim@gmail.com,jon.tomter@gmail.com">Send e-post</a>
-          <br>
-          <br>
-          <div class="ansvarsomraade">
-            <h4>Ansvarsområder</h4>
-            <hr>
-            <ul>
-              <li>Fravær</li>
-              <li>Design og UX</li>
-              <li>Gruppeinndeling</li>
-            </ul>
+        <div class='modalBody'>
+          <div id="jon" class="utvikler">
+            <img src="multimedia/jon.png" class="imgProfil" alt="jon">
+            <h3>Jon Tomter</h3>
+            <hr class="hrU">
+            <a class="ePost"
+              href="mailto:jon.tomter@gmail.com?subject=Henvendelse%20angående%20KlasseAdmin&cc=aamgrim@gmail.com,erik.haave@hotmail.no">Send
+              e-post</a>
+            <br>
+            <br>
+            <div class="ansvarsomraade">
+              <h4>&nbsp;</h4>
+              <hr>
+              <ul>
+                <li>Velg elev</li>
+                <li>Nedtelling</li>
+                <li>Generell koding</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div id="aamund" class="utvikler">
-          <img src="multimedia/aamund.png" class="imgProfil" alt="aamund">
-          <h3>Åmund Grimstad</h3>
-          <hr class="hrU">
-          <a class="ePost" href="mailto:aamgrim@gmail.com?subject=Henvendelse%20angående%20KlasseAdmin&cc=jon.tomter@gmail.com,erik.haave@hotmail.no">Send e-post</a>
-          <br>
-          <br>
-          <div class="ansvarsomraade">
-            <h4>&nbsp;</h4>
-            <hr>
-            <ul>
-              <li>Electron</li>
-              <li>Klassekart</li>
-              <li>Generell koding</li>
-            </ul>
+          <div id="erik" class="utvikler">
+            <img src="multimedia/erik.png" class="imgProfil" alt="erik">
+            <h3>Erik Masovn Haave</h3>
+            <hr class="hrU">
+            <a class="ePost"
+              href="mailto:erik.haave@hotmail.no?subject=Henvendelse%20angående%20KlasseAdmin&cc=aamgrim@gmail.com,jon.tomter@gmail.com">Send
+              e-post</a>
+            <br>
+            <br>
+            <div class="ansvarsomraade">
+              <h4>Ansvarsområder</h4>
+              <hr>
+              <ul>
+                <li>Fravær</li>
+                <li>Design og UX</li>
+                <li>Gruppeinndeling</li>
+              </ul>
+            </div>
+          </div>
+          <div id="aamund" class="utvikler">
+            <img src="multimedia/aamund.png" class="imgProfil" alt="aamund">
+            <h3>Åmund Grimstad</h3>
+            <hr class="hrU">
+            <a class="ePost"
+              href="mailto:aamgrim@gmail.com?subject=Henvendelse%20angående%20KlasseAdmin&cc=jon.tomter@gmail.com,erik.haave@hotmail.no">Send
+              e-post</a>
+            <br>
+            <br>
+            <div class="ansvarsomraade">
+              <h4>&nbsp;</h4>
+              <hr>
+              <ul>
+                <li>Electron</li>
+                <li>Klassekart</li>
+                <li>Generell koding</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <div id="loadOverlay"
+    style="background: linear-gradient(to right, #A8CABA, #5D4157); position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;">
+  </div>
+
 </body>
 
 </html>

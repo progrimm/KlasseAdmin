@@ -290,3 +290,5 @@ h3, h4 {
 .back img {
   height: 100%;
 }
+
+#loadOverlay{display: none;}
