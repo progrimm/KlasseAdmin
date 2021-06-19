@@ -219,12 +219,11 @@ function lagreKlassekart() {
 
     fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
         if (err) throw err;
-        console.log("Oppdatert kart!");
     });
 
     // Oppdaterer variablene våre for sikkerhets skyld
     data = JSON.parse(fs.readFileSync(dataFilename));
-    console.log(data);
+    console.log("Lagret");
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
     klassekart = klasse["klassekart"];

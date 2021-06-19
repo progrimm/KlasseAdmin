@@ -104,6 +104,9 @@ function redigerKlasse(klassekode) {
 }
 
 function lagreKlasse() {
+    // Henter data på nytt for at ting skal funke
+    data = JSON.parse(fs.readFileSync(dataFilename));
+
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;
     if (!nyKlassekode) return   // hvis klassekode ikke er skrevet inn
