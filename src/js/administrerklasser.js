@@ -89,7 +89,7 @@ function leggTilKlasse() {
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";
 
-    $("#inpKlassekode").placeholder = "2MATR";
+    $("#inpKlassekode").placeholder = "Eks.: 2MATR";
     $("#inpElever").placeholder = "Skill elevene med komma";
 }
 
