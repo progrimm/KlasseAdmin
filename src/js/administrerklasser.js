@@ -36,11 +36,8 @@ function oppdaterTabell() {
 
         let btnSlett = document.createElement("td");
         btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
-        btnSlett.onclick = () => {
-            if(confirm("Er du sikker på at du vil slette " + klassekode + "? Denne handlingen kan ikke angres.")) {
-                slettKlasse(klassekode);
-            }
-        };
+        // Må lage en ny modal med bekrefting osv... Dette er dritt...
+        // btnSlett.onclick = "Er du sikker på at du vil slette " + klassekode + "? Denne handlingen kan ikke angres."
 
         radKlasse.appendChild(kode);
         radKlasse.appendChild(elever);
