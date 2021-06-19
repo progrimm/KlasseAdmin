@@ -181,7 +181,7 @@ function byttePlass(evt) {
     }
     else {
         elev1ID = evt.target.id;
-        $("#" + elev1ID).style.backgroundColor = "lime";
+        $("#" + elev1ID).style.backgroundColor = "var(--darkColor)";
         antallKlikk++
     }
 }
@@ -224,7 +224,7 @@ function lagreKlassekart() {
 
     // Oppdaterer variablene våre for sikkerhets skyld
     data = JSON.parse(fs.readFileSync(dataFilename));
-    console.log(data);  
+    console.log(data);
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
     klassekart = klasse["klassekart"];

@@ -4,6 +4,7 @@ const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
 
 window.onload = () => {
+    sjekkStartanimasjon();
     klasseliste();
 }
 
@@ -13,7 +14,7 @@ function klasseliste() {
     for (klasseKode in data) {
         let card = document.createElement("div");
         card.className = "card";
-        card.setAttribute("data-klassekode",klasseKode);
+        card.setAttribute("data-klassekode", klasseKode);
         card.onclick = (evt) => {
             let klasse = {
                 klassekode: evt.target.getAttribute("data-klassekode"),
@@ -21,8 +22,8 @@ function klasseliste() {
             }
             sessionStorage.setItem("valgtKlasse", JSON.stringify(klasse));
             window.location = "klassebehandling.html";
-        } 
-        
+        }
+
         let textArea = document.createElement("div");
         textArea.className = "textArea";
         textArea.innerHTML = "<h2>" + klasseKode + "</h2>";
@@ -36,5 +37,26 @@ function klasseliste() {
         card.appendChild(textArea);
         card.appendChild(arrowRight);
 
+    }
+}
+
+function sjekkStartanimasjon() {
+    if (sessionStorage.getItem("besokt") === null) { // sjekker i sessionstorage om startsiden har blitt besøkt tidligere
+        sessionStorage.setItem("besokt", true); // setter at startsiden har blitt besøkt
+
+        // starter animasjoner om startsiden ikke er besøkt tidligere
+        document.body.classList = "body_aniclass";
+        $("#header").classList.add("header_aniclass");
+        $("#introcredz").classList = "introcredz_aniclass"
+        $("#header_hr").classList = "hr_aniclass";
+        $("#content").classList = "content_aniclass";
+    }
+    else {
+        // Rensker klasselistene for sikkerhets skyld
+        document.body.classList = "";
+        $("#header").classList = "header";
+        $("#introcredz").classList = ""
+        $("#header_hr").classList = "";
+        $("#content").classList = "";
     }
 }

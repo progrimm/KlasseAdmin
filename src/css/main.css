@@ -35,7 +35,15 @@ body {
 }
 
 .header hr {
+  width: 100%;
   margin: 30px 0px;
+}
+
+.header p {
+  font-size: 0pt;
+  margin: 0; 
+  margin-left: 16%;
+  opacity: 0;
 }
 
 
@@ -350,4 +358,8 @@ th, td {
 
 #adminTable #thCenter {
   text-align: center;
+}
+
+#loadOverlay {
+  display: none;
 }
