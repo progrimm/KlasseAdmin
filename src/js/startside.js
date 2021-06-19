@@ -41,13 +41,22 @@ function klasseliste() {
 }
 
 function sjekkStartanimasjon() {
-    if (sessionStorage.getItem("besokt") === null) {
-        sessionStorage.setItem("besokt", true);
-        console.log("first");
+    if (sessionStorage.getItem("besokt") === null) { // sjekker i sessionstorage om startsiden har blitt besøkt tidligere
+        sessionStorage.setItem("besokt", true); // setter at startsiden har blitt besøkt
+
+        // starter animasjoner om startsiden ikke er besøkt tidligere
+        document.body.classList = "body_aniclass";
         $("#header").classList.add("header_aniclass");
+        $("#introcredz").classList = "introcredz_aniclass"
+        $("#header_hr").classList = "hr_aniclass";
         $("#content").classList = "content_aniclass";
-    } else {
+    }
+    else {
+        // Rensker klasselistene for sikkerhets skyld
+        document.body.classList = "";
         $("#header").classList = "header";
+        $("#introcredz").classList = ""
+        $("#header_hr").classList = "";
         $("#content").classList = "";
     }
 }

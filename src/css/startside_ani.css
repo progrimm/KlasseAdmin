@@ -1,24 +1,59 @@
+.body_aniclass {
+    animation: body_ani 4s forwards;
+    animation-timing-function: ease;
+}
+
+@keyframes body_ani {
+    0% {background-color: white;}
+  100% {background-color: var(--backgroundColor)}
+}
+
 .header_aniclass {
     animation: header_ani 4s forwards;
     animation-timing-function: ease;
 }
 
 @keyframes header_ani {
-    0% {transform: scale(0);}
-    35% {transform: scale(2);}
-    75% {transform: scale(2);}
-    100% {transform: scale(1);}
+    0% {opacity: 0; transform: scale(0); margin-top: 40vh;}
+    35% {opacity: 1; transform: scale(2.5); margin-top: 40vh;}
+    75% {opacity: 1; transform: scale(2.5); margin-top: 40vh;}
+    100% {opacity: 1; transform: scale(1); margin-top: 0%}
+}
+
+.introcredz_aniclass {
+    animation: introcredz_ani 4s forwards;
+    animation-timing-function: ease;
+}
+
+@keyframes introcredz_ani {
+    0% {font-size: 10pt; opacity: 1;}
+    70% {font-size: 10pt; opacity: 1;}
+    90% {font-size: 10pt; opacity: 0;}
+    100% {font-size: 0pt; opacity: 0;}
+}
+
+.hr_aniclass {
+    visibility: hidden;
+    animation: hr_ani 1s forwards;
+    animation-timing-function: ease;
+    animation-delay: 4s;
+}
+
+@keyframes hr_ani {
+    0% {visibility: visible; width: 0%;}
+    100% {visibility: visible; width: 100%;}
 }
   
 .content_aniclass {
     visibility: hidden;
     opacity: 0;
-    animation: main_ani 1s forwards;
+    animation: content_ani 1s forwards;
     animation-timing-function: ease;
     animation-delay: 4s;
 }
   
-@keyframes main_ani {
+@keyframes content_ani {
     0% {opacity: 0; visibility: visible;}
     100% {opacity: 1; visibility: visible;}
 }
+

@@ -4,16 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Klasseadmin</title>
-  <link rel="stylesheet" href="css\startside_ani.css">
   <link rel="stylesheet" href="css\main.css">
+  <link rel="stylesheet" href="css\startside_ani.css">
   <script src="js\startside.js"></script>
   <script src="js\template.js"></script>
 </head>
 
 <body>
+  <!-- forhindrer lag ved oppstart -->
+  <div id="loadOverlay"
+    style="background-color: white; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;">
+  </div>
+
   <div class="header" id="header">
     <h1><img src="multimedia/klasseadminLogo.svg" alt="logo"> KlasseAdmin</h1>
-    <hr>
+    <p id="introcredz"><i>Av Jon, Erik og Åmund - IT2 20/21</i></p>
+    <hr id="header_hr">
   </div>
 
   <div id="content">
@@ -93,10 +99,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div id="loadOverlay"
-    style="background: linear-gradient(to right, #A8CABA, #5D4157); position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;">
   </div>
 
 </body>
