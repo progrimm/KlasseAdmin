@@ -34,7 +34,7 @@
 
 .hr_aniclass {
     visibility: hidden;
-    animation: hr_ani 1s forwards;
+    animation: hr_ani 1.5s forwards;
     animation-timing-function: ease;
     animation-delay: 4s;
 }
@@ -47,9 +47,9 @@
 .content_aniclass {
     visibility: hidden;
     opacity: 0;
-    animation: content_ani 1s forwards;
-    animation-timing-function: ease;
-    animation-delay: 4.5s;
+    animation: content_ani 1.5s forwards;
+    animation-timing-function: linear;
+    animation-delay: 4s;
 }
   
 @keyframes content_ani {
