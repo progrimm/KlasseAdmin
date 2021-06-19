@@ -32,3 +32,11 @@
     border: 1px solid #bbbbbb;
     border-radius: 5px;
 }
+
+#divBtnLeggTil {
+    width: 100%;
+}
+
+#divBtnLeggTil p {
+    float: left;
+}

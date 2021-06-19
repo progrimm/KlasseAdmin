@@ -15,8 +15,8 @@
 
 @keyframes header_ani {
     0% {opacity: 0; transform: scale(0); margin-top: 40vh;}
-    35% {opacity: 1; transform: scale(2.5); margin-top: 40vh;}
-    75% {opacity: 1; transform: scale(2.5); margin-top: 40vh;}
+    35% {opacity: 1; transform: scale(3); margin-top: 40vh;}
+    75% {opacity: 1; transform: scale(3); margin-top: 40vh;}
     100% {opacity: 1; transform: scale(1); margin-top: 0%}
 }
 

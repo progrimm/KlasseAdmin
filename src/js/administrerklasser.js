@@ -38,7 +38,7 @@ function oppdaterTabell() {
         btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
         btnSlett.onclick = () => {
             if(confirm("Er du sikker på at du vil slette " + klassekode + "? Denne handlingen kan ikke angres.")) {
-                slettKlasse(klassekode)
+                slettKlasse(klassekode);
             }
         };
 
@@ -156,7 +156,7 @@ function lagreKlasse() {
     // 
 }
 
-// Takk til Jon for kreativt innslag                // bare hyggelig :) - Jon
+// Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik
 function tekstbehandling(nye_elever) {
     let elever = nye_elever.split(',');             // deler opp på komma
     let i =0;
