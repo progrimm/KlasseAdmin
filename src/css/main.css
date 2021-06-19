@@ -14,6 +14,10 @@ body {
   background-color: var(--backgroundColor);
 }
 
+p {
+  color: var(--darkColor);
+}
+
 /* Hvordan bruke variabler i CSS. :root gir global scope, variablene kan da brukes i alle css-filer */
 :root {
   --backgroundColor: #e6e5ec;
@@ -69,6 +73,7 @@ button:hover {
 } */
 .btn {
   background-color: #1D6BB3;
+  color: var(--darkColor);
   padding: 8px 16px;
   text-align: center;
   border-radius: 5px;
@@ -82,7 +87,7 @@ button:hover {
 }
 
 .btn:hover {
-  background-color: #42A4FF;
+  background-color: #2d7dc7;
 }
 
 .btn-danger {
@@ -91,6 +96,14 @@ button:hover {
 
 .btn-danger:hover {
   background-color: #FF584F;
+}
+
+.btn-success {
+  background-color: #02B345;
+}
+
+.btn-success:hover {
+  background-color: #0fc755;
 }
 
 hr {
@@ -180,8 +193,6 @@ hr {
   max-height: 500px;
   overflow-y: auto;
   background-color: var(--backgroundColor);
-  display: flex;
-  justify-content: space-around;
 }
 
 .utvikler {

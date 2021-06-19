@@ -57,3 +57,7 @@
     100% {opacity: 1; visibility: visible;}
 }
 
+#gutta {
+  display: flex;
+  justify-content: space-around;
+}

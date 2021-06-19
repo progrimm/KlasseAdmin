@@ -11,19 +11,6 @@ window.onload = () => {
     $("#btnLeggTil").onclick = leggTilKlasse;
 
     $("#btnLagreKlasse").onclick = lagreKlasse;
-
-    // $("#btnLukkModal").onclick = () => {
-    //     $("#modalLogR").style.display = "none";
-    //     valgtKlasse = "";
-    // }
-
-    // // Lukk modal ved trykk utenfor innholdet
-    // window.onclick = (evt) => {
-    //     let modal1 = $("#modalLogR");
-    //     if (evt.target == modal1) {
-    //         modal1.style.display = "none";
-    //     }
-    // }
 }
 
 function oppdaterTabell() {
@@ -50,7 +37,9 @@ function oppdaterTabell() {
         let btnSlett = document.createElement("td");
         btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
         btnSlett.onclick = () => {
-            slettKlasse(klassekode)
+            if(confirm("Er du sikker på at du vil slette " + klassekode + "? Denne handlingen kan ikke angres.")) {
+                slettKlasse(klassekode)
+            }
         };
 
         radKlasse.appendChild(kode);
@@ -97,19 +86,19 @@ function slettKlasse(klassekode) {
 }
 
 function leggTilKlasse() {
-    $("#modalLogR").style.display = "block";
-    $("#modalHeader").innerHTML = "Legg til klasse";
+    $("#wholeModal").style.display = "block";
+    $("#modalHeaderText").innerHTML = "Legg til klasse";
 
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";
 
-    $("#inpKlassekode").placeholder = "Eks: 2MATR";
-    $("#inpElever").placeholder = "Skill elevene med komma, bruk mellomrom ved behov";
+    $("#inpKlassekode").placeholder = "2MATR";
+    $("#inpElever").placeholder = "Skill elevene med komma";
 }
 
 function redigerKlasse(klassekode) {
-    $("#modalLogR").style.display = "block";
-    $("#modalHeader").innerHTML = "Rediger";
+    $("#wholeModal").style.display = "block";
+    $("#modalHeaderText").innerHTML = "Rediger - " + klassekode;
 
     $("#inpKlassekode").value = klassekode;
     $("#inpElever").value = data[klassekode]["elever"];
@@ -158,7 +147,7 @@ function lagreKlasse() {
     data = Object.assign(nyKlasse, data);
 
     valgtKlasse = "";
-    $("#modalLogR").style.display = "none";
+    $("#wholeModal").style.display = "none";
     oppdaterData();
     oppdaterTabell();
 
