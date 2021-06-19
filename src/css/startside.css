@@ -15,8 +15,8 @@
 
 @keyframes header_ani {
     0% {opacity: 0; transform: scale(0); margin-top: 40vh;}
-    35% {opacity: 1; transform: scale(3); margin-top: 40vh;}
-    75% {opacity: 1; transform: scale(3); margin-top: 40vh;}
+    35% {opacity: 1; transform: scale(2.5); margin-top: 40vh;}
+    75% {opacity: 1; transform: scale(2.5); margin-top: 40vh;}
     100% {opacity: 1; transform: scale(1); margin-top: 0%}
 }
 
@@ -34,7 +34,7 @@
 
 .hr_aniclass {
     visibility: hidden;
-    animation: hr_ani 1.5s forwards;
+    animation: hr_ani 1s forwards;
     animation-timing-function: ease;
     animation-delay: 4s;
 }
@@ -47,7 +47,7 @@
 .content_aniclass {
     visibility: hidden;
     opacity: 0;
-    animation: content_ani 1.5s forwards;
+    animation: content_ani 1s forwards;
     animation-timing-function: linear;
     animation-delay: 4s;
 }
@@ -58,6 +58,6 @@
 }
 
 #gutta {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }

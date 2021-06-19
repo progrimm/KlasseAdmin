@@ -5,16 +5,12 @@
   <meta charset="UTF-8">
   <title>Klasseadmin</title>
   <link rel="stylesheet" href="css\main.css">
-  <link rel="stylesheet" href="css\startside_ani.css">
+  <link rel="stylesheet" href="css\startside.css">
   <script src="js\startside.js"></script>
   <script src="js\template.js"></script>
 </head>
 
 <body>
-  <!-- forhindrer lag ved oppstart -->
-  <div id="loadOverlay"
-    style="background-color: white; position:absolute; top:0px; left:0px; width:100%; height:100%; z-index:2000;">
-  </div>
 
   <div class="header" id="header">
     <h1><img src="multimedia/klasseadminLogo.svg" alt="logo"> KlasseAdmin</h1>
@@ -34,7 +30,7 @@
       <div class='modalContent'>
         <div class='modalHeader'>
           <span class='modalClose' onClick='document.getElementById(`wholeModal`).style.display = `none`'>&times;</span>
-          <h2 id='modalHeaderText'>Utviklere og tidligere elever ved LVGS</h2>
+          <h2 id='modalHeaderText'>Utviklere</h2>
         </div>
         <div class='modalBody'>
           <div id="gutta">
