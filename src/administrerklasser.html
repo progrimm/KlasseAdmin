@@ -16,8 +16,18 @@
         <h1>Administrasjon</h1>
         <hr>
     </div>
-    <table id="tableOversiktKlasser">
-    </table>
+    <div id="adminTable">
+        <table>
+            <thead>
+                <tr>
+                    <th>Klassekode</th>
+                    <th>Elever</th>
+                    <th colspan="2" id="thCenter">Handlinger</th>
+                </tr>
+            </thead>
+            <tbody id="tableOversiktKlasser"></tbody>
+        </table>
+    </div>
     <button id="btnLeggTil">Legg til</button>
 
      <!-- Legg til og rediger deler samme modal -->
@@ -28,6 +38,18 @@
             <p>Elever:</p> <textarea rows='3' type="text" id="inpElever"></textarea>
             <button id="btnLagreKlasse">Lagre</button>
             <button id="btnLukkModal">Lukk</button>
+        </div>
+    </div>
+
+    <div id='wholeModal' class='modal'>
+        <div class='modalContent'>
+            <div class='modalHeader'>
+                <span class='modalClose' onClick='document.getElementById(`wholeModal`).style.display = `none`'>&times;</span>
+                <h2 id='modalHeaderText'>Header</h2>
+            </div>
+            <div class='modalBody'>
+                <p>Body</p>
+            </div>
         </div>
     </div>
 

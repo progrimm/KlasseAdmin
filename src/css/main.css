@@ -43,7 +43,7 @@ a {
   color: var(--linkColor);
 }
 
-button {
+/* button {
   background-color: var(--headerColor);
   border: none;
   color: var(--backgroundColor);
@@ -58,25 +58,35 @@ button {
 
 button:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+} */
+.btn {
+  background-color: #1D6BB3;
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: white;
+  border: 1px solid rgba(0,0,0,.12);
+  transition: 250ms;
+}
+
+.btn:hover {
+  background-color: #42A4FF;
+}
+
+.btn-danger {
+  background-color: #ff4136;
+}
+
+.btn-danger:hover {
+  background-color: #FF584F;
 }
 
 hr {
   width: 100%;
-}
-
-table ,th, td {
-  border: 1px solid var(--darkColor);
-  border-collapse: collapse;  
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-  font-weight: normal;
-}
-
-tr:nth-child(odd) {
-  background-color: var(--lightColor);
 }
 
 #option {
@@ -84,6 +94,11 @@ tr:nth-child(odd) {
   position: absolute;
   bottom: 15px;
   right: 15px;
+  transition: 200ms;
+}
+
+#option:hover {
+  transform: scale(1.2);
 }
 
 #BtnOpenModal {
@@ -91,10 +106,12 @@ tr:nth-child(odd) {
   position: absolute;
   bottom: 15px;
   left: 15px;
+  transition: 200ms;
 }
 
 #BtnOpenModal:hover {
   cursor: pointer;
+  transform: scale(1.2);
 }
 
 .modal {    
@@ -285,8 +302,52 @@ h3, h4 {
   top: 0px;
   left: 0px;
   cursor: pointer;
+  transition: 200ms;
+}
+
+.back:hover {
+  padding-left: 10px;
+  width: 100px;
 }
 
 .back img {
   height: 100%;
+}
+
+#adminTable {
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 5px;
+}
+
+#adminTable table {
+  border-radius: 5px;
+  background-color: #fff;
+  box-sizing: border-box;
+  overflow-x: auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#adminTable thead tr{
+  height: 56px;
+}
+
+#adminTable tbody tr{
+  border-top: 1px solid var(--backgroundColor);
+  height: 52px;
+}
+
+#adminTable th {
+  color: var(--headerColor);
+}
+
+th, td {
+  padding: 0px 26px;
+  text-align: initial;
+  color: var(--darkColor);
+}
+
+#adminTable #thCenter {
+  text-align: center;
 }

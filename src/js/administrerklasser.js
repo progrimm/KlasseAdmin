@@ -12,18 +12,18 @@ window.onload = () => {
 
     $("#btnLagreKlasse").onclick = lagreKlasse;
 
-    $("#btnLukkModal").onclick = () => {
-        $("#modalLogR").style.display = "none";
-        valgtKlasse = "";
-    }
+    // $("#btnLukkModal").onclick = () => {
+    //     $("#modalLogR").style.display = "none";
+    //     valgtKlasse = "";
+    // }
 
-    // Lukk modal ved trykk utenfor innholdet
-    window.onclick = (evt) => {
-        let modal1 = $("#modalLogR");
-        if (evt.target == modal1) {
-            modal1.style.display = "none";
-        }
-    }
+    // // Lukk modal ved trykk utenfor innholdet
+    // window.onclick = (evt) => {
+    //     let modal1 = $("#modalLogR");
+    //     if (evt.target == modal1) {
+    //         modal1.style.display = "none";
+    //     }
+    // }
 }
 
 function oppdaterTabell() {
@@ -36,21 +36,19 @@ function oppdaterTabell() {
 
         let kode = document.createElement("td");
         kode.innerHTML = klassekode;
-        kode.style.color = "#e63946";
-        kode.style.fontWeight = "bold";
 
         let elever = document.createElement("td");
-        let arrElever = data[klassekode]["elever"]
+        let arrElever = data[klassekode]["elever"].length;
         elever.innerHTML = arrElever;
 
         let btnRediger = document.createElement("td");
-        btnRediger.innerHTML = "Rediger";
+        btnRediger.innerHTML = "<p class='btn'>Rediger</p>";
         btnRediger.onclick = () => {
             redigerKlasse(klassekode);
         };
 
         let btnSlett = document.createElement("td");
-        btnSlett.innerHTML = "Slett";
+        btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
         btnSlett.onclick = () => {
             slettKlasse(klassekode)
         };
