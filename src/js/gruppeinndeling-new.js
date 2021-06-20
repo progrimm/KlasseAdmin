@@ -5,6 +5,8 @@ const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter
 let klasse = data[valgtKlasse.klassekode];
 let elever = klasse["elever"]; // Henter elevene
 
+document.title = valgtKlasse.klassekode + " - Gruppeinndeling";
+
 window.onload = () => {
     document.getElementById("slcInndeling").onchange = valgfelt;
 }

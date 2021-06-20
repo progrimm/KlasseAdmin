@@ -84,7 +84,7 @@ function slettKlasse(klassekode) {
 
 function leggTilKlasse() {
     $("#wholeModal").style.display = "block";
-    $("#modalHeaderText").innerHTML = "Legg til klasse";
+    $("#modalHeaderText").innerHTML = "Ny klasse";
 
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";

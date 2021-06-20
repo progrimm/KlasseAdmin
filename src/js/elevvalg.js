@@ -8,7 +8,7 @@ const klasse = valgtKlasse.klassekode;
 const elever = valgtKlasse.elever;
 const alle_elever = data[klasse].elever;
 
-document.title = valgtKlasse.klassekode + " - Tilfeldig valg";
+document.title = valgtKlasse.klassekode + " - Tilfeldig elevvalg";
 window.onload = () => {
     $('#klasse').innerHTML =`Klasse: ${klasse}`;
     antall_elever = $('#antall_elever');
