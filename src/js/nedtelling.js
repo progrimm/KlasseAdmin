@@ -48,9 +48,7 @@ function nedteller() {
         sek = 59;
         min--;
     }
-    else if (sek >= 60) { // ved ugyldig input (for mange minutter)
-        sek = 59;
-    }
+
     minutt.value =nuller_foran(min);
     sekund.value =nuller_foran(sek);
     if (min === 0 && sek === 0) { // nedtelling ferdig
@@ -72,6 +70,12 @@ function nedteller() {
 function start_eller_stopp() {
     min =Math.abs(Math.floor(minutt.value));
     sek =Math.abs(Math.floor(sekund.value));
+    if (sek >= 60) {    // ved ugyldig input (for mange minutter)
+        min += 1;       // blir aldri mer enn ett min ekstra
+        sek %= 60;      // sekundene til overs
+        minutt.value =nuller_foran(min);
+        sekund.value =nuller_foran(sek);
+    }
 
     if (klokka_gaar) {
         stopp_nedtelling();
