@@ -59,6 +59,23 @@
         </div>
     </div>
 
+    <div id='warning_modal' class='modal'>
+        <div class='modalContent'>
+            <div class='modalHeader'>
+                <span class='modalClose'
+                    onClick='document.getElementById(`warning_modal`).style.display = `none`'>&times;</span>
+                <h2 id='warning_header'></h2>
+            </div>
+            <div class='modalBody'>
+                Denne handlingen kan ikke angres.
+            </div>
+                
+            <div class="modalFooter">
+                <p id="warning_confirm" class="btn btn-danger"></p>
+            </div>
+        </div>
+    </div>
+
     <div class="back" onclick="window.location = 'index.html'">
         <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
     </div>

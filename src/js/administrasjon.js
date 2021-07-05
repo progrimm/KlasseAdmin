@@ -30,22 +30,16 @@ function oppdaterTabell() {
         let btnRediger = document.createElement("td");
         btnRediger.innerHTML = "<p class='btn'>Rediger</p>";
         btnRediger.onclick = () => {
-            redigerKlasse(klassekode);
+            redigerKlasse(klassekode);   // åpne modal
         };
 
         let btnSlett = document.createElement("td");
         btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
         btnSlett.onclick = () => {
-            slettKlasse(klassekode); // midlertidig sletting
+            slett_advarsel(klassekode); // åpne modal
         };
-        // Må lage en ny modal med bekrefting osv... Dette er dritt...
-        // btnSlett.onclick = "Er du sikker på at du vil slette " + klassekode + "? Denne handlingen kan ikke angres."
 
-        radKlasse.appendChild(kode);
-        radKlasse.appendChild(elever);
-        radKlasse.appendChild(btnRediger);
-        radKlasse.appendChild(btnSlett);
-
+        radKlasse.append(kode, elever, btnRediger, btnSlett);
         $("#tableOversiktKlasser").appendChild(radKlasse);
     }
 }
@@ -77,9 +71,30 @@ function oppdaterData() {
     data = JSON.parse(fs.readFileSync(dataFilename));
 }
 
+function slett_advarsel(klassekode) {
+    $("#warning_modal").style.display = "block";
+    $("#warning_header").innerHTML = "Er du sikker på at du vil slette "+klassekode+'?';
+    $('#warning_confirm').innerHTML = 'Slett';
+    $('#warning_confirm').onclick = () => {
+        slettKlasse(klassekode);
+    }
+}
+
+function rediger_advarsel(klassekode) {
+    $("#warning_modal").style.display = "block";
+    $("#warning_header").innerHTML = "Er du sikker på at du vil endre "+klassekode+'?';
+    $('#warning_confirm').innerHTML = 'Lagre';
+    $('#warning_confirm').onclick = () => {
+        $("#warning_modal").style.display = "none";
+        lagreKlasse();
+    }
+}
+
 // Sletter klassa fra objektet data
 function slettKlasse(klassekode) {
     delete data[klassekode];
+    $("#warning_modal").style.display = "none";
+    $("#wholeModal").style.display = "none";
     oppdaterData();
     oppdaterTabell();
 }
@@ -87,6 +102,7 @@ function slettKlasse(klassekode) {
 function leggTilKlasse() {
     $("#wholeModal").style.display = "block";
     $("#modalHeaderText").innerHTML = "Ny klasse";
+    $("#btnLagreKlasse").onclick = lagreKlasse;
 
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";
@@ -99,6 +115,9 @@ function leggTilKlasse() {
 function redigerKlasse(klassekode) {
     $("#wholeModal").style.display = "block";
     $("#modalHeaderText").innerHTML = "Rediger - " + klassekode;
+    $("#btnLagreKlasse").onclick = () => {
+        rediger_advarsel(klassekode);
+    }
 
     $("#inpKlassekode").value = klassekode;
     let elever = data[klassekode]["elever"];
