@@ -7,9 +7,10 @@ let klokka_gaar = paa_overtid =false;
 let min = start_min =data.min;
 let sek = start_sek =data.sek;
 let nedteller_intervall, overtid_intervall;
-let lyd = new Audio('multimedia/gong.mp3');
 
 window.onload =() => {
+    lyd = new Audio('multimedia/gong.mp3');
+
     veksle =$('#veksle_start_stopp');
     minutt =$('#minutt');
     sekund =$('#sekund');
@@ -70,7 +71,7 @@ function nedteller() {
 function start_eller_stopp() {
     min =Math.abs(Math.floor(minutt.value));
     sek =Math.abs(Math.floor(sekund.value));
-    if (sek >= 60) {    // ved ugyldig input (for mange minutter)
+    if (sek >= 60) {    // ved for mange sekunder i input
         min += 1;       // blir aldri mer enn ett min ekstra
         sek %= 60;      // sekundene til overs
         minutt.value =nuller_foran(min);

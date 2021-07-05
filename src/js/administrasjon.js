@@ -25,8 +25,7 @@ function oppdaterTabell() {
         kode.innerHTML = klassekode;
 
         let elever = document.createElement("td");
-        let arrElever = data[klassekode]["elever"].length;
-        elever.innerHTML = arrElever;
+        elever.innerHTML = data[klassekode]["elever"].length;
 
         let btnRediger = document.createElement("td");
         btnRediger.innerHTML = "<p class='btn'>Rediger</p>";
@@ -36,6 +35,9 @@ function oppdaterTabell() {
 
         let btnSlett = document.createElement("td");
         btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
+        btnSlett.onclick = () => {
+            slettKlasse(klassekode); // midlertidig sletting
+        };
         // Må lage en ny modal med bekrefting osv... Dette er dritt...
         // btnSlett.onclick = "Er du sikker på at du vil slette " + klassekode + "? Denne handlingen kan ikke angres."
 
@@ -91,6 +93,7 @@ function leggTilKlasse() {
 
     $("#inpKlassekode").placeholder = "Eks.: 2MATR";
     $("#inpElever").placeholder = "Skill elevene med komma";
+    valgtKlasse = "";  // fjerner valgt klasse
 }
 
 function redigerKlasse(klassekode) {
@@ -98,7 +101,13 @@ function redigerKlasse(klassekode) {
     $("#modalHeaderText").innerHTML = "Rediger - " + klassekode;
 
     $("#inpKlassekode").value = klassekode;
-    $("#inpElever").value = data[klassekode]["elever"];
+    let elever = data[klassekode]["elever"];
+    let txt = elever[0];    // streng som alle elevene legges til i med komma og mellomrom mellom
+    for (let index = 1; index < elever.length; index++) {
+        const elev = elever[index];
+        txt += ', ' + elev;
+    }
+    $("#inpElever").value =txt;
 
     valgtKlasse = klassekode;
 }
@@ -109,7 +118,7 @@ function lagreKlasse() {
 
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;
-    if (!nyKlassekode) return   // hvis klassekode ikke er skrevet inn
+    if (!nyKlassekode) return;  // hvis klassekode ikke er skrevet inn
     let nyeElever = $("#inpElever").value;
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
@@ -124,13 +133,14 @@ function lagreKlasse() {
     if (valgtKlasse !== "") {   // hvis klassen redigeres
         klassekart = data[valgtKlasse].klassekart   // tar vare på klassekartet
         klassekart_oppsett = data[valgtKlasse].klassekart_oppsett
-        delete data[valgtKlasse];
+        delete data[valgtKlasse];   // fjerner klasse, for så å legge til igjen med oppdatert data
     }
 
     // Sjekker om klassa finnes fra før
     for (klassekode in data) {
         if (klassekode === nyKlassekode) {
             console.log("Klassen finnes fra før")
+            // må gjøres synlig for bruker
             return
         }
     }
@@ -143,9 +153,9 @@ function lagreKlasse() {
             klassekart_oppsett: klassekart_oppsett
         }
     };
-
+    
     data = Object.assign(nyKlasse, data);
-
+    
     valgtKlasse = "";
     $("#wholeModal").style.display = "none";
     oppdaterData();
@@ -156,7 +166,7 @@ function lagreKlasse() {
     // 
 }
 
-// Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik
+// Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik     // <3 -Jon
 function tekstbehandling(nye_elever) {
     let elever = nye_elever.split(',');             // deler opp på komma
     let i =0;
