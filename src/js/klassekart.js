@@ -25,13 +25,20 @@ window.onload = () => {
     $("#btnVisModalStruktur").onclick = () => {
         $("#modalStrukturKlassekart").style.display = "block";
     }
-
-    $("#btnNyttKlassekart").onclick = nyttKlassekart;
-
+    
     $("#btnLukkModal").onclick = () => {
         $("#modalStrukturKlassekart").style.display = "none";
     }
+    
+    $("#btnNyttKlassekart").onclick = () => {
+        $("#warning_modal").style.display = "block";
+    }
 
+    $("#warning_confirm").onclick = () => {
+        $("#warning_modal").style.display = "none";
+        nyttKlassekart();
+    }
+    
     $("#btnSnuKlassekart").onclick = snuKlassekart;
 
     // Lukk modal ved trykk utenfor innholdet

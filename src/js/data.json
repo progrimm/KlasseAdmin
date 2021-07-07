@@ -1,23 +1,32 @@
 {
-	"2STA": {
+	"3STB": {
 		"elever": [
-			"Bonsa Ammanuell Bajsa",
+			"asfasdfadsfasfasdfasdfdafasfs",
+			"Bonsa",
+			"Emil",
+			"Gustav",
 			"Hanna",
 			"Jon",
 			"Mikkel GS",
 			"Mikkel WS",
+			"Paul",
 			"Sven"
 		],
 		"klassekart": [
-			"Sven",
-			"Hanna",
+			"Gustav",
 			"Mikkel WS",
 			"Mikkel GS",
-			"Bonsa Ammanuell Bajsa",
-			"Jon"
+			"Emil",
+			"Sven",
+			"Hanna",
+			"Jon",
+			"Bonsa",
+			".",
+			"Paul",
+			"asfasdfadsfasfasdfasdfdafasfs"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "2",
+			"per_bord": "1",
 			"rader": "4",
 			"kolonner": "4"
 		}

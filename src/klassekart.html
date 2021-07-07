@@ -24,14 +24,45 @@
     <button disabled id="btnLagreEndringer">Lagre endringer</button>
     <button disabled id="btnFjerneEndringer">Fjerne endringer</button>
 
-    <div id="modalStrukturKlassekart" class="modal">
-        <div class="modal-content">
-            <h2>Innstillinger</h2>
-            <p>Elever per bord: <input type="number" id="inputEleverPerBord" min="1" max="3" value="2"></p>
-            <p>Antall rader: <input type="number" id="inputAntallRader" value="4"></p>
-            <p>Antall kolonner: <input type="number" id="inputAntallKolonner" value="4"></p>
-            <button id="btnNyttKlassekart">Nytt klassekart</button>
-            <button id="btnLukkModal">Lukk</button>
+    <div id='modalStrukturKlassekart' class='modal'>
+        <div class='modalContent'>
+            <div class='modalHeader'>
+                <span class='modalClose'
+                    onClick='document.getElementById(`modalStrukturKlassekart`).style.display = `none`'>&times;</span>
+                <h2>Innstillinger</h2>
+            </div>
+            <div class='modalBody row'>
+                <div class="modalInputArea">
+                    <p>Elever per bord:</p>
+                    <input  type="number" id="inputEleverPerBord" min="1" max="3" value="2">
+                </div>
+                <div class="modalInputArea">
+                    <p>Antall rader:</p>
+                    <input type="number" id="inputAntallRader" value="4">
+                </div>
+                <div class="modalInputArea">
+                    <p>Antall kolonner:</p>
+                    <input type="number" id="inputAntallKolonner" value="4">
+                </div>
+            </div>
+            <div class="modalFooter row">
+                <p id="btnNyttKlassekart" class="btn btn-success">Nytt klassekart</p>
+                <p id="btnLukkModal" class="btn btn-danger">Lukk</p>
+            </div>
+        </div>
+    </div>
+
+    <div id='warning_modal' class='modal'>
+        <div class='modalContent modal-warning'>
+            <div class='modalHeader'>
+                <span class='modalClose'
+                    onClick='document.getElementById(`warning_modal`).style.display = `none`'>&times;</span>
+                <h2 id='warning_header'>Er du sikker på at du vil lage nytt klassekart?</h2>
+            </div>
+            <div class='modalBody row'>
+                <p>Denne handlingen kan ikke angres.</p>
+                <p id="warning_confirm" class="btn btn-success">Nytt klassekart</p>
+            </div>
         </div>
     </div>
 

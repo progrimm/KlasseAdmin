@@ -27,19 +27,25 @@ function oppdaterTabell() {
         let elever = document.createElement("td");
         elever.innerHTML = data[klassekode]["elever"].length;
 
-        let btnRediger = document.createElement("td");
-        btnRediger.innerHTML = "<p class='btn'>Rediger</p>";
+        let rediger_celle = document.createElement("td");
+        let btnRediger = document.createElement("p");
+        btnRediger.innerHTML = "Rediger";
+        btnRediger.className ='btn';
         btnRediger.onclick = () => {
             redigerKlasse(klassekode);   // åpne modal
         };
+        rediger_celle.appendChild(btnRediger);
 
-        let btnSlett = document.createElement("td");
-        btnSlett.innerHTML = "<p class='btn btn-danger'>Slett</p>";
+        let slett_celle = document.createElement("td");
+        let btnSlett = document.createElement("p");
+        btnSlett.innerHTML = "Slett";
+        btnSlett.className = 'btn btn-danger';
         btnSlett.onclick = () => {
             slett_advarsel(klassekode); // åpne modal
         };
+        slett_celle.appendChild(btnSlett);
 
-        radKlasse.append(kode, elever, btnRediger, btnSlett);
+        radKlasse.append(kode, elever, rediger_celle, slett_celle);
         $("#tableOversiktKlasser").appendChild(radKlasse);
     }
 }
@@ -75,6 +81,7 @@ function slett_advarsel(klassekode) {
     $("#warning_modal").style.display = "block";
     $("#warning_header").innerHTML = "Er du sikker på at du vil slette "+klassekode+'?';
     $('#warning_confirm').innerHTML = 'Slett';
+    $('#warning_confirm').className = 'btn btn-danger';
     $('#warning_confirm').onclick = () => {
         slettKlasse(klassekode);
     }
@@ -84,6 +91,7 @@ function rediger_advarsel(klassekode) {
     $("#warning_modal").style.display = "block";
     $("#warning_header").innerHTML = "Er du sikker på at du vil endre "+klassekode+'?';
     $('#warning_confirm').innerHTML = 'Lagre';
+    $('#warning_confirm').className = 'btn btn-success';
     $('#warning_confirm').onclick = () => {
         $("#warning_modal").style.display = "none";
         lagreKlasse();

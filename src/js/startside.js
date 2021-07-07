@@ -21,7 +21,7 @@ function klasseliste() {
                 elever: data[evt.target.getAttribute("data-klassekode")].elever
             }
             sessionStorage.setItem("valgtKlasse", JSON.stringify(klasse));
-            window.location = "klassebehandling.html";
+            window.location = "fravaer.html";
         }
 
         let textArea = document.createElement("div");
