@@ -25,11 +25,11 @@ window.onload = () => {
     $("#btnVisModalStruktur").onclick = () => {
         $("#modalStrukturKlassekart").style.display = "block";
     }
-    
+
     $("#btnLukkModal").onclick = () => {
         $("#modalStrukturKlassekart").style.display = "none";
     }
-    
+
     $("#btnNyttKlassekart").onclick = () => {
         $("#warning_modal").style.display = "block";
     }
@@ -38,14 +38,16 @@ window.onload = () => {
         $("#warning_modal").style.display = "none";
         nyttKlassekart();
     }
-    
+
     $("#btnSnuKlassekart").onclick = snuKlassekart;
 
     // Lukk modal ved trykk utenfor innholdet
     window.onclick = (evt) => {
-        let modal = $("#modalStrukturKlassekart");
-        if (evt.target == modal) {
-            modal.style.display = "none";
+        if (evt.target == $("#modalStrukturKlassekart")) {
+            $("#modalStrukturKlassekart").style.display = "none";
+        }
+        else if (evt.target == $("#warning_modal")) {
+            $("#warning_modal").style.display = "none";
         }
     }
 

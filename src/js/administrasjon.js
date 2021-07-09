@@ -11,6 +11,16 @@ window.onload = () => {
     $("#btnLeggTil").onclick = leggTilKlasse;
 
     $("#btnLagreKlasse").onclick = lagreKlasse;
+
+    // Lukk modal ved trykk utenfor innholdet
+    window.onclick = (evt) => {
+        if (evt.target == $("#wholeModal")) {
+            $("#wholeModal").style.display = "none";
+        }
+        else if (evt.target == $("#warning_modal")) {
+            $("#warning_modal").style.display = "none";
+        }
+    }
 }
 
 function oppdaterTabell() {
@@ -30,7 +40,7 @@ function oppdaterTabell() {
         let rediger_celle = document.createElement("td");
         let btnRediger = document.createElement("p");
         btnRediger.innerHTML = "Rediger";
-        btnRediger.className ='btn';
+        btnRediger.className = 'btn';
         btnRediger.onclick = () => {
             redigerKlasse(klassekode);   // åpne modal
         };
@@ -79,7 +89,7 @@ function oppdaterData() {
 
 function slett_advarsel(klassekode) {
     $("#warning_modal").style.display = "block";
-    $("#warning_header").innerHTML = "Er du sikker på at du vil slette "+klassekode+'?';
+    $("#warning_header").innerHTML = "Er du sikker på at du vil slette " + klassekode + '?';
     $('#warning_confirm').innerHTML = 'Slett';
     $('#warning_confirm').className = 'btn btn-danger';
     $('#warning_confirm').onclick = () => {
@@ -89,7 +99,7 @@ function slett_advarsel(klassekode) {
 
 function rediger_advarsel(klassekode) {
     $("#warning_modal").style.display = "block";
-    $("#warning_header").innerHTML = "Er du sikker på at du vil endre "+klassekode+'?';
+    $("#warning_header").innerHTML = "Er du sikker på at du vil endre " + klassekode + '?';
     $('#warning_confirm').innerHTML = 'Lagre';
     $('#warning_confirm').className = 'btn btn-success';
     $('#warning_confirm').onclick = () => {
@@ -134,7 +144,7 @@ function redigerKlasse(klassekode) {
         const elev = elever[index];
         txt += ', ' + elev;
     }
-    $("#inpElever").value =txt;
+    $("#inpElever").value = txt;
 
     valgtKlasse = klassekode;
 }
@@ -180,9 +190,9 @@ function lagreKlasse() {
             klassekart_oppsett: klassekart_oppsett
         }
     };
-    
+
     data = Object.assign(nyKlasse, data);
-    
+
     valgtKlasse = "";
     $("#wholeModal").style.display = "none";
     oppdaterData();
@@ -196,20 +206,20 @@ function lagreKlasse() {
 // Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik     // <3 -Jon
 function tekstbehandling(nye_elever) {
     let elever = nye_elever.split(',');             // deler opp på komma
-    let i =0;
-    while (i<elever.length) {
+    let i = 0;
+    while (i < elever.length) {
         elever[i] = elever[i].split('\n').join(''); // tar bort linjeskift
         elever[i] = elever[i].split(' ');           // deler opp på mellomrom
-        let j =0;
-        while (j<elever[i].length) {
-            if (elever[i][j] === ''){
-                elever[i].splice(j,1);              // sletter tomme elementer
+        let j = 0;
+        while (j < elever[i].length) {
+            if (elever[i][j] === '') {
+                elever[i].splice(j, 1);              // sletter tomme elementer
             } else j++;
         }
         elever[i] = elever[i].join(' ');            // setter de sammen igjen med mellomrom mellom
-        
-        if (elever[i] === ''){
-            elever.splice(i,1);                     // sletter tomme elev-elementer
+
+        if (elever[i] === '') {
+            elever.splice(i, 1);                     // sletter tomme elev-elementer
         } else i++;
     }
     elever.sort((a, b) => {                         // sorterer alfabetisk

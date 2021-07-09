@@ -6,6 +6,13 @@ let data = JSON.parse(fs.readFileSync(dataFilename));
 window.onload = () => {
     sjekkStartanimasjon();
     klasseliste();
+
+    // Lukk modal ved trykk utenfor innholdet
+    window.onclick = (evt) => {
+        if (evt.target == $("#wholeModal")) {
+            $("#wholeModal").style.display = "none";
+        }
+    }
 }
 
 function klasseliste() {
