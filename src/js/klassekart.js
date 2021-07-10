@@ -42,12 +42,15 @@ window.onload = () => {
     $("#btnSnuKlassekart").onclick = snuKlassekart;
 
     // Lukk modal ved trykk utenfor innholdet
-    window.onclick = (evt) => {
+    window.onmousedown = (evt) => {
         if (evt.target == $("#modalStrukturKlassekart")) {
             $("#modalStrukturKlassekart").style.display = "none";
         }
         else if (evt.target == $("#warning_modal")) {
             $("#warning_modal").style.display = "none";
+        }
+        else if (evt.target == $("#error_modal")) {
+            $("#error_modal").style.display = "none";
         }
     }
 
@@ -63,15 +66,10 @@ window.onload = () => {
 // Henter info om valgt klasse og viser eventuelt eksisterende kart, samt initialiserer noen variabler
 function hentKlasse() {
 
-    // let eleverKlassekartKunNavn = klassekart.filter(navn => navn !== "."); // Filtrerer ut de tomme plassene
-
     // Sjekker om valgt klasse har klassekart fra før, eller om det må lages nytt
     if (klassekart.length === 0) {
         $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
     }
-    // else if (eleverKlassekartKunNavn.length !== elever.length) {
-    //     $("#tableKlassekart").innerHTML = "Det har skjedd en endring i klassa, lag nytt kart";
-    // }
 
     // Viser klassekart om det finnes fra før
     else {
@@ -91,7 +89,9 @@ function nyttKlassekart() {
 
     // Sjekker om strukturen oppgitt er gyldig
     if (rader * kolonner * perBord < elever.length) {
-        alert("Klassekart for lite i forhold til antall elever.")
+        $("#warning_modal").style.display = "none";
+        $("#error_modal").style.display = "block";
+        return
     }
     else {
         elever = stokkElever(elever);  // Stokker elevene tilfeldig til klassekartet
@@ -190,7 +190,7 @@ function byttePlass(evt) {
     }
     else {
         elev1ID = evt.target.id;
-        $("#" + elev1ID).style.backgroundColor = "var(--darkColor)";
+        $("#" + elev1ID).style.backgroundColor = "#02B345";
         antallKlikk++
     }
 }

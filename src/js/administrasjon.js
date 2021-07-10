@@ -13,12 +13,15 @@ window.onload = () => {
     $("#btnLagreKlasse").onclick = lagreKlasse;
 
     // Lukk modal ved trykk utenfor innholdet
-    window.onclick = (evt) => {
+    window.onmousedown = (evt) => {
         if (evt.target == $("#wholeModal")) {
             $("#wholeModal").style.display = "none";
         }
         else if (evt.target == $("#warning_modal")) {
             $("#warning_modal").style.display = "none";
+        }
+        else if (evt.target == $("#error_modal")) {
+            $("#error_modal").style.display = "none";
         }
     }
 }
@@ -176,8 +179,7 @@ function lagreKlasse() {
     // Sjekker om klassa finnes fra før
     for (klassekode in data) {
         if (klassekode === nyKlassekode) {
-            console.log("Klassen finnes fra før")
-            // må gjøres synlig for bruker
+            $("#error_modal").style.display = "block";
             return
         }
     }

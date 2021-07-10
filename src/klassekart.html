@@ -33,17 +33,40 @@
             </div>
             <div class='modalBody row'>
                 <div class="modalInputArea">
-                    <p>Elever per bord:</p>
-                    <input type="number" id="inputEleverPerBord" onkeypress="return event.charCode >= 48" min="1" max="3" value="2">
+                    <p>Elever per bord: </p>
+                    <select id="inputEleverPerBord">
+                        <option value="1">1</option>
+                        <option selected value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
                 </div>
                 <div class="modalInputArea">
-                    <p>Antall rader:</p>
-                    <input type="number" id="inputAntallRader" onkeypress="return event.charCode >= 48" min="1" max="8" value="4">
+                    <p>Antall rader: </p>
+                    <select id="inputAntallRader">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option selected value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                      </select>
                 </div>
                 <div class="modalInputArea">
-                    <p>Antall kolonner:</p>
-                    <input type="number" id="inputAntallKolonner" onkeypress="return event.charCode >= 48" min="1" max="8" value="4">
+                    <p>Antall kolonner: </p>
+                    <select id="inputAntallKolonner">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option selected value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                      </select>
                 </div>
+                <p></p>
             </div>
             <div class="modalFooter row">
                 <p id="btnNyttKlassekart" class="btn btn-success">Nytt klassekart</p>
@@ -62,6 +85,21 @@
             <div class='modalBody row'>
                 <p>Denne handlingen kan ikke angres.</p>
                 <p id="warning_confirm" class="btn btn-success">Nytt klassekart</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for feilmelding -->
+    <div id='error_modal' class='modal'>
+        <div class='modalContent modal-warning'>
+            <div class='modalHeader'>
+                <span class='modalClose'
+                    onClick='document.getElementById(`error_modal`).style.display = `none`'>&times;</span>
+                <h2>Oops!</h2>
+            </div>
+            <div class='modalBody row'>
+                <p>Klassekartet er for lite i forhold til antall elever. Juster innstillingene og prøv igjen.</p>
+                <p class="btn btn-danger" onClick='document.getElementById(`error_modal`).style.display = `none`'>Lukk</p>
             </div>
         </div>
     </div>
