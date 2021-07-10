@@ -93,13 +93,13 @@ function start_eller_stopp() {
 function stopp_nedtelling () {
     klokka_gaar =false;
     veksle.innerHTML ='Start';
+    $('#minus').innerHTML ='';
     $('#nedteller').style.color = minutt.style.color = sekund.style.color ='black';
     clearInterval(nedteller_intervall);
     clearInterval(overtid_intervall);
 }
 
 function nullstill() {
-    $('#minus').innerHTML ='';
     stopp_nedtelling();
     paa_overtid = false;
     minutt.value =nuller_foran(start_min);

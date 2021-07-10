@@ -113,31 +113,6 @@ hr {
   width: 100%;
 }
 
-#option {
-  width: 50px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  transition: 200ms;
-}
-
-#option:hover {
-  transform: scale(1.2);
-}
-
-#BtnOpenModal {
-  width: 50px;
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  transition: 200ms;
-}
-
-#BtnOpenModal:hover {
-  cursor: pointer;
-  transform: scale(1.2);
-}
-
 .modal {    
   display: none;
   position: fixed;
@@ -416,4 +391,17 @@ th, td {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#nedtelling_ikon {
+  width: 60px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: 200ms;
+}
+
+#nedtelling_ikon:hover {
+  cursor: pointer;
+  transform: scale(1.2);
 }

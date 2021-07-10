@@ -61,3 +61,28 @@
     display: flex;
     justify-content: space-around;
 }
+
+#option {
+  width: 50px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  transition: 200ms;
+}
+
+#option:hover {
+  transform: scale(1.2);
+}
+
+#BtnOpenModal {
+  width: 50px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  transition: 200ms;
+}
+
+#BtnOpenModal:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
