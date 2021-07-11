@@ -10,7 +10,14 @@ let elever;
 document.title = valgtKlasse.klassekode + " - Gruppeinndeling";
 
 window.onload = () => {
-    document.getElementById("slcInndeling").onchange = valgfelt;
+    $("#slcInndeling").onchange = valgfelt;
+
+    // Tilbakestiller siden ved endring av checkbox
+    $("#bare_tilstedevaerende").onchange = () => {
+        $("#btnUserSubmit").style.display = "none";
+        $("#divAntall").innerHTML = "";
+        $("#utskrift").innerHTML = "";
+    }
 }
 
 function valgfelt() {
@@ -22,9 +29,9 @@ function valgfelt() {
         elever = alle_elever.slice(0);
     }
 
-    let typInndeling = document.getElementById("slcInndeling").value;
-    let btnAntall = document.getElementById("btnUserSubmit");
-    let divAntall = document.getElementById("divAntall");
+    let typInndeling = $("#slcInndeling").value;
+    let btnAntall = $("#btnUserSubmit");
+    let divAntall = $("#divAntall");
 
     if (typInndeling === "gruppe") {
         btnAntall.style.display = "initial";
@@ -38,19 +45,19 @@ function valgfelt() {
         let option = document.createElement("option");
         option.innerHTML = i;
         option.value = i;
-        document.getElementById("slcAntall").appendChild(option);
+        $("#slcAntall").appendChild(option);
     }
 
-    document.getElementById("slcAntall").onchange = enableBtn;
+    $("#slcAntall").onchange = enableBtn;
 }
 
 function enableBtn() {
-    document.getElementById("btnUserSubmit").disabled = false;
-    document.getElementById("btnUserSubmit").style.cursor = "pointer";
+    $("#btnUserSubmit").disabled = false;
+    $("#btnUserSubmit").style.cursor = "pointer";
 
-    let antallInndeling = document.getElementById("slcAntall").value;
-    let typeInndeling = document.getElementById("slcInndeling").value;
-    document.getElementById("btnUserSubmit").onclick = () => {
+    let antallInndeling = $("#slcAntall").value;
+    let typeInndeling = $("#slcInndeling").value;
+    $("#btnUserSubmit").onclick = () => {
         gruppeinndeling(antallInndeling, typeInndeling);
     }
 }
@@ -153,16 +160,16 @@ function gruppeinndeling(antall, type) {
 
 function utskrift(grupper) {
     let utskriftGrupper = grupper;
-    let utskriftArea = document.getElementById("utskrift");
+    let utskriftArea = $("#utskrift");
     utskriftArea.innerHTML = "";
 
     utskriftGrupper.forEach((x, key) => {
         utskriftArea.innerHTML += "<p id='gruppe" + (key + 1) + "'><span class='printaGrupper'>Gruppe " + (key + 1) + ":<span> </p>";
         x.forEach((y, last) => {
             if (x.length - 1 > last) {
-                document.getElementById("gruppe" + (key + 1)).innerHTML += y + ", ";
+                $("#gruppe" + (key + 1)).innerHTML += y + ", ";
             } else {
-                document.getElementById("gruppe" + (key + 1)).innerHTML += y + ".";
+                $("#gruppe" + (key + 1)).innerHTML += y + ".";
             }
         });
     });
