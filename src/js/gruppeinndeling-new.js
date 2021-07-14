@@ -17,6 +17,7 @@ window.onload = () => {
         $("#btnUserSubmit").style.display = "none";
         $("#divAntall").innerHTML = "";
         $("#utskrift").innerHTML = "";
+        $("#slcInndeling").value = "Velg inndeling";
     }
 }
 

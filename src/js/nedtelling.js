@@ -87,12 +87,14 @@ function start_eller_stopp() {
         nedteller_intervall =setInterval(nedteller, 1000);  // kjører nedtellerfunksjonen hvert sek
         klokka_gaar =true;
         veksle.innerHTML ='Stopp';
+        veksle.className ='btn btn-danger';
     }
 }
 
 function stopp_nedtelling () {
     klokka_gaar =false;
     veksle.innerHTML ='Start';
+    veksle.className ='btn btn-success';
     $('#minus').innerHTML ='';
     $('#nedteller').style.color = minutt.style.color = sekund.style.color ='black';
     clearInterval(nedteller_intervall);

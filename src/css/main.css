@@ -188,7 +188,7 @@ hr {
     font-weight: 500;
 }
 
-.modalInputArea input, .modalInputArea textarea {
+input, textarea {
     width: calc(100% - 32px);
     padding: 10px 15px;
     border: 1px solid #bbbbbb;
