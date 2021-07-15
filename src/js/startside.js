@@ -4,6 +4,13 @@ const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
 
 window.onload = () => {
+
+    // Husker at en kommer fra index om man går til nedtelling
+    $("#nedtelling_ikon").onclick = () => {
+        sessionStorage.setItem("nedtelling_fra_index", true);
+        window.location = "nedtelling.html";
+    }
+
     sjekkStartanimasjon();
     klasseliste();
 
