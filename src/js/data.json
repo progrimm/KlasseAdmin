@@ -13,21 +13,20 @@
 			"Sven"
 		],
 		"klassekart": [
-			"Gustav",
-			"Mikkel WS",
-			"Mikkel GS",
-			"Emil",
-			"Sven",
-			"Hanna",
 			"Jon",
+			"Gustav",
 			"Bonsa",
-			".",
+			"Mikkel WS",
+			"Sven",
+			"asfasdfadsfasfasdfasdfdafasfs",
+			"Hanna",
+			"Mikkel GS",
 			"Paul",
-			"asfasdfadsfasfasdfasdfdafasfs"
+			"Emil"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "1",
-			"rader": "4",
+			"per_bord": "2",
+			"rader": "3",
 			"kolonner": "4"
 		}
 	},

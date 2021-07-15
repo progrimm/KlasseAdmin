@@ -14,6 +14,9 @@ window.onload = oppstart;
 let eleverFravaer = [];                                                                     //Lagrer de som ikke har vært tilstede for seinere bruk
 
 function oppstart() {
+    // Husker hvilken side man gikk til nedtelling fra
+    sessionStorage.setItem("nedtelling_ref", window.location.pathname);
+    
     document.getElementById("elevListe").innerHTML = "";    // sletter alt i hoveddiven
     eleverFravaer = [];     // tømmer lista med fraværende elever
 

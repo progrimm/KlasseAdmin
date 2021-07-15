@@ -19,6 +19,9 @@ let klassekart = klasse["klassekart"]; // Henter klassekartet
 document.title = valgtKlasse.klassekode + " - Klassekart";
 
 window.onload = () => {
+    // Husker hvilken side man gikk til nedtelling fra
+    sessionStorage.setItem("nedtelling_ref", window.location.pathname);
+    
     hentKlasse();
 
     // Vise modal

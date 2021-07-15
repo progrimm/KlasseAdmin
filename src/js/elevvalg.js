@@ -10,6 +10,9 @@ const alle_elever = data[klasse].elever;
 
 document.title = valgtKlasse.klassekode + " - Tilfeldig elevvalg";
 window.onload = () => {
+    // Husker hvilken side man gikk til nedtelling fra
+    sessionStorage.setItem("nedtelling_ref", window.location.pathname);
+    
     $('#klasse').innerHTML =`Klasse: ${klasse}`;
     antall_elever = $('#antall_elever');
     antall_elever.focus();  // fokuserer på inputfeltet

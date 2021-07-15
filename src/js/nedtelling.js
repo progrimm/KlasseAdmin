@@ -9,21 +9,9 @@ let sek = start_sek = data.sek;
 let nedteller_intervall, overtid_intervall;
 
 window.onload = () => {
-
-    // Spørs fra hvilken side man trykket nedtelling fra
-    var nedtelling_fra_index = sessionStorage.getItem("nedtelling_fra_index");
-    if (nedtelling_fra_index) {
-        $("#back_icon").onclick = () => {
-            sessionStorage.removeItem("nedtelling_fra_index");
-            window.location = "index.html";
-        }
+    $("#back_icon").onclick = () => {
+        window.location = sessionStorage.getItem("nedtelling_ref");
     }
-    else {
-        $("#back_icon").onclick = () => {
-            window.location = "klassebehandling.html";
-        }
-    }
-
     lyd = new Audio('multimedia/gong.mp3');
 
     veksle = $('#veksle_start_stopp');
@@ -36,11 +24,13 @@ window.onload = () => {
     veksle.onclick = start_eller_stopp;
     // stopper klokka hvis bruker fokuserer på inputfeltene
     minutt.onfocus = () => {
-        stopp_nedtelling();
+        if (paa_overtid) nullstill();   // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
+        else stopp_nedtelling();
         minutt.select() // markerer tall
     }
     sekund.onfocus = () => {
-        stopp_nedtelling();
+        if (paa_overtid) nullstill();   // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
+        else stopp_nedtelling();
         sekund.select() // markerer tall
     }
     // setter nye startverdier for min og sek hvis bruker gjør endringer
@@ -94,8 +84,8 @@ function start_eller_stopp() {
     }
 
     if (klokka_gaar) {
-        stopp_nedtelling();
-        if (paa_overtid) nullstill()    // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
+        if (paa_overtid) nullstill();    // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
+        else stopp_nedtelling();
     }
     else {  // setter i gang klokka
         if (min === 0 && sek === 0) return; // setter ikke i gang nedtelling fra 00:00

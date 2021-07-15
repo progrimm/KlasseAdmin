@@ -10,6 +10,9 @@ let elever;
 document.title = valgtKlasse.klassekode + " - Gruppeinndeling";
 
 window.onload = () => {
+    // Husker hvilken side man gikk til nedtelling fra
+    sessionStorage.setItem("nedtelling_ref", window.location.pathname);
+    
     $("#slcInndeling").onchange = valgfelt;
 
     // Tilbakestiller siden ved endring av checkbox
