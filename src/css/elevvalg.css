@@ -3,3 +3,14 @@ input {
     font-size: 72px;
     text-align: center;
 }
+
+#elev_utvalg {
+    flex-wrap: wrap;
+}
+
+#elev_utvalg div {
+    padding: 16px;
+    width: 26%;
+    text-overflow: ellipsis;
+    text-align: center;
+}

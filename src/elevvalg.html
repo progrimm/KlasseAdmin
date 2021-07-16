@@ -2,9 +2,8 @@
 <html lang='no'>
 
     <head>
-        <title>Tilfeldig valg</title>
+        <title>Klasseadmin - Tilfeldig elevvalg</title>
         <meta charset="utf-8" />
-        <title>Klasseadmin - Elevvalg</title>
         <script type="application/json" src="js\data.json"></script>
         <script src="js\template.js"></script>
         <link rel='stylesheet' href='css/main.css'>
@@ -19,15 +18,17 @@
             <hr>
         </div>
         <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'> Velg bare tilstedeværende elever</label>
-        <p id='klasse'>Klasse:</p>
+        <label><input type='checkbox' id ='uten_tilbakelegging'>Ta valgte elever ut av bunken</label>
+        <p id='elevantall'></p>
         <p>Skriv inn antall elever:</p>
         <input type="number" id="antall_elever" min='1' value='1'>
         <button id='btn_elever'>Velg</button>
+        <p id='klasse'></p>
 
-        <h2>Elever:</h2>
-        <div id='elev_utvalg'>
+        <div id='elev_utvalg' class='row'>
             <!-- genererte div-tagger -->
         </div>
+        <button id='nytt_valg' hidden>Velg på nytt</button>
 
         <div class="back" onclick="window.location = 'klassebehandling.html'">
             <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >

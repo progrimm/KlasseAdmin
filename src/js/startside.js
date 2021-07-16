@@ -1,4 +1,5 @@
 // Henter data fra fil
+const { Console } = require("console");
 const fs = require("fs");
 const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
@@ -20,7 +21,10 @@ window.onload = () => {
 
 function klasseliste() {
     let klasseliste = document.getElementById("klasseliste");
-
+    if (JSON.stringify(data) === '{}') {   // hvis det ikke er lagt inn noen klasser
+        klasseliste.innerHTML = 'Trykk på tannhjulet nede til høyre for å legge til klasser!';
+        return;
+    }
     for (klasseKode in data) {
         let card = document.createElement("div");
         card.className = "card";

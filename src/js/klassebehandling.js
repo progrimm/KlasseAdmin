@@ -1,5 +1,5 @@
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
-document.title = valgtKlasse.klassekode + " - Klassebehandling";
+document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode;
 
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra

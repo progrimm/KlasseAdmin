@@ -7,7 +7,7 @@ const klasse = data[valgtKlasse.klassekode];
 const alle_elever = klasse["elever"]; // Henter alle elevene i klassa
 let elever;
 
-document.title = valgtKlasse.klassekode + " - Gruppeinndeling";
+document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Gruppeinndeling";
 
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra

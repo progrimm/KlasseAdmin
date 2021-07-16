@@ -16,7 +16,7 @@ let klasse = data[valgtKlasse.klassekode]; // Henter objektet fra data
 let elever = klasse["elever"]; // Henter elevene
 let klassekart = klasse["klassekart"]; // Henter klassekartet
 
-document.title = valgtKlasse.klassekode + " - Klassekart";
+document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Klassekart";
 
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra
