@@ -12,6 +12,17 @@ body {
   align-items: center;
 
   background-color: var(--backgroundColor);
+
+  animation: fadeNyside 0.15s ease-in-out;
+}
+
+@keyframes fadeNyside {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 p {
@@ -63,22 +74,7 @@ a {
   color: var(--linkColor);
 }
 
-/* button {
-  background-color: var(--headerColor);
-  border: none;
-  color: var(--backgroundColor);
-  padding: 5px 20px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  transition: 0.4s;
-  border-radius: 25px;
-}
 
-button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-} */
 .btn {
   background-color: #1D6BB3;
   color: var(--darkColor);
