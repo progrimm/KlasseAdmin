@@ -101,7 +101,7 @@ input {
     text-align: center;
     width: 144px;
     height: 100px;
-    transition: 0.9s;
+    transition: transform 0.9s, opacity 0.4s, left 0.9s;
     background-color: var(--backgroundColor);
     overflow: hidden;
     white-space: nowrap;

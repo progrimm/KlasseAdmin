@@ -7,7 +7,7 @@ const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
 const klasse = valgtKlasse.klassekode;
 const elever = valgtKlasse.elever;
 const alle_elever = data[klasse].elever;
-jobbeliste_elever = elever.slice(0);  // liste som det kan slettes elever fra under utvalg
+let jobbeliste_elever = elever.slice(0);  // liste som det kan slettes elever fra under utvalg
 
 const ett_hakk_x = 170;
 const ett_hakk_y = 120;
@@ -23,10 +23,14 @@ window.onload = () => {
     antall_elever.focus();  // fokuserer på inputfeltet
     $('#klasse').innerHTML = klasse;
     // lyttere
+    $('#btn_elever').onclick = valg;
     antall_elever.oninput = bare2siffer;
-    $('#btn_elever').onclick = velg_elever;
     onkeydown = function (evt) {    // hvis brukeren trykker på enter
-        if (evt.keyCode === 13 && antall_elever === document.activeElement) velg_elever();
+        if (evt.keyCode === 13 && antall_elever === document.activeElement) {
+            if( ! $('#btn_elever').disabled) {
+                valg()
+            }
+        }
     }
     $('#bare_tilstedevaerende').onclick = 
     $('#uten_tilbakelegging').onclick = 
@@ -63,12 +67,35 @@ function tilbakestill() {
     // }
 }
 
-function velg_elever() {
+function valg() {
+    if(+antall_elever.value === 0) return;
+    $('#btn_elever').disabled = true;   // deaktiverer valgknapp
     // finner posisjon til bunke
     let x_bunke = bunke.offsetLeft;
     let y_bunke = bunke.offsetTop;
+    // trekker inn eventuelle elever
+    trekk_inn(x_bunke, y_bunke);    
+    // trekker nye elever
+    if ($('#elev_utvalg').innerHTML === '') { // hvis bordet er tomt
+        velg_elever(x_bunke, y_bunke);
+        setTimeout(() => {
+            $('#btn_elever').disabled = false;  // reaktiverer valgknapp
+        }, 1000);
+    } else {    // hvis det er elever å trekke inn
+        setTimeout(() => {
+            $('#elev_utvalg').innerHTML ='';
+        }, 1000);
+        setTimeout(() => {
+            velg_elever(x_bunke, y_bunke);
+        }, 1010);
+        setTimeout(() => {
+            $('#btn_elever').disabled = false;  // reaktiverer valgknapp
+        }, 1900);
+    }
+}
 
-    trekk_inn(x_bunke, y_bunke);
+function velg_elever(x_bunke, y_bunke) {
+
     // let em = $('#elev_utvalg');
     // em.innerHTML ='';
     // if (jobbeliste_elever.length === 0) {
@@ -76,46 +103,44 @@ function velg_elever() {
     //     return;
     // }
 
-    setTimeout(() => {  // 1 sek
-        // hvis valgt antall overskrider antall elever, blir antallet maks antall elever
-        let antall = (+antall_elever.value < jobbeliste_elever.length ? +antall_elever.value : jobbeliste_elever.length);
-        for (var i=0; i<antall; i++) {
-            let tilfeldig_index = Math.floor((Math.random() * jobbeliste_elever.length));  // tilfeldig valg av 
-            let tilfeldig_valgt_elev = jobbeliste_elever[tilfeldig_index];                 // elev fra klasse
-            jobbeliste_elever.splice(tilfeldig_index,1);
-            
-            // generer elevkort
-            let elevkort = document.createElement('div');
-            elevkort.innerHTML = tilfeldig_valgt_elev;
-            elevkort.className = 'elevkort';
-            elevkort.style.left = (x_bunke-26)+'px';
-            elevkort.style.top = (y_bunke+26)+'px';
-            elevkort.style.transform = 'rotate(-90deg)';
-            $('#elev_utvalg').appendChild(elevkort);
-            // finner avstand som kortet skal flyttes
-            let flytt_x = -ett_hakk_x;  // første kolonne
-            let nr = i+1;
-            if((nr+1) % 3 === 0) flytt_x = 0;   // andre kolonne
-            else if (nr % 3 === 0) flytt_x = ett_hakk_x;    // tredje
-    
-            let rad_nr = Math.floor((nr-1) /3) + 1;
-            let flytt_y = ett_hakk_y * rad_nr + 30; // 30: klarering fra bunke
-            
-            setTimeout(() => {
-                elevkort.style.transform = 'translate('+flytt_x+'px, '+flytt_y+'px)';
-            }, 100);
-        }
-        if (jobbeliste_elever.length === 0 && $('#uten_tilbakelegging').checked)
-            $('#nytt_valg').hidden = false;
-    
-        initialiser();  // reinitialiserer
-    }, 1010);
+
+    // hvis valgt antall overskrider antall elever, blir antallet maks antall elever
+    let antall = (+antall_elever.value < jobbeliste_elever.length ? +antall_elever.value : jobbeliste_elever.length);
+    for (var i=0; i<antall; i++) {
+        // tilfeldig valg av elev fra klasse
+        let tilfeldig_index = Math.floor((Math.random() * jobbeliste_elever.length));
+        let tilfeldig_valgt_elev = jobbeliste_elever[tilfeldig_index];
+        jobbeliste_elever.splice(tilfeldig_index,1);
+        
+        // generer elevkort
+        let elevkort = document.createElement('div');
+        elevkort.innerHTML = tilfeldig_valgt_elev;
+        elevkort.className = 'elevkort';
+        elevkort.style.left = (x_bunke-26)+'px';
+        elevkort.style.top = (y_bunke+26)+'px';
+        elevkort.style.transform = 'rotate(-90deg)';
+        $('#elev_utvalg').appendChild(elevkort);
+        // finner avstand som kortet skal flyttes
+        let flytt_x = -ett_hakk_x;  // første kolonne
+        let nr = i+1;
+        if((nr+1) % 3 === 0) flytt_x = 0;   // andre kolonne
+        else if (nr % 3 === 0) flytt_x = ett_hakk_x;    // tredje
+
+        let rad_nr = Math.floor((nr-1) /3) + 1;
+        let flytt_y = ett_hakk_y * rad_nr + 30; // 30: klarering fra bunke
+        
+        setTimeout(() => {
+            elevkort.style.transform = 'translate('+flytt_x+'px, '+flytt_y+'px)';
+        }, 100);
+    }
+    if (jobbeliste_elever.length === 0 && $('#uten_tilbakelegging').checked)
+        $('#nytt_valg').hidden = false;
+
+    initialiser();  // reinitialiserer
 }
 
 function trekk_inn(x, y) {
     let elevkort = $('.elevkort');
-    console.log(elevkort);
-    if(!!elevkort[0]) console.log(elevkort[0].offsetTop);
     if($('#uten_tilbakelegging').checked) {
         for (const elev of elevkort) {
             elev.style.left = '-330px';
@@ -128,29 +153,6 @@ function trekk_inn(x, y) {
             elev.style.transform = 'rotate(90deg)'; 
         }
     }
-    setTimeout(() => {
-        $('#elev_utvalg').innerHTML ='';
-    }, 1000);
-
-
-    // let kort_paa_bordet = $('.kort_paa_bordet');
-    // sett alt på pause i 1 sek
-    // await new Promise(resolve => setTimeout(resolve, 1000));
-    // for (const elev of elevkort) {
-    //     $('#kortbunke').removeChild(elev);        
-    // }
-    // while (elevkort.length < 0) {
-    //     const elev = elevkort[0];
-    //     $('#kortbunke').removeChild(elev);        
-        //     console.log(elev.offsetTop);
-        //     console.log(bunke.offsetTop);
-        //     console.log($('#kortbunke').offsetTop);
-        //     console.log('---');
-    //     // hvis kortene er på utsiden av presentasjonsområde
-    //     // if (elev.offsetLeft < 0 || elev.offsetTop < bunke.offsetTop+10) {   // liitt margin
-    //         // console.log('asd');
-    //     // } else index++;
-    // }
 }
 
 function flytt_elever() {
