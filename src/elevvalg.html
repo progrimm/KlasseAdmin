@@ -17,15 +17,36 @@
             <h1>Tilfeldig valg av elever</h1>
             <hr>
         </div>
-        <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'> Velg bare tilstedeværende elever</label>
-        <label><input type='checkbox' id ='uten_tilbakelegging'>Ta valgte elever ut av bunken</label>
-        <p id='elevantall'></p>
-        <p>Skriv inn antall elever:</p>
-        <input type="number" id="antall_elever" min='1' value='1'>
-        <button id='btn_elever'>Velg</button>
-        <p id='klasse'></p>
 
-        <div id='elev_utvalg' class='row'>
+        <div id='innstillinger'>
+            <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'>Velg bare tilstedeværende elever</label>
+            <label><input type='checkbox' id ='uten_tilbakelegging'>Ta valgte elever ut av bunken</label>
+        </div>
+        
+        <div class='row' id='inputrad'>
+            <p>Velg elever:</p>
+            
+            <div class='row'>
+                <input type="number" id="antall_elever" min='1' max='99' placeholder='0'>
+            </div>
+
+            <div class='row'>
+                <button id='btn_elever'>Velg</button>
+            </div>
+        </div>
+        <hr id='linje'>
+
+        <div class='row' id='klasse_bunke'>
+            <p id='klasse'></p>
+            <div id='kortbunke'>
+                <div id='bunkekort'>
+                    <span>?</span>
+                </div>
+            </div>
+            <p id='elevantall'></p>
+        </div>
+
+        <div id='elev_utvalg'>
             <!-- genererte div-tagger -->
         </div>
         <button id='nytt_valg' hidden>Velg på nytt</button>

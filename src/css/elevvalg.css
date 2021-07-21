@@ -1,16 +1,114 @@
-input {    
-    width: 100px;
+.row {
+    width: 100%;
+}
+
+.row > * {
+    margin: 8px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    opacity: 1 !important;
+}
+
+#innstillinger {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 16px;
+}
+
+input {
+    width: 10%;
+}
+
+#inputrad {
+    justify-content: center;
+}
+#inputrad > * {
+    width: 33.33%;
+}
+
+#inputrad > div {
+    align-items: center;
+}
+
+#inputrad:nth-child(3) {
+    text-align: right;
+}
+
+#antall_elever {
+    width: 60%;
     font-size: 72px;
     text-align: center;
+    margin: auto;
 }
 
-#elev_utvalg {
-    flex-wrap: wrap;
+#btn_elever  {
+    width: 50%;
+    margin: 0;
+    /* text-align: ; */
 }
 
-#elev_utvalg div {
-    padding: 16px;
-    width: 26%;
-    text-overflow: ellipsis;
+#linje {
+    color: var(--grayColor);
+    width: 60%;
+}
+
+#klasse_bunke {
+    justify-content: center;
+    font-size: 32px;
+}
+
+#klasse_bunke > * {
+    width: 33.33%;
+}
+
+#klasse {
+    text-align: right;
+}
+#elevantall {
+    color: gray;
+}
+
+#kortbunke {
+    display: flex;
+    justify-content: center;
+}
+
+#bunkekort {
+    z-index: 100 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    background-color: #bdcee6;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 48px;
+    width: 100px;
+    height: 152px;
+}
+
+
+.elevkort {
+    position: absolute;
+    padding: 0 4px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 28px;
+    text-align: center;
+    width: 144px;
+    height: 100px;
+    transition: 0.9s;
+    background-color: var(--backgroundColor);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: 100px;
+}
+
+#nytt_valg {
+    margin-left: 400px;
 }

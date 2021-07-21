@@ -22,6 +22,10 @@ textarea {
   resize: vertical;
 }
 
+label {
+  color: var(--darkColor);
+}
+
 label:hover, label input:hover{
   cursor: pointer;
 }
@@ -33,6 +37,7 @@ label:hover, label input:hover{
   --linkColor: #7395ae;
   --darkColor: #5d5c61;
   --lightColor: #9ac7e7;
+  --grayColor: #a19fa7;
 }
 
 .header h1 {
@@ -395,6 +400,7 @@ th, td {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 #nedtelling_ikon {
