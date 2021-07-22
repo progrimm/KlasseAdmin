@@ -27,9 +27,6 @@ window.onload = () => {
         if (paa_overtid) nullstill();   // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
         else stopp_nedtelling();
     }
-    minutt.onkeydown = sekund.onkeydown = () => {
-        // 
-    }
     // setter nye startverdier for min og sek hvis bruker gjør endringer
     minutt.onchange = sekund.onchange = () => {
         start_min = Math.abs(Math.floor(minutt.value));
@@ -65,7 +62,8 @@ function nedteller() {
         setTimeout(() => {
             if (overtid_intervall) $('#minus').innerHTML = '-';
         }, 1000);    // minus foran tallene
-        minutt.style.color = sekund.style.color = 'red'; // negative tall blir rød
+        minutt.style.color = sekund.style.color = 'var(--red)'; // negative tall blir rød
+        $('.enhet')[0].style.color = $('.enhet')[1].style.color = 'var(--red)'; // enhetene blir rød
     }
 }
 
@@ -97,6 +95,7 @@ function stopp_nedtelling() {
     veksle.className = 'btn btn-success';
     $('#minus').innerHTML = '';
     minutt.style.color = sekund.style.color = 'black';
+    $('.enhet')[0].style.color = $('.enhet')[1].style.color = 'black';
     clearInterval(nedteller_intervall);
     clearInterval(overtid_intervall);
     overtid_intervall = false;

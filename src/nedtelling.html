@@ -16,11 +16,13 @@
         <h1>Nedtelling</h1>
         <hr>
     </div>
-    <p id='nedteller row'>
+    <div id='nedteller' class='row'>
         <span id='minus'></span>
-        <input id='minutt' maxlength='2' type='number' value='00' placeholder="00"> m
-        <input id='sekund' type='number' value='00' placeholder="00" min="0" maks="59"> s
-    </p>
+        <input id='minutt' maxlength='2' type='number' value='00' placeholder="00">
+        <span class='enhet'>m</span>
+        <input id='sekund' type='number' value='00' placeholder="00" min="0" maks="59">
+        <span class='enhet'>s</span>
+    </div>
     
     <p id='veksle_start_stopp' class='btn btn-success'>Start</p>
     <p id='nullstill' class='btn'>Nullstill</p>

@@ -49,6 +49,7 @@ label:hover, label input:hover{
   --darkColor: #5d5c61;
   --lightColor: #9ac7e7;
   --grayColor: #a19fa7;
+  --red: #ff4136;
 }
 
 .header h1 {
@@ -112,6 +113,15 @@ a {
 
 .btn-success:hover {
   background-color: #0fc755;
+}
+
+.btn-disabled {
+  opacity: 0.5;
+}
+
+.btn-disabled:hover {
+  background-color: #1D6BB3;
+  cursor: default;
 }
 
 hr {

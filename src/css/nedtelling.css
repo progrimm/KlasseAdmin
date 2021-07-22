@@ -12,10 +12,22 @@ input {
 }
 
 #minus {
-    font-size: 72px;
-    color: red;
+    font-size: 60px;
+    color: var(--red);
 }
 
 .btn {
     margin: 8px;
+}
+
+#nedteller {
+    justify-content: center;
+    align-items: baseline;
+    width: 330px;
+}
+#nedteller > span {
+    width: 25px;
+    display: flex;
+    /* justify-content: flex-start; */
+    margin-left: 5px;
 }

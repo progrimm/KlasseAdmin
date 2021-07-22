@@ -24,31 +24,32 @@ input {
 }
 
 #inputrad {
-    justify-content: center;
-}
-#inputrad > * {
-    width: 33.33%;
+    width: 365px;
 }
 
-#inputrad > div {
-    align-items: center;
-}
-
-#inputrad:nth-child(3) {
-    text-align: right;
+#input {
+    width: 150%;
+    justify-content: space-between;
 }
 
 #antall_elever {
-    width: 60%;
+    width: 150%;
     font-size: 72px;
     text-align: center;
-    margin: auto;
+    margin: 0;
 }
+
+#trekk {
+    width: 50%;
+}
+
+#inputrad > p {
+    text-align: left;
+} */
 
 #btn_elever  {
     width: 50%;
     margin: 0;
-    /* text-align: ; */
 }
 
 #linje {
@@ -59,6 +60,7 @@ input {
 #klasse_bunke {
     justify-content: center;
     font-size: 32px;
+    width: 600px;
 }
 
 #klasse_bunke > * {
@@ -69,7 +71,7 @@ input {
     text-align: right;
 }
 #elevantall {
-    color: gray;
+    color: #bbb;
 }
 
 #kortbunke {
@@ -78,13 +80,14 @@ input {
 }
 
 #bunkekort {
-    z-index: 100 !important;
+    background-color: var(--headerColor);
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #bdcee6;
-    border: 1px solid black;
+    color: white;
+    border: 2px solid black;
     border-radius: 8px;
     font-size: 48px;
     width: 100px;
@@ -93,22 +96,23 @@ input {
 
 
 .elevkort {
+    background-color: #d2dce9;
     position: absolute;
     padding: 0 4px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 8px;
     font-size: 28px;
     text-align: center;
     width: 144px;
     height: 100px;
     transition: transform 0.9s, opacity 0.4s, left 0.9s;
-    background-color: var(--backgroundColor);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     line-height: 100px;
+    margin-bottom: 32px;
 }
 
-#nytt_valg {
-    margin-left: 400px;
+#nytt_trekk {
+    margin-top: 20px;
 }
