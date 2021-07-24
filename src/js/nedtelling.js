@@ -13,11 +13,13 @@ window.onload = () => {
         window.location = sessionStorage.getItem("nedtelling_ref");
     }
     lyd = new Audio('multimedia/gong.mp3');
-
+    minuttviser = $('#minuttviser');
+    sekundviser = $('#sekundviser');
     veksle = $('#veksle_start_stopp');
     minutt = $('#minutt');
     sekund = $('#sekund');
-    nuller_foran(min, sek)
+    nuller_foran(min, sek);
+    still_inn_klokke(min, sek);
 
     // lyttere
     $('#nullstill').onclick = nullstill;
@@ -33,9 +35,9 @@ window.onload = () => {
         start_sek = Math.abs(Math.floor(sekund.value));
     }
     minutt.oninput = sekund.oninput = () => {
-        // behandler input slik at det bare er to siffer i input
-        bare2siffer();
+        bare2siffer();  // behandler input slik at det bare er to siffer i input
         nuller_foran(minutt.value, sekund.value);
+        still_inn_klokke(minutt.value, sekund.value)
     }
 
     $('#lagre_tid').onclick = oppdater_standard_tid;
@@ -48,22 +50,25 @@ function nedteller() {
         sek = 59;
         min--;
     }
-
     nuller_foran(min, sek);
-    if (min === 0 && sek === 0) { // nedtelling ferdig
-        clearInterval(nedteller_intervall);
-        // teller hvor mye nedtellingen er på overtid
-        overtid_intervall = setInterval(overtid_stoppeklokke, 1000);
-        paa_overtid = true;
+    still_inn_klokke(min, sek);
+    if (min === 0) {
+        if (sek === 1) lyd = new Audio('multimedia/gong.mp3');  // laster inn lyd i god tid (lyden kutter noen ganger med deklarering bare i begynnelsen)
+        else if (sek === 0) { // nedtelling ferdig
+            clearInterval(nedteller_intervall);
+            // teller hvor mye nedtellingen er på overtid
+            overtid_intervall = setInterval(overtid_stoppeklokke, 1000);
+            paa_overtid = true;
 
-        if (lyd.paused) lyd.play();
-        else new Audio('multimedia/gong.mp3').play();
+            if (lyd.paused) lyd.play();
+            else new Audio('multimedia/gong.mp3').play();
 
-        setTimeout(() => {
-            if (overtid_intervall) $('#minus').innerHTML = '-';
-        }, 1000);    // minus foran tallene
-        minutt.style.color = sekund.style.color = 'var(--red)'; // negative tall blir rød
-        $('.enhet')[0].style.color = $('.enhet')[1].style.color = 'var(--red)'; // enhetene blir rød
+            setTimeout(() => {
+                if (overtid_intervall) $('#minus').innerHTML = '-';
+            }, 1000);    // minus foran tallene
+            minutt.style.color = sekund.style.color = 'var(--red)'; // negative tall blir rød
+            $('.enhet')[0].style.color = $('.enhet')[1].style.color = 'var(--red)'; // enhetene blir rød
+        }
     }
 }
 
@@ -74,8 +79,9 @@ function start_eller_stopp() {
         min += 1;       // blir aldri mer enn ett min ekstra
         sek %= 60;      // sekundene til overs
         nuller_foran(min, sek);
+        start_min = min;
+        start_sek = sek;
     }
-
     if (klokka_gaar) {
         if (paa_overtid) nullstill();    // nullstiller hvis klokka er på overtid selv når bruker trykker stopp
         else stopp_nedtelling();
@@ -86,6 +92,7 @@ function start_eller_stopp() {
         klokka_gaar = true;
         veksle.innerHTML = 'Stopp';
         veksle.className = 'btn btn-danger';
+        still_inn_klokke(min,sek);
     }
 }
 
@@ -105,6 +112,7 @@ function nullstill() {
     stopp_nedtelling();
     paa_overtid = false;
     nuller_foran(start_min, start_sek);
+    still_inn_klokke(start_min, start_sek);
 }
 
 function overtid_stoppeklokke() {
@@ -115,6 +123,7 @@ function overtid_stoppeklokke() {
         min++;
     }
     nuller_foran(min, sek);
+    still_inn_klokke(-min, -sek);    // teller oppover
 }
 
 function nuller_foran(min_uten_0, sek_uten_0) {   // legger til nuller foran
@@ -150,4 +159,16 @@ function oppdater_standard_tid() {
     fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
         if (err) throw err;
     });
+    // deaktiverer lagreknapp i 1 sek
+    $('#lagre_tid').className='btn btn-disabled';
+    setTimeout(() => {
+        $('#lagre_tid').className='btn';
+    }, 1000);
+}
+
+function still_inn_klokke(min, sek) {
+    let minutt_grader = min*(-30) + sek*(-0.5);
+    let sekund_grader = sek*(-6);
+    minuttviser.style.transform ='rotate('+minutt_grader+'deg)';
+    sekundviser.style.transform ='rotate('+sekund_grader+'deg)';
 }

@@ -28,6 +28,16 @@ input {
 #nedteller > span {
     width: 25px;
     display: flex;
-    /* justify-content: flex-start; */
     margin-left: 5px;
+}
+
+#klokke {
+    margin-bottom: 16px;
+}
+
+#null {
+    color: var(--headerColor);
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: bold;
 }

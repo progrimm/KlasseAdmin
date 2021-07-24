@@ -215,18 +215,18 @@ function tekstbehandling(nye_elever) {
         let j = 0;
         while (j < elever[i].length) {
             if (elever[i][j] === '') {
-                elever[i].splice(j, 1);              // sletter tomme elementer
+                elever[i].splice(j, 1);             // sletter tomme elementer
             } else j++;
         }
         elever[i] = elever[i].join(' ');            // setter de sammen igjen med mellomrom mellom
 
         if (elever[i] === '') {
-            elever.splice(i, 1);                     // sletter tomme elev-elementer
+            elever.splice(i, 1);                    // sletter tomme elev-elementer
         } else i++;
     }
-    elever.sort((a, b) => {                         // sorterer alfabetisk
-        return a.localeCompare(b);
-    })
+    // elever.sort((a, b) => {                         // sorterer alfabetisk
+    //     return a.localeCompare(b);
+    // })
 
     return elever;
 }

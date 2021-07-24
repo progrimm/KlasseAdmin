@@ -16,6 +16,46 @@
         <h1>Nedtelling</h1>
         <hr>
     </div>
+    <span id='null'>0</span>
+    <!-- SVG-klokke -->
+    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg"
+        width="250" height="250" viewBox="-100 -100 200 200"
+        version="1.0"
+        encoding="UTF-8"
+        id='klokke'
+        alt='klokke'>
+
+        <defs>
+            <circle cx="0" cy="87" r="2.2" fill="#557a95" id="minMarker"/>
+            <line x1="0" y1="95" x2="0" y2="78" stroke-width="3.8" stroke="#557a95" id="hourMarker"/>
+        </defs>
+        <g id="markerSet">
+            <use xlink:href="#hourMarker"/>
+            <use xlink:href="#minMarker" transform="rotate( 6)"/>
+            <use xlink:href="#minMarker" transform="rotate(12)"/>
+            <use xlink:href="#minMarker" transform="rotate(18)"/>
+            <use xlink:href="#minMarker" transform="rotate(24)"/>
+        </g>
+        <use xlink:href="#markerSet" transform="rotate( 30)"/>
+        <use xlink:href="#markerSet" transform="rotate( 60)"/>
+        <use xlink:href="#markerSet" transform="rotate( 90)"/>
+        <use xlink:href="#markerSet" transform="rotate(120)"/>
+        <use xlink:href="#markerSet" transform="rotate(150)"/>
+        <use xlink:href="#markerSet" transform="rotate(180)"/>
+        <use xlink:href="#markerSet" transform="rotate(210)"/>
+        <use xlink:href="#markerSet" transform="rotate(240)"/>
+        <use xlink:href="#markerSet" transform="rotate(270)"/>
+        <use xlink:href="#markerSet" transform="rotate(300)"/>
+        <use xlink:href="#markerSet" transform="rotate(330)"/>
+        <circle cx="0" cy="0" r="6" fill="#557a95"/>
+
+        <line id='minuttviser' x1="0" y1="-62" x2="0" y2="0" stroke-width="4.5"   stroke="#557a95"/>
+        <line id='sekundviser' x1="0" y1="-95" x2="0" y2="0" stroke-width="2.8" stroke="#557a95"/>
+    </svg>
+
+    <!-- <img id='klokke' src='multimedia/klokke.svg' alt='klokke'> -->
     <div id='nedteller' class='row'>
         <span id='minus'></span>
         <input id='minutt' maxlength='2' type='number' value='00' placeholder="00">
