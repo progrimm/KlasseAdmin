@@ -29,11 +29,11 @@ input {
 
 #input {
     width: 150%;
-    justify-content: space-between;
+    justify-content: left;
 }
 
 #antall_elever {
-    width: 150%;
+    width: 140px;
     font-size: 72px;
     text-align: center;
     margin: 0;
@@ -45,7 +45,7 @@ input {
 
 #inputrad > p {
     text-align: left;
-} */
+}
 
 #btn_elever  {
     width: 50%;

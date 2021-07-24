@@ -28,7 +28,11 @@ window.onload = () => {
     $('#btn_elever').onclick = () => {
         if ($('#btn_elever').className === 'btn') trekk()
     };
-    antall_elever.oninput = bare2siffer;
+    antall_elever.oninput = () => {
+        bare2siffer();
+        if (antall_elever.value == 1) $('#elevertxt').innerHTML = 'elev';
+        else $('#elevertxt').innerHTML = 'elever';
+    }
     onkeydown = function (evt) {    // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && antall_elever === document.activeElement) {
             if ($('#btn_elever').className === 'btn') {
