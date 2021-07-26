@@ -158,13 +158,19 @@ function lagreKlasse() {
 
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;
-    if (!nyKlassekode) { // hvis klassekode ikke er skrevet inn
-        $("#error_modal_melding").innerHTML = "Vennligst oppgi en klassekode. Prøv igjen."
-        $("#error_modal").style.display = "block";
-        return
-    }  
     let nyeElever = $("#inpElever").value;
+    nyKlassekode = tekstbehandling_klasse(nyKlassekode);    // fjerner mellomrom
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
+    
+    if (!nyKlassekode) {    // hvis klassekode ikke er skrevet inn eller bare er mellomrom
+        $("#error_modal_melding").innerHTML = "Vennligst oppgi en klassekode. Prøv igjen.";
+        $("#error_modal").style.display = "block";
+        return;
+    } else if (!nyeElever[0]) {
+        $("#error_modal_melding").innerHTML = "Vennligst legg til elever. Prøv igjen.";
+        $("#error_modal").style.display = "block";
+        return;
+    }
 
     // klassekart til den nye klassa
     let klassekart = [];
@@ -175,8 +181,8 @@ function lagreKlasse() {
     };
 
     if (valgtKlasse !== "") {   // hvis klassen redigeres
-        klassekart = data[valgtKlasse].klassekart   // tar vare på klassekartet
-        klassekart_oppsett = data[valgtKlasse].klassekart_oppsett
+        klassekart = data[valgtKlasse].klassekart;   // tar vare på klassekartet
+        klassekart_oppsett = data[valgtKlasse].klassekart_oppsett;
         delete data[valgtKlasse];   // fjerner klasse, for så å legge til igjen med oppdatert data
     }
 
@@ -185,7 +191,7 @@ function lagreKlasse() {
         if (klassekode === nyKlassekode) {
             $("#error_modal_melding").innerHTML = "Oppgitt klassekode finnes fra før. Prøv igjen."
             $("#error_modal").style.display = "block";
-            return
+            return;
         }
     }
 
@@ -234,4 +240,14 @@ function tekstbehandling(nye_elever) {
     // })
 
     return elever;
+}
+
+function tekstbehandling_klasse(klassekode) {
+    klassekode = klassekode.split(' ');
+    let i = 0;
+    while (i<klassekode.length) {
+        if (klassekode[i] === '') klassekode.splice(i,1);
+        else i++;
+    }
+    return klassekode.join(' ');
 }
