@@ -158,7 +158,11 @@ function lagreKlasse() {
 
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;
-    if (!nyKlassekode) return;  // hvis klassekode ikke er skrevet inn
+    if (!nyKlassekode) { // hvis klassekode ikke er skrevet inn
+        $("#error_modal_melding").innerHTML = "Vennligst oppgi en klassekode. Prøv igjen."
+        $("#error_modal").style.display = "block";
+        return
+    }  
     let nyeElever = $("#inpElever").value;
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
@@ -179,6 +183,7 @@ function lagreKlasse() {
     // Sjekker om klassa finnes fra før
     for (klassekode in data) {
         if (klassekode === nyKlassekode) {
+            $("#error_modal_melding").innerHTML = "Oppgitt klassekode finnes fra før. Prøv igjen."
             $("#error_modal").style.display = "block";
             return
         }
