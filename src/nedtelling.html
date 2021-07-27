@@ -50,12 +50,13 @@
         <use xlink:href="#markerSet" transform="rotate(300)"/>
         <use xlink:href="#markerSet" transform="rotate(330)"/>
         <circle cx="0" cy="0" r="6" fill="#557a95"/>
-
-        <line id='minuttviser' x1="0" y1="-62" x2="0" y2="0" stroke-width="4.5"   stroke="#557a95"/>
+        
+        <line id='minuttviser' x1="0" y1="-62" x2="0" y2="0" stroke-width="4.5" stroke="#557a95"/>
         <line id='sekundviser' x1="0" y1="-95" x2="0" y2="0" stroke-width="2.8" stroke="#557a95"/>
+        
+        <!-- <circle cx="0" cy="0" r="62" stroke="#557325" stroke-width="10" fill="none"/> -->
     </svg>
 
-    <!-- <img id='klokke' src='multimedia/klokke.svg' alt='klokke'> -->
     <div id='nedteller' class='row'>
         <span id='minus'></span>
         <input id='minutt' maxlength='2' type='number' value='00' placeholder="00">
@@ -71,10 +72,10 @@
     </div>
 
     <div id="back_icon" class="back">
-        <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
+        <img draggable='false' src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
     </div>
 
-    <img
+    <img draggable='false' 
         src="multimedia/nedtelling.svg" 
         alt="nedtelling" 
         id="nedtelling_ikon"

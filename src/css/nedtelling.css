@@ -31,6 +31,7 @@ input {
     justify-content: center;
     align-items: baseline;
     width: 330px;
+    margin-bottom: 16px;
 }
 #nedteller > span {
     width: 25px;
