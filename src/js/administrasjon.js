@@ -118,6 +118,7 @@ function slettKlasse(klassekode) {
     $("#wholeModal").style.display = "none";
     oppdaterData();
     oppdaterTabell();
+    aktiverAnimasjon(`${klassekode} er slettet`);
 }
 
 function leggTilKlasse() {
@@ -161,7 +162,7 @@ function lagreKlasse() {
     let nyeElever = $("#inpElever").value;
     nyKlassekode = tekstbehandling_klasse(nyKlassekode);    // fjerner mellomrom
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
-    
+
     if (!nyKlassekode) {    // hvis klassekode ikke er skrevet inn eller bare er mellomrom
         $("#error_modal_melding").innerHTML = "Vennligst oppgi en klassekode. Prøv igjen.";
         $("#error_modal").style.display = "block";
@@ -180,10 +181,13 @@ function lagreKlasse() {
         kolonner: 0
     };
 
+    let melding_fullfort_endring = `${nyKlassekode} lagt til`
+
     if (valgtKlasse !== "") {   // hvis klassen redigeres
         klassekart = data[valgtKlasse].klassekart;   // tar vare på klassekartet
         klassekart_oppsett = data[valgtKlasse].klassekart_oppsett;
         delete data[valgtKlasse];   // fjerner klasse, for så å legge til igjen med oppdatert data
+        melding_fullfort_endring = `${nyKlassekode} er lagret`;
     }
 
     // Sjekker om klassa finnes fra før
@@ -210,16 +214,29 @@ function lagreKlasse() {
     $("#wholeModal").style.display = "none";
     oppdaterData();
     oppdaterTabell();
-
-    // viser råtøff animasjon
-    $("#div_fullfort_endring").style.display = "initial";
-    setTimeout(() => {
-        $("#div_fullfort_endring").style.display = "none";
-    }, 2500);
+    aktiverAnimasjon(melding_fullfort_endring);
 
     // 
     // gi link til klassekart
     // 
+}
+
+// råtøff animasjon ved endring
+function aktiverAnimasjon(tekst) {
+    // Checkmark m/tekst
+    $("#div_fullfort_endring").style.display = "flex";
+    $("#melding_fullfort_endring").innerHTML = tekst;
+    $("#div_fullfort_endring").classList.add("div_fullfort_endring_fade");
+
+    // Bakgrunnsskygge
+    $("#div_skygge").style.display = "block";
+    $("#div_skygge").classList.add("class_animasjon_skygge");
+
+    // Fjerner det
+    setTimeout(() => {
+        $("#div_fullfort_endring").style.display = "none";
+        $("#div_skygge").style.display = "none";
+    }, 3500);
 }
 
 // Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik     // <3 -Jon
@@ -251,8 +268,8 @@ function tekstbehandling(nye_elever) {
 function tekstbehandling_klasse(klassekode) {
     klassekode = klassekode.split(' ');
     let i = 0;
-    while (i<klassekode.length) {
-        if (klassekode[i] === '') klassekode.splice(i,1);
+    while (i < klassekode.length) {
+        if (klassekode[i] === '') klassekode.splice(i, 1);
         else i++;
     }
     return klassekode.join(' ');

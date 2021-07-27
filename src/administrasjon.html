@@ -93,7 +93,7 @@
     </div>
 
     <div class="back" onclick="window.location = 'index.html'">
-        <img src="multimedia/long-arrow-alt-left-solid.svg" alt="back">
+        <img draggable="false" src="multimedia/long-arrow-alt-left-solid.svg" alt="back">
     </div>
     <div id="div_fullfort_endring">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
@@ -102,8 +102,10 @@
             <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round"
                 stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
         </svg>
-        <p>Klasse lagt til</p>
+        <p id="melding_fullfort_endring"></p>
     </div>
+
+    <div id="div_skygge"></div>
 </body>
 
 </HTML>
