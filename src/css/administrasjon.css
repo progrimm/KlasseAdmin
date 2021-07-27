@@ -18,3 +18,54 @@
 #divBtnLeggTil p {
     float: left;
 }
+
+
+/* Animasjon ved fullført lagre og slett */
+
+#div_fullfort_endring {
+    display: none;
+    z-index: 983;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-45%,-50%);
+}
+
+svg {
+    width: 100px;
+    display: block;
+    margin: 40px auto 0;
+}
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+}
+.path.circle {
+    animation: dash 0.9s ease-in-out;
+}
+.path.line {
+    stroke-dashoffset: 1000;
+    animation: dash 0.9s 0.35s ease-in-out forwards;
+}
+.path.check {
+    stroke-dashoffset: -100;
+    animation: dash-check 0.9s 0.35s ease-in-out forwards;
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes dash-check {
+    0% {
+        stroke-dashoffset: -100;
+    }
+    100% {
+        stroke-dashoffset: 900;
+    }
+}

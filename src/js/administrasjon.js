@@ -205,6 +205,12 @@ function lagreKlasse() {
     oppdaterData();
     oppdaterTabell();
 
+    // viser råtøff animasjon
+    $("#div_fullfort_endring").style.display = "initial";
+    setTimeout(() => {
+        $("#div_fullfort_endring").style.display = "none";
+    }, 2500);
+
     // 
     // gi link til klassekart
     // 
