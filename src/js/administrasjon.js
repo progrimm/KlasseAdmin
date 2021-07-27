@@ -6,6 +6,7 @@ let data = JSON.parse(fs.readFileSync(dataFilename));
 let valgtKlasse = ""; // Husker valgt klasse ved redigering, brukes som sjekk om det er ny klasse eller redigering
 
 window.onload = () => {
+    includeHTML(); // Aktiverer importert html fil
     oppdaterTabell();
 
     $("#btnLeggTil").onclick = leggTilKlasse;
@@ -124,19 +125,21 @@ function slettKlasse(klassekode) {
 function leggTilKlasse() {
     $("#wholeModal").style.display = "block";
     $("#modalHeaderText").innerHTML = "Ny klasse";
+    $("#btnLagreKlasse").innerHTML = "Legg til";
     $("#btnLagreKlasse").onclick = lagreKlasse;
 
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";
 
     $("#inpKlassekode").placeholder = "Eks.: 2MATR";
-    $("#inpElever").placeholder = "Skill elevene med komma";
+    $("#inpElever").placeholder = "Skill elevene med komma. Eks.: 'Åmund,Jon,Erik,Kjell'";
     valgtKlasse = "";  // fjerner valgt klasse
 }
 
 function redigerKlasse(klassekode) {
     $("#wholeModal").style.display = "block";
     $("#modalHeaderText").innerHTML = "Rediger - " + klassekode;
+    $("#btnLagreKlasse").innerHTML = "Lagre";
     $("#btnLagreKlasse").onclick = () => {
         rediger_advarsel(klassekode);
     }
@@ -219,24 +222,6 @@ function lagreKlasse() {
     // 
     // gi link til klassekart
     // 
-}
-
-// råtøff animasjon ved endring
-function aktiverAnimasjon(tekst) {
-    // Checkmark m/tekst
-    $("#div_fullfort_endring").style.display = "flex";
-    $("#melding_fullfort_endring").innerHTML = tekst;
-    $("#div_fullfort_endring").classList.add("div_fullfort_endring_fade");
-
-    // Bakgrunnsskygge
-    $("#div_skygge").style.display = "block";
-    $("#div_skygge").classList.add("class_animasjon_skygge");
-
-    // Fjerner det
-    setTimeout(() => {
-        $("#div_fullfort_endring").style.display = "none";
-        $("#div_skygge").style.display = "none";
-    }, 3500);
 }
 
 // Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik     // <3 -Jon
