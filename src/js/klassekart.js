@@ -20,6 +20,8 @@ let klassekart = klasse["klassekart"]; // Henter klassekartet
 document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Klassekart";
 
 window.onload = () => {
+    includeHTML();
+
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
 
@@ -199,7 +201,7 @@ function visKlassekart(nyGenerering) {
                 elevID++ // Itererer til neste elev
                 restElever--
 
-                if (restElever === 0) return // Avslutt hvis alle elevene har fått plass
+                if (restElever === 0) break // Avslutt hvis alle elevene har fått plass
 
                 // Neste elev ved siden av
                 if (kjoreNr % 2 === 0) { nr++; }
@@ -219,7 +221,7 @@ function visKlassekart(nyGenerering) {
                 elevID++
                 restElever--
 
-                if (restElever === 0) return
+                if (restElever === 0) break
 
                 if (kjoreNr % 2 === 0) { nr++; }
                 else { nr--; }
@@ -229,7 +231,7 @@ function visKlassekart(nyGenerering) {
                 elevID++
                 restElever--
 
-                if (restElever === 0) return
+                if (restElever === 0) break
 
                 if (kjoreNr % 2 === 0) { nr++; }
                 else { nr--; }
@@ -248,6 +250,63 @@ function visKlassekart(nyGenerering) {
             restElever--
             kjoreNr++
         }
+        nyttKlassekartAnimasjon();
+    }
+}
+
+// Animasjon ved nytt klassekart hvor 1 og 1 elev vises
+function nyttKlassekartAnimasjon() {
+    let scaleValue = 1;
+    let scaleDt = 0.005;
+
+    let lyd = new Audio('multimedia/popsound.mp3');
+
+    let btnsElever = [...document.querySelectorAll("button.elev")]; // Legger alle elevene i en array
+    let copyBtnsElever = [...btnsElever];
+
+    for (btn of btnsElever) { // Gjør alle elevene gjennomsiktige og uttrykkbare
+        btn.style.opacity = 0;
+        btn.style.backgroundColor = "var(--linkColor)";
+        btn.removeEventListener("click", byttePlass);
+    }
+
+    btnsElever = stokkElever(btnsElever); // Stokker elevene så de vises tilfeldig
+
+    $("#tableKlassekart").style.zIndex = "678";
+    $("#div_skygge").style.display = "block"; // Setter på mørk bakgrunn
+
+    let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises
+        lyd.play();
+
+        let btn = btnsElever.slice(-1)[0]
+        btn.style.backgroundColor = "var(--lightColor)";
+        btn.style.opacity = 1;
+        btnsElever.pop();
+
+        $("#tableKlassekart").style.transform = `scale(${scaleValue})`;
+        scaleValue += scaleDt;
+
+        if (btnsElever.length === 0) {
+
+            // Animasjonen, kan gjøres om til css animasjon
+            setTimeout(() => {
+                $("#tableKlassekart").style.transform = `scale(${scaleValue+0.05})`;
+            }, 2300);
+            setTimeout(() => {
+                $("#tableKlassekart").style.transform = `scale(1.0)`;
+                $("#tableKlassekart").style.zIndex = "0";
+            }, 2500);
+            setTimeout(() => {
+                aktiverAnimasjon(`Nytt klassekart for ${valgtKlasse.klassekode}`);
+            }, 3000);
+
+            clearInterval(iLoveErikAndJon); // stopper animasjonen
+        }
+    }, 300-klassekart.length*5);
+    
+    // Gjør knappene trykkbare igjen når animasjonen er ferdig
+    for (btn of copyBtnsElever) {
+        btn.addEventListener("click", byttePlass);
     }
 }
 
@@ -339,8 +398,6 @@ function lagreKlassekart() {
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
     klassekart = klasse["klassekart"];
-
-    visKlassekart();
 }
 
 // Funksjon for å snu klassekartet

@@ -10,46 +10,45 @@
 			"Mikkel GS",
 			"Mikkel WS",
 			"Paul",
-			"Sven"
+			"Sven",
+			"Ingrid",
+			"Viktoria",
+			"Erle",
+			"Mann",
+			"Kvinne",
+			"Gutt",
+			"Jente",
+			"Boy",
+			"Toy"
 		],
 		"klassekart": [
-			"Mikkel GS",
-			"Emil",
-			"Jon",
-			"Hanna",
-			"Gustav",
-			"Bonsa",
-			"Mikkel WS",
-			"Sulekah",
+			"Boy",
 			"Paul",
+			"Mikkel GS",
+			"Viktoria",
+			"Sven",
+			"Kvinne",
+			"Gutt",
+			"Jente",
+			"Mikkel WS",
+			"Hanna",
+			"Emil",
+			"Bonsa",
+			"Jon",
+			"Toy",
+			"Ingrid",
+			"Erle",
 			".",
 			".",
 			".",
-			".",
-			"Sven"
+			"Mann",
+			"Gustav",
+			"Sulekah"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "3",
-			"rader": "3",
-			"kolonner": "3"
-		}
-	},
-	"eeeeeeeeeeeeeeeeeeeeeeeeeeeeee": {
-		"elever": [
-			"sdf",
-			"adf"
-		],
-		"klassekart": [
-			".",
-			"sdf",
-			".",
-			".",
-			"adf"
-		],
-		"klassekart_oppsett": {
-			"per_bord": "1",
-			"rader": "3",
-			"kolonner": "3"
+			"per_bord": "2",
+			"rader": "5",
+			"kolonner": "4"
 		}
 	},
 	"IT": {
@@ -63,16 +62,18 @@
 			"Åmund"
 		],
 		"klassekart": [
-			"Erik",
+			".",
 			"Åmund",
-			"Bonsa",
 			"Simon",
 			"Jon",
+			"Erik",
+			"Magnus",
+			"Bonsa",
 			"Bryan"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "2",
-			"rader": "4",
+			"rader": "5",
 			"kolonner": "4"
 		}
 	}

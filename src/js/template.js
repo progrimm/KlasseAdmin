@@ -96,5 +96,6 @@ function aktiverAnimasjon(tekst) { // tekst = melding under checkmark
 	setTimeout(() => {
 		$("#div_fullfort_endring").style.display = "none";
 		$("#div_skygge").style.display = "none";
+		$("#div_skygge").classList.remove("class_animasjon_skygge");
 	}, 3500);
 }
