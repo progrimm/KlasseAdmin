@@ -34,7 +34,6 @@
 			"Hanna",
 			"Emil",
 			"Bonsa",
-<<<<<<< HEAD
 			"Jon",
 			"Toy",
 			"Ingrid",
@@ -50,21 +49,6 @@
 			"per_bord": "2",
 			"rader": "5",
 			"kolonner": "4"
-=======
-			"Mikkel WS",
-			"Sulekah",
-			"Paul",
-			".",
-			".",
-			".",
-			".",
-			"Sven"
-		],
-		"klassekart_oppsett": {
-			"per_bord": "3",
-			"rader": "3",
-			"kolonner": "3"
->>>>>>> 010c67e570054a22696000a69f6db26f2db6e51c
 		}
 	},
 	"IT": {
