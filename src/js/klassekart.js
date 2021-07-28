@@ -8,6 +8,7 @@ let snudd = false; // Om kartet er snudd eller ikke
 
 // Henter data fra fil
 const fs = require("fs");
+const { start } = require("repl");
 const dataFilename = __dirname + "/js/data.json";
 let data = JSON.parse(fs.readFileSync(dataFilename));
 
@@ -21,7 +22,7 @@ document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Klassekart";
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-    
+
     hentKlasse();
 
     // Vise modal
@@ -124,6 +125,11 @@ function visKlassekart() {
 
     let elevID = 0;  // Løpetall for elevene
 
+    // Variabler for midtplasseringsalgoritme
+    let eleverPerRad = kolonner * perBord;
+    let antallElever = elever.length;
+    let restElever = antallElever % eleverPerRad;
+
     for (let i = 0; i < rader; i++) {    // Lager tabell-struktur og setter inn elevene
         // Først radene som tabellrader
         let rad = document.createElement("tr");
@@ -143,16 +149,99 @@ function visKlassekart() {
                 btnElev.classList.add("elev");
 
                 let elevNavn = klassekart[elevID];
-                if (elevNavn === undefined) {
+                if (elevNavn === undefined || elevID >= antallElever - restElever) {
                     elevNavn = ".";
                 }
-
+                else {
+                    elevID++
+                }
                 btnElev.innerHTML = elevNavn;
                 btnElev.addEventListener("click", byttePlass);  // Legger til hendelseslytter på elevene så man kan bytte plasser
-                elevID++
                 $("#rad" + i + "kolonne" + j).appendChild(btnElev);
             }
         }
+    }
+    
+    //
+    // Algoritme for fordeling av elever fra midten på bakerste rad
+    //
+
+    let kolonneHopper = 1;
+    let sisteRadNr = Math.floor(antallElever / eleverPerRad); // raden som jobbes på
+    let startKolonne = Math.floor(kolonner / 2); // midtbordet
+    let nr; // plass på bord (0/1/2)
+    let kjoreNr = 0;
+    while (restElever > 0) {
+        // Ved 1 elev per bord
+        if (Number(perBord) === 1) {
+            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr0").innerHTML = klassekart[elevID];
+        }
+
+        // Ved 2 elever per bord
+        else if (Number(perBord) === 2) {
+
+            // Bestemmer om første elev skal plasseres på bordets høyre eller venstre side avhengig av bordets plassering i forhold til midtbord
+            if (kjoreNr % 2 === 0) {nr = 0;} 
+            else {nr = 1;}
+
+            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+
+            elevID++ // Itererer til neste elev
+            restElever--
+
+            if (restElever === 0) return // Avslutt hvis alle elevene har fått plass
+
+            // Neste elev ved siden av
+            if (kjoreNr % 2 === 0) {nr++;}
+            else {nr--;}
+
+            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+        }
+
+        // Ved 3 elever per bord
+        // Mye av det samme som over
+        else {
+            if (kjoreNr % 2 === 0) {nr = 0;} 
+            else {nr = 2;}
+
+            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+
+            elevID++
+            restElever--
+
+            if (restElever === 0) return
+
+            if (kjoreNr % 2 === 0) {nr++;}
+            else {nr--;}
+
+            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+
+            elevID++
+            restElever--
+
+            if (restElever === 0) return 
+
+            if (kjoreNr % 2 === 0) {nr++;}
+            else {nr--;}
+
+            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+        }
+
+        // Neste bord annenhver høyre og venstre side for midtbordet (venstre første) 
+        startKolonne -= kolonneHopper;
+        if (kolonneHopper < 0) {
+            kolonneHopper--;
+        }
+        else {
+            kolonneHopper++
+        }
+        kolonneHopper *= -1;
+
+
+        // Oppdaterer variabler
+        elevID++
+        restElever--
+        kjoreNr++
     }
 }
 
