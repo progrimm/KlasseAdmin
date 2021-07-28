@@ -13,37 +13,43 @@
 			"Sven"
 		],
 		"klassekart": [
+			"Mikkel GS",
+			"Emil",
 			"Jon",
+			"Hanna",
 			"Gustav",
 			"Bonsa",
 			"Mikkel WS",
-			"Sven",
-			"asfasdfadsfasfasdfasdfdafasfs",
-			"Hanna",
-			"Mikkel GS",
+			"Sulekah",
 			"Paul",
-			"Emil"
+			".",
+			".",
+			".",
+			".",
+			"Sven"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "2",
+			"per_bord": "3",
 			"rader": "3",
-			"kolonner": "4"
+			"kolonner": "3"
 		}
 	},
-	"asdfasdfasdfasdfasdfaweofjaweiofjwiefasncfiasdfcasdnfcasdhfcasdfciasghfacwdfasdijfasdufhdfiasfladlfiuhdf": {
+	"eeeeeeeeeeeeeeeeeeeeeeeeeeeeee": {
 		"elever": [
-			"sdfsdf"
+			"sdf",
+			"adf"
 		],
 		"klassekart": [
 			".",
+			"sdf",
 			".",
 			".",
-			"sdfsdf"
+			"adf"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "2",
-			"rader": "5",
-			"kolonner": "4"
+			"per_bord": "1",
+			"rader": "3",
+			"kolonner": "3"
 		}
 	},
 	"IT": {

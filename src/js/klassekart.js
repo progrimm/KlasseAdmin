@@ -97,21 +97,22 @@ function nyttKlassekart() {
         $("#error_modal").style.display = "block";
         return
     }
-    else {
-        elever = stokkElever(elever);  // Stokker elevene tilfeldig til klassekartet
-        // Endrer data 
-        klasse["klassekart"] = elever;
-        klasse["klassekart_oppsett"]["per_bord"] = perBord + "";
-        klasse["klassekart_oppsett"]["rader"] = rader + "";
-        klasse["klassekart_oppsett"]["kolonner"] = kolonner + "";
-        lagreKlassekart(); // Lagrer ny data om klassekartet i data.json
-    }
+
+    elever = stokkElever(elever);  // Stokker elevene tilfeldig til klassekartet
+    // Endrer data 
+    klasse["klassekart"] = elever;
+    klassekart = klasse["klassekart"] // Oppdaterer den globale variabelen klassekart
+    klasse["klassekart_oppsett"]["per_bord"] = perBord + "";
+    klasse["klassekart_oppsett"]["rader"] = rader + "";
+    klasse["klassekart_oppsett"]["kolonner"] = kolonner + "";
+
     $("#modalStrukturKlassekart").style.display = "none"; // Skjuler modalen
-    visKlassekart();  // Viser det nye klassekartet
+    visKlassekart(true);  // Viser/lager det nye klassekartet ved default oppsett (derav nyGenerering = true)
+    lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med ".")
 }
 
 // Viser klassekartet i form av en tabell med knapper
-function visKlassekart() {
+function visKlassekart(nyGenerering) {
 
     // Henter strukturen
     perBord = klasse["klassekart_oppsett"]["per_bord"];
@@ -149,10 +150,19 @@ function visKlassekart() {
                 btnElev.classList.add("elev");
 
                 let elevNavn = klassekart[elevID];
-                if (elevNavn === undefined || elevID >= antallElever - restElever) {
-                    elevNavn = ".";
+                // Ved nytt kart
+                if (nyGenerering) {
+                    if (elevID >= antallElever - restElever) {
+                        elevNavn = ".";
+                    } else {
+                        elevID++
+                    }
                 }
+                // Ved allerede eksisterende kart
                 else {
+                    if (elevNavn === undefined) {
+                        elevNavn = ".";
+                    }
                     elevID++
                 }
                 btnElev.innerHTML = elevNavn;
@@ -161,88 +171,88 @@ function visKlassekart() {
             }
         }
     }
-    
+
     //
     // Algoritme for fordeling av elever fra midten på bakerste rad
     //
+    if (nyGenerering) {
+        let kolonneHopper = 1;
+        let sisteRadNr = Math.floor(antallElever / eleverPerRad); // raden som jobbes på
+        let startKolonne = Math.floor(kolonner / 2); // midtbordet
+        let nr; // plass på bord (0/1/2)
+        let kjoreNr = 0;
+        while (restElever > 0) {
+            // Ved 1 elev per bord
+            if (Number(perBord) === 1) {
+                plasserElev(sisteRadNr, startKolonne, 0, elevID)
+            }
 
-    let kolonneHopper = 1;
-    let sisteRadNr = Math.floor(antallElever / eleverPerRad); // raden som jobbes på
-    let startKolonne = Math.floor(kolonner / 2); // midtbordet
-    let nr; // plass på bord (0/1/2)
-    let kjoreNr = 0;
-    while (restElever > 0) {
-        // Ved 1 elev per bord
-        if (Number(perBord) === 1) {
-            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr0").innerHTML = klassekart[elevID];
-        }
+            // Ved 2 elever per bord
+            else if (Number(perBord) === 2) {
 
-        // Ved 2 elever per bord
-        else if (Number(perBord) === 2) {
+                // Bestemmer om første elev skal plasseres på bordets høyre eller venstre side avhengig av bordets plassering i forhold til midtbord
+                if (kjoreNr % 2 === 0) { nr = 0; }
+                else { nr = 1; }
 
-            // Bestemmer om første elev skal plasseres på bordets høyre eller venstre side avhengig av bordets plassering i forhold til midtbord
-            if (kjoreNr % 2 === 0) {nr = 0;} 
-            else {nr = 1;}
+                plasserElev(sisteRadNr, startKolonne, nr, elevID);
 
-            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+                elevID++ // Itererer til neste elev
+                restElever--
 
-            elevID++ // Itererer til neste elev
-            restElever--
+                if (restElever === 0) return // Avslutt hvis alle elevene har fått plass
 
-            if (restElever === 0) return // Avslutt hvis alle elevene har fått plass
+                // Neste elev ved siden av
+                if (kjoreNr % 2 === 0) { nr++; }
+                else { nr--; }
 
-            // Neste elev ved siden av
-            if (kjoreNr % 2 === 0) {nr++;}
-            else {nr--;}
+                plasserElev(sisteRadNr, startKolonne, nr, elevID);
+            }
 
-            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
-        }
+            // Ved 3 elever per bord
+            // Mye av det samme som over
+            else {
+                if (kjoreNr % 2 === 0) { nr = 0; }
+                else { nr = 2; }
 
-        // Ved 3 elever per bord
-        // Mye av det samme som over
-        else {
-            if (kjoreNr % 2 === 0) {nr = 0;} 
-            else {nr = 2;}
+                plasserElev(sisteRadNr, startKolonne, nr, elevID);
 
-            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+                elevID++
+                restElever--
 
+                if (restElever === 0) return
+
+                if (kjoreNr % 2 === 0) { nr++; }
+                else { nr--; }
+
+                plasserElev(sisteRadNr, startKolonne, nr, elevID);
+
+                elevID++
+                restElever--
+
+                if (restElever === 0) return
+
+                if (kjoreNr % 2 === 0) { nr++; }
+                else { nr--; }
+
+                plasserElev(sisteRadNr, startKolonne, nr, elevID);
+            }
+
+            // Neste bord annenhver høyre og venstre side for midtbordet (venstre første) 
+            startKolonne -= kolonneHopper;
+            if (kolonneHopper < 0) { kolonneHopper--; }
+            else { kolonneHopper++ }
+            kolonneHopper *= -1;
+
+            // Oppdaterer variabler
             elevID++
             restElever--
-
-            if (restElever === 0) return
-
-            if (kjoreNr % 2 === 0) {nr++;}
-            else {nr--;}
-
-            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
-
-            elevID++
-            restElever--
-
-            if (restElever === 0) return 
-
-            if (kjoreNr % 2 === 0) {nr++;}
-            else {nr--;}
-
-            $("#rad" + sisteRadNr + "kolonne" + startKolonne + "nr" + nr).innerHTML = klassekart[elevID];
+            kjoreNr++
         }
-
-        // Neste bord annenhver høyre og venstre side for midtbordet (venstre første) 
-        startKolonne -= kolonneHopper;
-        if (kolonneHopper < 0) {
-            kolonneHopper--;
-        }
-        else {
-            kolonneHopper++
-        }
-        kolonneHopper *= -1;
-
-
-        // Oppdaterer variabler
-        elevID++
-        restElever--
-        kjoreNr++
     }
+}
+
+function plasserElev(rad, kolonne, nr, id) {
+    $("#rad" + rad + "kolonne" + kolonne + "nr" + nr).innerHTML = klassekart[id];
 }
 
 // Durstenfelds sorteringsalgoritme
@@ -287,7 +297,7 @@ function byttePlass(evt) {
     }
 }
 
-// Funksjon som henter de nye elevplasseringene etter plassbytte, for deretter å lagre det.
+// Funksjon som henter de nye elevplasseringene etter plassbytte og nytt kart, for deretter å lagre det.
 // Tar hensyn til at det er ledige pulter mellom elevene.
 function lagrePlassbytter() {
     elever = [];
@@ -304,6 +314,7 @@ function lagrePlassbytter() {
             break;
         }
     }
+
 
     elever.reverse(); // Snur lista til riktig veg
 
@@ -328,6 +339,8 @@ function lagreKlassekart() {
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
     klassekart = klasse["klassekart"];
+
+    visKlassekart();
 }
 
 // Funksjon for å snu klassekartet
