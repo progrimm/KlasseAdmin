@@ -10,7 +10,8 @@
 			"Mikkel GS",
 			"Mikkel WS",
 			"Paul",
-			"Sven"
+			"Sven",
+			"Merx"
 		],
 		"klassekart": [
 			"Mikkel GS",
@@ -30,24 +31,6 @@
 		],
 		"klassekart_oppsett": {
 			"per_bord": "3",
-			"rader": "3",
-			"kolonner": "3"
-		}
-	},
-	"eeeeeeeeeeeeeeeeeeeeeeeeeeeeee": {
-		"elever": [
-			"sdf",
-			"adf"
-		],
-		"klassekart": [
-			".",
-			"sdf",
-			".",
-			".",
-			"adf"
-		],
-		"klassekart_oppsett": {
-			"per_bord": "1",
 			"rader": "3",
 			"kolonner": "3"
 		}
@@ -74,6 +57,24 @@
 			"per_bord": "2",
 			"rader": "4",
 			"kolonner": "4"
+		}
+	},
+	"test1": {
+		"elever": [
+			"sdf",
+			"adf"
+		],
+		"klassekart": [
+			".",
+			"sdf",
+			".",
+			".",
+			"adf"
+		],
+		"klassekart_oppsett": {
+			"per_bord": "1",
+			"rader": "3",
+			"kolonner": "3"
 		}
 	}
 }
