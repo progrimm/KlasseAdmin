@@ -117,6 +117,7 @@ a {
 
 .btn-disabled {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .btn-disabled:hover {
@@ -411,7 +412,7 @@ th, td {
 
 #nedtelling_ikon {
   width: 60px;
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 15px;
   transition: 200ms;
@@ -434,7 +435,7 @@ th, td {
   position: absolute;
   top: 45%;
   left: 50%;
-  transform: translate(-45%,-50%);
+  transform: translate(-50%,-50%);
   transform-origin: top left;
 }
 
@@ -488,9 +489,9 @@ th, td {
 }
 
 @keyframes fadeUt {
-  0% {opacity: 1; transform: scale(1) translate(-45%,-50%);}
-  50% {opacity: 0.5; transform: scale(1.5) translate(-45%,-50%);}
-  100% {opacity: 0; transform: scale(0) translate(-45%,-50%);}
+  0% {opacity: 1; transform: scale(1) translate(-50%,-50%);}
+  50% {opacity: 0.5; transform: scale(1.5) translate(-50%,-50%);}
+  100% {opacity: 0; transform: scale(0) translate(-50%,-50%);}
 }
 
 #div_skygge {

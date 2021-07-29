@@ -32,12 +32,17 @@ window.onload = () => {
         $("#modalStrukturKlassekart").style.display = "block";
     }
 
+    $("#btnVisModalStrukturNyttKart").onclick = () => {
+        $("#modalStrukturKlassekart").style.display = "block";
+    }
+
     $("#btnLukkModal").onclick = () => {
         $("#modalStrukturKlassekart").style.display = "none";
     }
 
     $("#btnNyttKlassekart").onclick = () => {
         $("#warning_modal").style.display = "block";
+        $("#warning_header").innerHTML = "Er du sikker på at du vil lage nytt klassekart for " + valgtKlasse.klassekode + "?";
     }
 
     $("#warning_confirm").onclick = () => {
@@ -45,7 +50,7 @@ window.onload = () => {
         nyttKlassekart();
     }
 
-    $("#btnSnuKlassekart").onclick = snuKlassekart;
+    $("#btnSnuKlassekart").onclick = aktiverSnuKlassekart;
 
     // Lukk modal ved trykk utenfor innholdet
     window.onmousedown = (evt) => {
@@ -63,10 +68,21 @@ window.onload = () => {
     $("#btnLagreEndringer").onclick = lagrePlassbytter;
 
     $("#btnFjerneEndringer").onclick = () => {
-        $("#btnFjerneEndringer").disabled = true;
-        $("#btnLagreEndringer").disabled = true;
+        $("#btnLagreEndringer").classList = "btn btn-disabled";
+        $("#btnFjerneEndringer").classList = "btn btn-danger btn-disabled";
         visKlassekart();
     }
+}
+
+function aktiverSnuKlassekart() {
+    $("#tableKlassekart").style.transform = "scaleY(0)";
+    // Deaktiverer knappen og all trykking
+    $('#btnSnuKlassekart').className = 'btn btn-disabled';
+    setTimeout(() => {
+        $("#tableKlassekart").style.transform = "";
+        $('#btnSnuKlassekart').className = 'btn';
+        snuKlassekart();
+    }, 750);
 }
 
 // Henter info om valgt klasse og viser eventuelt eksisterende kart, samt initialiserer noen variabler
@@ -74,7 +90,11 @@ function hentKlasse() {
 
     // Sjekker om valgt klasse har klassekart fra før, eller om det må lages nytt
     if (klassekart.length === 0) {
-        $("#tableKlassekart").innerHTML = "Klassekart ikke lagd";
+        for (btn of [...$(".knapper")]) {
+            btn.style.display = "none"
+        };
+        $("#tableKlassekart").style.display = "none";
+        $("#btnVisModalStrukturNyttKart").style.display = "initial";
     }
 
     // Viser klassekart om det finnes fra før
@@ -85,6 +105,11 @@ function hentKlasse() {
 
 // Funksjon som lager det nye klassekartet
 function nyttKlassekart() {
+    for (btn of [...$(".knapper")]) {
+        btn.style.display = "flex"
+    };
+    $("#tableKlassekart").style.display = "initial";
+    $("#btnVisModalStrukturNyttKart").style.display = "none";
 
     // Henter strukturen klassekartet skal genereres på fra input-felt
     perBord = parseInt($("#inputEleverPerBord").value);
@@ -267,7 +292,7 @@ function nyttKlassekartAnimasjon() {
     for (btn of btnsElever) { // Gjør alle elevene gjennomsiktige og uttrykkbare
         btn.style.opacity = 0;
         btn.style.backgroundColor = "var(--linkColor)";
-        btn.removeEventListener("click", byttePlass);
+        document.body.style.pointerEvents = "none";
     }
 
     btnsElever = stokkElever(btnsElever); // Stokker elevene så de vises tilfeldig
@@ -290,24 +315,20 @@ function nyttKlassekartAnimasjon() {
 
             // Animasjonen, kan gjøres om til css animasjon
             setTimeout(() => {
-                $("#tableKlassekart").style.transform = `scale(${scaleValue+0.05})`;
+                $("#tableKlassekart").style.transform = `scale(${scaleValue + 0.2})`;
             }, 2300);
             setTimeout(() => {
                 $("#tableKlassekart").style.transform = `scale(1.0)`;
                 $("#tableKlassekart").style.zIndex = "0";
-            }, 2500);
+            }, 2700);
             setTimeout(() => {
                 aktiverAnimasjon(`Nytt klassekart for ${valgtKlasse.klassekode}`);
             }, 3000);
 
             clearInterval(iLoveErikAndJon); // stopper animasjonen
+            // Gjør knappene trykkbare igjen når animasjonen er ferdig
         }
-    }, 300-klassekart.length*5);
-    
-    // Gjør knappene trykkbare igjen når animasjonen er ferdig
-    for (btn of copyBtnsElever) {
-        btn.addEventListener("click", byttePlass);
-    }
+    }, 300 - klassekart.length * 5);
 }
 
 function plasserElev(rad, kolonne, nr, id) {
@@ -340,18 +361,20 @@ function byttePlass(evt) {
         let elev1 = $("#" + elev1ID).innerHTML;
         let elev2 = evt.target.innerHTML;
         $("#" + elev1ID).style.backgroundColor = "";
+        $("#" + elev1ID).style.color = "";
         antallKlikk--;
         // Bytt kun hvis det er forskjellige personer og ikke to tomme plasser
         if (elev1ID !== evt.target.id && !(elev1 === "." && elev2 === ".")) {
             $("#" + elev1ID).innerHTML = elev2;
             evt.target.innerHTML = elev1;
-            $("#btnLagreEndringer").disabled = false; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
-            $("#btnFjerneEndringer").disabled = false;
+            $("#btnLagreEndringer").classList = "btn"; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
+            $("#btnFjerneEndringer").classList = "btn btn-danger";
         }
     }
     else {
         elev1ID = evt.target.id;
         $("#" + elev1ID).style.backgroundColor = "#02B345";
+        $("#" + elev1ID).style.color = "white";
         antallKlikk++
     }
 }
@@ -378,8 +401,8 @@ function lagrePlassbytter() {
     elever.reverse(); // Snur lista til riktig veg
 
     klasse["klassekart"] = elever; // Oppdaterer klassekartet
-    $("#btnLagreEndringer").disabled = true;
-    $("#btnFjerneEndringer").disabled = true;
+    $("#btnLagreEndringer").classList = "btn btn-disabled";
+    $("#btnFjerneEndringer").classList = "btn btn-danger btn-disabled";
     lagreKlassekart(); // Skriver til fil
 }
 

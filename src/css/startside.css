@@ -1,11 +1,17 @@
 .body_aniclass {
-    animation: body_ani 4s forwards;
+    animation: body_ani 16s forwards;
     animation-timing-function: ease;
+    height: 100%;
+    overflow: hidden;
 }
 
 @keyframes body_ani {
     0% {background-color: white;}
-  100% {background-color: var(--backgroundColor)}
+    25% {background-color: var(--backgroundColor);}
+    100% {
+      height: auto;
+      overflow: auto;
+    }
 }
 
 .header_aniclass {
@@ -64,7 +70,7 @@
 
 #option {
   width: 50px;
-  position: absolute;
+  position: fixed;
   bottom: 15px;
   right: 15px;
   transition: 200ms;
@@ -76,7 +82,7 @@
 
 #BtnOpenModal {
   width: 50px;
-  position: absolute;
+  position: fixed;
   bottom: 15px;
   left: 15px;
   transition: 200ms;

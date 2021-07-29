@@ -98,4 +98,6 @@ function aktiverAnimasjon(tekst) { // tekst = melding under checkmark
 		$("#div_skygge").style.display = "none";
 		$("#div_skygge").classList.remove("class_animasjon_skygge");
 	}, 3500);
+
+	document.body.style.pointerEvents = "auto";
 }

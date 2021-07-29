@@ -1,5 +1,6 @@
 #tableKlassekart {
-  transition: 0.5s;
+  transition: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
 button.elev {
@@ -33,4 +34,15 @@ th {
   padding: 10px 15px;
   border: 1px solid #bbbbbb;
   border-radius: 5px;
+}
+
+.knapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn {
+  margin: 8px;
 }
