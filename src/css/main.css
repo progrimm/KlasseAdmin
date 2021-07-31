@@ -287,6 +287,12 @@ h3, h4 {
   font-weight: 500;
 }
 
+#sventakk {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}
+
 .card {
   border-radius: 4px;
   background-color: white;
@@ -349,7 +355,7 @@ h3, h4 {
   height: 75px;
   width: 85px;
   padding-left: 25px;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   cursor: pointer;

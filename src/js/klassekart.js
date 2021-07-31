@@ -94,6 +94,7 @@ function hentKlasse() {
             btn.style.display = "none"
         };
         $("#tableKlassekart").style.display = "none";
+        $("#byttetips").style.display = "none";
         $("#btnVisModalStrukturNyttKart").style.display = "initial";
     }
 
@@ -109,6 +110,7 @@ function nyttKlassekart() {
         btn.style.display = "flex"
     };
     $("#tableKlassekart").style.display = "initial";
+    $("#byttetips").style.display = "initial";
     $("#btnVisModalStrukturNyttKart").style.display = "none";
 
     // Henter strukturen klassekartet skal genereres på fra input-felt

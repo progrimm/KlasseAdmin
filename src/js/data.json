@@ -22,32 +22,32 @@
 			"Toy"
 		],
 		"klassekart": [
-			"Boy",
-			"Paul",
-			"Mikkel GS",
+			"Erle",
+			"Emil",
 			"Viktoria",
-			"Sven",
-			"Kvinne",
+			"Hanna",
+			"Mann",
+			"Toy",
+			"Mikkel GS",
+			"Boy",
 			"Gutt",
 			"Jente",
-			"Mikkel WS",
-			"Hanna",
-			"Emil",
 			"Bonsa",
-			"Jon",
-			"Toy",
-			"Ingrid",
-			"Erle",
-			".",
-			".",
-			".",
-			"Mann",
+			"Sulekah",
+			"Sven",
 			"Gustav",
-			"Sulekah"
+			"Ingrid",
+			"Mikkel WS",
+			".",
+			".",
+			".",
+			"Paul",
+			"Kvinne",
+			"Jon"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "2",
-			"rader": "5",
+			"rader": "4",
 			"kolonner": "4"
 		}
 	},
@@ -77,22 +77,23 @@
 			"kolonner": "4"
 		}
 	},
-	"test1": {
+	"test": {
 		"elever": [
-			"sdf",
-			"adf"
+			"test1",
+			"test2"
 		],
 		"klassekart": [
 			".",
-			"sdf",
 			".",
 			".",
-			"adf"
+			".",
+			"test1",
+			"test2"
 		],
 		"klassekart_oppsett": {
-			"per_bord": "1",
-			"rader": "3",
-			"kolonner": "3"
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
 		}
 	}
 }
