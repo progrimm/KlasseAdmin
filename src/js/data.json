@@ -51,6 +51,23 @@
 			"kolonner": "4"
 		}
 	},
+	"asdf": {
+		"elever": [
+			"asdfqklasdfasjdflsdkfjalsjfwejlajsdfjalsjfalwjefoiwldjfasdlkjfawejs"
+		],
+		"klassekart": [
+			".",
+			".",
+			".",
+			".",
+			"asdfqklasdfasjdflsdkfjalsjfwejlajsdfjalsjfalwjefoiwldjfasdlkjfawejs"
+		],
+		"klassekart_oppsett": {
+			"per_bord": "2",
+			"rader": "4",
+			"kolonner": "4"
+		}
+	},
 	"IT": {
 		"elever": [
 			"Bonsa",
@@ -80,7 +97,9 @@
 	"test": {
 		"elever": [
 			"test1",
-			"test2"
+			"test2",
+			"3",
+			"4"
 		],
 		"klassekart": [
 			".",

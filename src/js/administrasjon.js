@@ -131,7 +131,7 @@ function leggTilKlasse() {
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";
 
-    $("#inpKlassekode").placeholder = "Eks.: 2MATR";
+    $("#inpKlassekode").placeholder = "Eks.: 2MATR. Maks 30 tegn.";
     $("#inpElever").placeholder = "Skill elevene med komma. Eks.: 'Åmund,Jon,Erik,Kjell'";
     valgtKlasse = "";  // fjerner valgt klasse
 }
