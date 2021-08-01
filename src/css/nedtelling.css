@@ -5,13 +5,6 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-#knapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between
-}
-
 input {   
     width: 80px;
     font-size: 72px;
@@ -48,4 +41,8 @@ input {
     font-size: 20px;
     margin-bottom: 0;
     font-weight: bold;
+}
+
+.header hr {
+    margin-bottom: 4px;
 }

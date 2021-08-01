@@ -56,6 +56,11 @@ label:hover, label input:hover{
   color: var(--headerColor);
   font-size: 50px;
   margin: 0px;
+  max-width: 600px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
@@ -365,7 +370,7 @@ h3, h4 {
 }
 
 #adminTable {
-  width: 100%;
+  /* width: 100%; */
   border: 1px solid rgba(0,0,0,.12);
   border-radius: 5px;
 }

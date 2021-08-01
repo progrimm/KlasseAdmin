@@ -86,3 +86,10 @@
   cursor: pointer;
   transform: scale(1.2);
 }
+
+.textArea h2 {
+    max-width: 800px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

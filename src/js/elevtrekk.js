@@ -36,18 +36,16 @@ window.onload = () => {
     onkeydown = function (evt) {    // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && antall_elever === document.activeElement) {
             if ($('#btn_elever').className === 'btn') {
-                trekk()
+                trekk();
             }
         }
     }
     $('#bare_tilstedevaerende').onclick = 
     $('#uten_tilbakelegging').onclick = 
+    $('#nytt_trekk').onclick =
         tilbakestill;
-    $('#nytt_trekk').onclick = () => {
-        // $('#elev_utvalg').innerHTML='';
-        tilbakestill();
-    }
-    onresize = flytt_elever;
+
+    onresize = flytt_elever;    // midtstiller elever 
 }
 
 function initialiser() {
@@ -155,7 +153,7 @@ function trekk_elever(x_bunke, y_bunke) {
             else if ((nr+1) % 3 === 0) flytt_x = ett_hakk_x / 2;
         }
         let rad_nr = Math.floor((nr-1) /3) + 1;
-        let flytt_y = ett_hakk_y * rad_nr + 100; // 30: klarering fra bunke
+        let flytt_y = ett_hakk_y * rad_nr + 100; // 100: klarering fra bunke og knapp
         
         setTimeout(() => {  // for å være sikker på at elementet er 'etablert'
             elevkort.style.transform = 'translate('+flytt_x+'px, '+flytt_y+'px)';
