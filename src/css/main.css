@@ -122,6 +122,7 @@ a {
 
 .btn-disabled {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .btn-disabled:hover {
@@ -291,6 +292,12 @@ h3, h4 {
   font-weight: 500;
 }
 
+#sventakk {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}
+
 .card {
   border-radius: 4px;
   background-color: white;
@@ -353,7 +360,7 @@ h3, h4 {
   height: 75px;
   width: 85px;
   padding-left: 25px;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   cursor: pointer;
@@ -416,7 +423,7 @@ th, td {
 
 #nedtelling_ikon {
   width: 60px;
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 15px;
   transition: 200ms;
@@ -426,3 +433,97 @@ th, td {
   cursor: pointer;
   transform: scale(1.2);
 }
+
+/* Animasjon ved fullført endring (checkmark + tekst)*/
+
+#div_fullfort_endring {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  z-index: 983;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transform-origin: top left;
+}
+
+#melding_fullfort_endring {
+  color: white;
+  font-size: 15pt;
+}
+
+.svg_checkmark {
+  width: 125px;
+  display: block;
+  margin: 40px auto 0;
+}
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+.path.circle {
+  animation: dash 0.9s ease-in-out;
+}
+.path.line {
+  stroke-dashoffset: 1000;
+  animation: dash 0.9s 0.35s ease-in-out forwards;
+}
+.path.check {
+  stroke-dashoffset: -100;
+  animation: dash-check 0.9s 0.35s ease-in-out forwards;
+}
+
+@keyframes dash {
+  0% {
+      stroke-dashoffset: 1000;
+  }
+  100% {
+      stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+      stroke-dashoffset: -100;
+  }
+  100% {
+      stroke-dashoffset: 900;
+  }
+}
+
+.div_fullfort_endring_fade {
+  animation: fadeUt 1s forwards;
+  animation-delay: 2.5s;
+}
+
+@keyframes fadeUt {
+  0% {opacity: 1; transform: scale(1) translate(-50%,-50%);}
+  50% {opacity: 0.5; transform: scale(1.5) translate(-50%,-50%);}
+  100% {opacity: 0; transform: scale(0) translate(-50%,-50%);}
+}
+
+#div_skygge {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.75);
+  z-index: 512;
+}
+
+.class_animasjon_skygge {
+  animation: animasjon_skygge 3.5s forwards;
+}
+
+@keyframes animasjon_skygge {
+  0% {opacity: 1;}
+  90% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+/**/

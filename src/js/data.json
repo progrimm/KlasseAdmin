@@ -10,39 +10,44 @@
 			"Mikkel GS",
 			"Mikkel WS",
 			"Paul",
-			"Sven"
-		],
-		"klassekart": [
-			"Jon",
-			"Gustav",
-			"Bonsa",
-			"Mikkel WS",
 			"Sven",
-			"asfasdfadsfasfasdfasdfdafasfs",
-			"Hanna",
-			"Mikkel GS",
-			"Paul",
-			"Emil"
-		],
-		"klassekart_oppsett": {
-			"per_bord": "2",
-			"rader": "3",
-			"kolonner": "4"
-		}
-	},
-	"asdfasdfasdfasdfasdfaweofjaweiofjwiefasncfiasdfcasdnfcasdhfcasdfciasghfacwdfasdijfasdufhdfiasfladlfiuhdf": {
-		"elever": [
-			"sdfsdf"
+			"Ingrid",
+			"Viktoria",
+			"Erle",
+			"Mann",
+			"Kvinne",
+			"Gutt",
+			"Jente",
+			"Boy",
+			"Toy"
 		],
 		"klassekart": [
+			"Erle",
+			"Emil",
+			"Viktoria",
+			"Hanna",
+			"Mann",
+			"Toy",
+			"Mikkel GS",
+			"Boy",
+			"Gutt",
+			"Jente",
+			"Bonsa",
+			"Sulekah",
+			"Sven",
+			"Gustav",
+			"Ingrid",
+			"Mikkel WS",
 			".",
 			".",
 			".",
-			"sdfsdf"
+			"Paul",
+			"Kvinne",
+			"Jon"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "2",
-			"rader": "5",
+			"rader": "4",
 			"kolonner": "4"
 		}
 	},
@@ -57,12 +62,33 @@
 			"Åmund"
 		],
 		"klassekart": [
-			"Erik",
+			".",
 			"Åmund",
-			"Bonsa",
 			"Simon",
 			"Jon",
+			"Erik",
+			"Magnus",
+			"Bonsa",
 			"Bryan"
+		],
+		"klassekart_oppsett": {
+			"per_bord": "2",
+			"rader": "5",
+			"kolonner": "4"
+		}
+	},
+	"test": {
+		"elever": [
+			"test1",
+			"test2"
+		],
+		"klassekart": [
+			".",
+			".",
+			".",
+			".",
+			"test1",
+			"test2"
 		],
 		"klassekart_oppsett": {
 			"per_bord": "2",
