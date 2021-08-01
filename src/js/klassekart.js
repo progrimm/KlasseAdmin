@@ -19,6 +19,31 @@ let klassekart = klasse["klassekart"]; // Henter klassekartet
 
 document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Klassekart";
 
+// Løsning for når klassekart er større enn vinduet
+window.onscroll = () => {
+    let sLeft = this.scrollX; // Endrer leseretning når scrollbar er mot midten
+    if (document.body.style.direction === "rtl") {
+        if (sLeft >= 0) {
+            // Alle elementer fra venstre til høyre
+            // Scrollbar mot høyre fra midten
+            for (element of [...document.getElementsByTagName("*")]) {
+                element.style.direction = "ltr";
+            };
+            document.body.style.direction = "ltr";
+        }
+    }
+    else {
+        if (sLeft <= 0) {
+            // Alle elementer utenom selve body (som inkluderer scrollbar) leses fra venstre til høyre
+            // Scrollbar mot venstre fra midten
+            for (element of [...document.getElementsByTagName("*")]) {
+                element.style.direction = "ltr";
+            };
+            document.body.style.direction = "rtl";
+        }
+    }
+}
+
 window.onload = () => {
     includeHTML();
 
