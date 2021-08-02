@@ -9,7 +9,25 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "appId": "KlasseAdmin",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "src/multimedia/klasseadminLogo.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "installerIcon": "src/multimedia/klasseadminLogo.ico",
+      "uninstallerIcon": "src/multimedia/klasseadminLogo.ico",
+      "uninstallDisplayName": "KlasseAdmin",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": [],
   "author": {
@@ -45,6 +63,7 @@
     }
   },
   "dependencies": {
+    "electron-builder": "^22.11.7",
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
