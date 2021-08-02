@@ -94,6 +94,7 @@ function start_eller_stopp() {
         klokka_gaar = true;
         veksle.innerHTML = 'Stopp';
         veksle.className = 'btn btn-danger';
+        $('#lagre_tid').className='btn btn-disabled';   // deakt. lagring
         still_inn_klokke(min,sek);
     }
 }
@@ -102,6 +103,7 @@ function stopp_nedtelling() {
     klokka_gaar = false;
     veksle.innerHTML = 'Start';
     veksle.className = 'btn btn-success';
+    $('#lagre_tid').className='btn';   // aktiverer lagring
     $('#minus').innerHTML = '';
     minutt.style.color = sekund.style.color = 'black';
     $('.enhet')[0].style.color = $('.enhet')[1].style.color = 'black';
@@ -162,11 +164,6 @@ function oppdater_standard_tid() {
     fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
         if (err) throw err;
     });
-    // deaktiverer lagreknapp i 1 sek
-    $('#lagre_tid').className='btn btn-disabled';
-    setTimeout(() => {
-        $('#lagre_tid').className='btn';
-    }, 1000);
 }
 
 function still_inn_klokke(min, sek) {
