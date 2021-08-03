@@ -1,7 +1,12 @@
 // Henter data fra fil
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+// const fs = require("fs");
+// const dataFilename = __dirname + "/js/data.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_klasser;
+
 // henter valgt klasse fra session storage
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
 // henter ut elever både fra fil og session

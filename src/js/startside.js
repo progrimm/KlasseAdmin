@@ -1,8 +1,12 @@
 // Henter data fra fil
 const { Console } = require("console");
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+// const fs = require("fs");
+// const dataFilename = __dirname + "/js/data.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_klasser;
 
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra

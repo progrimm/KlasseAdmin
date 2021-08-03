@@ -2,6 +2,23 @@ const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 //Menu.setApplicationMenu(false);
 
+
+const Store = require('electron-store');
+const store = new Store();
+let allData = store.store;
+if (Object.keys(allData).length === 0) {
+  allData = {
+    "data_klasser": {},
+    "data_nedtelling": {
+      "min": "00",
+      "sek": "00"
+    }
+  };
+  store.store = allData;
+}
+Store.initRenderer();
+
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();

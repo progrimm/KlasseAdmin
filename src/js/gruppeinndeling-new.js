@@ -1,6 +1,11 @@
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+// const fs = require("fs");
+// const dataFilename = __dirname + "/js/data.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_klasser;
+
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter valgte klassa
 const tilstede_elever = valgtKlasse.elever; // henter elever som er tilstede
 const klasse = data[valgtKlasse.klassekode];

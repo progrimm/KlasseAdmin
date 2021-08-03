@@ -1,8 +1,14 @@
 // Henter data fra fil
 const { SSL_OP_NETSCAPE_CA_DN_BUG } = require("constants");
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+
+// const fs = require("fs");
+// const dataFilename = __dirname + "/js/data.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_klasser;
+
 // henter klasse fra session storage
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse"));
 const klasse = valgtKlasse.klassekode;

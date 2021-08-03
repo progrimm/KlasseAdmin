@@ -1,7 +1,11 @@
 // Henter data fra fil
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+// const fs = require("fs");
+// const dataFilename = __dirname + "/js/data.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_klasser;
 
 let valgtKlasse = ""; // Husker valgt klasse ved redigering, brukes som sjekk om det er ny klasse eller redigering
 
@@ -82,13 +86,17 @@ function oppdaterData() {
         }, data);
     }
 
-    let dataOppdatert = JSON.stringify(data, null, '\t');
+    // let dataOppdatert = JSON.stringify(data, null, '\t');
 
-    fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
-        if (err) throw err;
-    });
+    // fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
+    //     if (err) throw err;
+    // });
 
-    data = JSON.parse(fs.readFileSync(dataFilename));
+    store.set("data_klasser", data);
+
+    // data = JSON.parse(fs.readFileSync(dataFilename));
+
+    data = store.store.data_klasser;
 }
 
 function slett_advarsel(klassekode) {
@@ -158,7 +166,8 @@ function redigerKlasse(klassekode) {
 
 function lagreKlasse() {
     // Henter data på nytt for at ting skal funke
-    data = JSON.parse(fs.readFileSync(dataFilename));
+    // data = JSON.parse(fs.readFileSync(dataFilename));
+    data = store.store.data_klasser;
 
     // Henter verdier fra inputfeltene
     let nyKlassekode = $("#inpKlassekode").value;

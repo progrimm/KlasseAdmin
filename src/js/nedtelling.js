@@ -1,7 +1,11 @@
 // Henter data fra fil
-const fs = require("fs");
-const dataFilename = __dirname + "/js/data_nedtelling.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+// const fs = require("fs");
+// const dataFilename = __dirname + "/js/data_nedtelling.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_nedtelling;
 
 let klokka_gaar = paa_overtid = false;
 let min = start_min = data.min;
@@ -159,11 +163,13 @@ function oppdater_standard_tid() {
         min: minutt.value,
         sek: sekund.value
     }
-    let oppdatert_tid = JSON.stringify(tid, null, '\t');
+    // let oppdatert_tid = JSON.stringify(tid, null, '\t');
 
-    fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
-        if (err) throw err;
-    });
+    // fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
+    //     if (err) throw err;
+    // });
+
+    store.set("data_nedtelling", tid);
 }
 
 function still_inn_klokke(min, sek) {

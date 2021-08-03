@@ -7,10 +7,14 @@ let elev1ID;
 let snudd = false; // Om kartet er snudd eller ikke
 
 // Henter data fra fil
-const fs = require("fs");
+// const fs = require("fs");
 const { start } = require("repl");
-const dataFilename = __dirname + "/js/data.json";
-let data = JSON.parse(fs.readFileSync(dataFilename));
+// const dataFilename = __dirname + "/js/data.json";
+// let data = JSON.parse(fs.readFileSync(dataFilename));
+
+const Store = require('electron-store');
+const store = new Store();
+let data = store.store.data_klasser;
 
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter valgte klassa
 let klasse = data[valgtKlasse.klassekode]; // Henter objektet fra data
@@ -436,14 +440,17 @@ function lagrePlassbytter() {
 // Funksjon for å lagre de endringene som er gjort til data.js, og oppdatere variabler
 function lagreKlassekart() {
 
-    let dataOppdatert = JSON.stringify(data, null, '\t');
+    // let dataOppdatert = JSON.stringify(data, null, '\t');
 
-    fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
-        if (err) throw err;
-    });
+    // fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
+    //     if (err) throw err;
+    // });
+
+    store.set("data_klasser", data);
 
     // Oppdaterer variablene våre for sikkerhets skyld
-    data = JSON.parse(fs.readFileSync(dataFilename));
+    // data = JSON.parse(fs.readFileSync(dataFilename));
+    data = store.store.data_klasser;
     console.log("Lagret");
     klasse = data[valgtKlasse.klassekode];
     elever = klasse["elever"];
