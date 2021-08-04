@@ -184,6 +184,16 @@ function lagreKlasse() {
         $("#error_modal").style.display = "block";
         return;
     }
+    // sjekker om det er elever som heter det samme
+    for (let i=0; i<nyeElever.length; i++) {
+        let liste_uten_elev_nr_i = nyeElever.slice();
+        liste_uten_elev_nr_i.splice(i,1);
+        if (liste_uten_elev_nr_i.includes(nyeElever[i])) {
+            $("#error_modal_melding").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
+            $("#error_modal").style.display = "block";
+            return;
+        }
+    }
 
     // klassekart til den nye klassa
     let klassekart = [];
