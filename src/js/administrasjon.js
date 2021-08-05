@@ -1,8 +1,4 @@
-// Henter data fra fil
-// const fs = require("fs");
-// const dataFilename = __dirname + "/js/data.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
-
+// Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
@@ -91,15 +87,7 @@ function oppdaterData() {
         }, data);
     }
 
-    // let dataOppdatert = JSON.stringify(data, null, '\t');
-
-    // fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
-    //     if (err) throw err;
-    // });
-
     store.set("data_klasser", data);
-
-    // data = JSON.parse(fs.readFileSync(dataFilename));
 
     data = store.store.data_klasser;
 }
@@ -190,9 +178,9 @@ function lagreKlasse() {
         return;
     }
     // sjekker om det er elever som heter det samme
-    for (let i=0; i<nyeElever.length; i++) {
+    for (let i = 0; i < nyeElever.length; i++) {
         let liste_uten_elev_nr_i = nyeElever.slice();
-        liste_uten_elev_nr_i.splice(i,1);
+        liste_uten_elev_nr_i.splice(i, 1);
         if (liste_uten_elev_nr_i.includes(nyeElever[i])) {
             $("#error_modal_melding").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
             $("#error_modal").style.display = "block";

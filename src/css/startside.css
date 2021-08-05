@@ -1,3 +1,7 @@
+#header {
+    pointer-events: none;
+}
+
 .body_aniclass {
     animation: body_ani 16s forwards;
     animation-timing-function: ease;

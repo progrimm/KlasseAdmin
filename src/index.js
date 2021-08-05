@@ -2,10 +2,11 @@ const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 //Menu.setApplicationMenu(false);
 
-
 const Store = require('electron-store');
-const store = new Store();
-let allData = store.store;
+const store = new Store(); // Henter basically lagringsfila (blir ikke lagd ny)
+let allData = store.store; // .store viser til hele lagringsfila, så her hentes alt lagret data
+
+// Dersom ingen data er lagret, altså at appen ikke er brukt før, genereres utgangspunktet for lagring
 if (Object.keys(allData).length === 0) {
   allData = {
     "data_klasser": {},
@@ -16,7 +17,7 @@ if (Object.keys(allData).length === 0) {
   };
   store.store = allData;
 }
-Store.initRenderer();
+Store.initRenderer(); // Gjør at man kan bruke electron-store i renderer-processes, altså i alle andre filer
 
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -35,9 +36,7 @@ const createWindow = () => {
       nodeIntegration: true,
       contextIsolation: false,
     },
-    icon: __dirname + '/multimedia/klasseadminLogo.png',
-    // frame: false,
-    // resizable: false,
+    icon: __dirname + '/multimedia/klasseadminLogo.png'
   });
 
   mainWindow.maximize()

@@ -1,8 +1,4 @@
 // Henter data fra fil
-// const fs = require("fs");
-// const dataFilename = __dirname + "/js/data.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
-
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
@@ -21,12 +17,12 @@ let eleverFravaer = [];                                                         
 function oppstart() {
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-    
+
     document.getElementById("elevListe").innerHTML = "";    // sletter alt i hoveddiven
     eleverFravaer = [];     // tømmer lista med fraværende elever
 
     let listeLengde = elever.length;
-    for(let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
+    for (let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
         let elevDiv = document.createElement("div");
         elevDiv.id = elever[i];
         elevDiv.className = "elevDiv";
@@ -38,7 +34,7 @@ function oppstart() {
         nyBtnFravaer.id = "btnFravaer" + elever[i];
         nyBtnFravaer.className = "btnFravaer";
 
-        if(elever_tilstede.includes(elever[i])) {   // hvis eleven er tilstedeværende
+        if (elever_tilstede.includes(elever[i])) {   // hvis eleven er tilstedeværende
             nyBtnFravaer.value = "green";
             nyBtnFravaer.innerHTML = "Tilstede";
         }
@@ -58,7 +54,7 @@ function oppstart() {
     // kjører gjennom fraværende elever og sletter de fra elevlista
     for (const elev of eleverFravaer) {
         index = elever.indexOf(elev);
-        elever.splice(index,1);
+        elever.splice(index, 1);
     }
     // gjør at man ikke kan trykke tilbake med nettleser-navigering
     history.pushState(null, null, document.URL);
@@ -71,12 +67,12 @@ function fravaer(event) {
     let elevMedKode = event.target.id;                                                      //Finner id-en til den eleven som får registrert fravær
     let elev = elevMedKode.replace("btnFravaer", "");                                       //Fjerner all fra id-en utenom navnet til eleven
 
-    if(document.getElementById(elevMedKode).value === "green") {                            //Gjør diven rød og registrerer fravær hvis den er grønn
+    if (document.getElementById(elevMedKode).value === "green") {                            //Gjør diven rød og registrerer fravær hvis den er grønn
         document.getElementById(elevMedKode).style.backgroundColor = "red";
         document.getElementById(elev).style.borderColor = "red";
         document.getElementById(elevMedKode).value = "red";
         document.getElementById(elevMedKode).innerHTML = "Fravær";
-        
+
         let elevIndex = elever.indexOf(elev);                                               //Finner indexen til eleven registrert
         eleverFravaer.push(elever[elevIndex]);                                              //Legger til eleven i arrayet over de som får fravær
         elever.splice(elevIndex, 1);                                                        //Fjerner fra hovedlista
@@ -90,7 +86,7 @@ function fravaer(event) {
         let elevIndex = eleverFravaer.indexOf(elev);
         elever.push(eleverFravaer[elevIndex]);
         eleverFravaer.splice(elevIndex, 1);
-    }   
+    }
 }
 
 function eleverTilstede() {                                                                 //En test, slik at man får sett resultatet i console.log. !KUN FOR TEST, IKKE FOR FERDIG PROGRAM!

@@ -1,8 +1,4 @@
-// Henter data fra fil
-// const fs = require("fs");
-// const dataFilename = __dirname + "/js/data_nedtelling.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
-
+// Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_nedtelling;
@@ -103,8 +99,8 @@ function start_eller_stopp() {
         klokka_gaar = true;
         veksle.innerHTML = 'Stopp';
         veksle.className = 'btn btn-danger';
-        $('#lagre_tid').className='btn btn-disabled';   // deakt. lagring
-        still_inn_klokke(min,sek);
+        $('#lagre_tid').className = 'btn btn-disabled';   // deakt. lagring
+        still_inn_klokke(min, sek);
     }
 }
 
@@ -112,7 +108,7 @@ function stopp_nedtelling() {
     klokka_gaar = false;
     veksle.innerHTML = 'Start';
     veksle.className = 'btn btn-success';
-    $('#lagre_tid').className='btn';   // aktiverer lagring
+    $('#lagre_tid').className = 'btn';   // aktiverer lagring
     $('#minus').innerHTML = '';
     minutt.style.color = sekund.style.color = 'black';
     $('.enhet')[0].style.color = $('.enhet')[1].style.color = 'black';
@@ -168,18 +164,13 @@ function oppdater_standard_tid() {
         min: minutt.value,
         sek: sekund.value
     }
-    // let oppdatert_tid = JSON.stringify(tid, null, '\t');
-
-    // fs.writeFileSync(dataFilename, oppdatert_tid, function (err) {
-    //     if (err) throw err;
-    // });
 
     store.set("data_nedtelling", tid);
 }
 
 function still_inn_klokke(min, sek) {
-    let minutt_grader = min*(-30) + sek*(-0.5);
-    let sekund_grader = sek*(-6);
-    minuttviser.style.transform ='rotate('+minutt_grader+'deg)';
-    sekundviser.style.transform ='rotate('+sekund_grader+'deg)';
+    let minutt_grader = min * (-30) + sek * (-0.5);
+    let sekund_grader = sek * (-6);
+    minuttviser.style.transform = 'rotate(' + minutt_grader + 'deg)';
+    sekundviser.style.transform = 'rotate(' + sekund_grader + 'deg)';
 }

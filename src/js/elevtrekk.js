@@ -1,10 +1,6 @@
-// Henter data fra fil
 const { SSL_OP_NETSCAPE_CA_DN_BUG } = require("constants");
 
-// const fs = require("fs");
-// const dataFilename = __dirname + "/js/data.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
-
+// Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
@@ -24,7 +20,7 @@ document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Tilfeldig elevt
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-    
+
     initialiser();
     bunke = $('#bunkekort');
     antall_elever = $('#antall_elever');
@@ -46,9 +42,9 @@ window.onload = () => {
             }
         }
     }
-    $('#bare_tilstedevaerende').onclick = 
-    $('#uten_tilbakelegging').onclick = 
-    $('#nytt_trekk').onclick =
+    $('#bare_tilstedevaerende').onclick =
+        $('#uten_tilbakelegging').onclick =
+        $('#nytt_trekk').onclick =
         tilbakestill;
 
     onresize = flytt_elever;    // midtstiller elever 
@@ -60,14 +56,14 @@ window.onload = () => {
 }
 
 function initialiser() {
-    if ( ! $('#uten_tilbakelegging').checked) {      // trekk med tilbakelegging
+    if (!$('#uten_tilbakelegging').checked) {      // trekk med tilbakelegging
         // oppdaterer liste for hvert trekk
         if ($('#bare_tilstedevaerende').checked) {  // hvis bare tilstedeværende elever skal trekkes
             jobbeliste_elever = elever.slice(0);
         } else jobbeliste_elever = alle_elever.slice(0);
     }
     setTimeout(() => {
-        $('#elevantall').innerHTML = jobbeliste_elever.length;        
+        $('#elevantall').innerHTML = jobbeliste_elever.length;
         if (jobbeliste_elever.length === 0 && $('#uten_tilbakelegging').checked) {
             $('#elevantall').style.color = 'var(--red)';
             $('#nytt_trekk').hidden = false;
@@ -91,15 +87,15 @@ function tilbakestill() {
     bunke.style.fontSize = '48px';
     bunke.style.zIndex = '100';
     // trekker inn eventuelle elever
-    trekk_inn(bunke.offsetLeft, bunke.offsetTop, false);    
-    
+    trekk_inn(bunke.offsetLeft, bunke.offsetTop, false);
+
     $('#nytt_trekk').hidden = true;
     $('#btn_elever').className = 'btn';  // reaktiverer trekknapp
     if ($('#bare_tilstedevaerende').checked) {  // hvis bare tilstedeværende elever skal trekkes
         jobbeliste_elever = elever.slice(0);
     } else jobbeliste_elever = alle_elever.slice(0);
     $('#elevantall').innerHTML = jobbeliste_elever.length;
-    
+
     if ($('#uten_tilbakelegging').checked) {
         $('#elevantall').style.color = 'black';
     } else $('#elevantall').style.color = '#bbb';   // viser at antall er fast
@@ -135,28 +131,28 @@ function trekk() {
 function trekk_elever(x_bunke, y_bunke) {
     let em = $('#elev_utvalg');
     if (jobbeliste_elever.length === 0) {
-        em.innerHTML ='<div><h3>Tomt for elever!</h3></div>';   // bare unntaksvis
+        em.innerHTML = '<div><h3>Tomt for elever!</h3></div>';   // bare unntaksvis
         return;
     }
     let antall = +antall_elever.value;
-    for (var i=0; i<antall; i++) {
+    for (var i = 0; i < antall; i++) {
         // tilfeldig trekk av elev fra klasse
         let tilfeldig_index = Math.floor((Math.random() * jobbeliste_elever.length));
         let tilfeldig_trukket_elev = jobbeliste_elever[tilfeldig_index];
-        jobbeliste_elever.splice(tilfeldig_index,1);
-        
+        jobbeliste_elever.splice(tilfeldig_index, 1);
+
         // generer elevkort
         let elevkort = document.createElement('div');
         elevkort.innerHTML = tilfeldig_trukket_elev;
         elevkort.className = 'elevkort';
-        elevkort.style.left = (x_bunke - justering)+'px';
-        elevkort.style.top = (y_bunke + justering)+'px';
+        elevkort.style.left = (x_bunke - justering) + 'px';
+        elevkort.style.top = (y_bunke + justering) + 'px';
         elevkort.style.transform = 'rotate(-90deg)';
         em.appendChild(elevkort);
-        let [flytt_x, flytt_y] = posisjon_og_sentrering(i+1, antall, elevkort);
-        
+        let [flytt_x, flytt_y] = posisjon_og_sentrering(i + 1, antall, elevkort);
+
         setTimeout(() => {  // venter for å være sikker på at elementet er 'etablert'
-            elevkort.style.transform = 'translate('+flytt_x+'px, '+flytt_y+'px)';
+            elevkort.style.transform = 'translate(' + flytt_x + 'px, ' + flytt_y + 'px)';
         }, 100);
     }
     initialiser();  // reinitialiserer
@@ -165,13 +161,13 @@ function trekk_elever(x_bunke, y_bunke) {
 function posisjon_og_sentrering(nr, antall, elev) {
     // finner hvilken rad og kolonne elevkortene skal til
     let flytt_x = -ett_hakk_x;  // første kolonne
-    if ((nr+1) % 3 === 0) flytt_x = 0;   // andre kolonne
+    if ((nr + 1) % 3 === 0) flytt_x = 0;   // andre kolonne
     else if (nr % 3 === 0) flytt_x = ett_hakk_x;    // tredje
     // hvis elevkortene er de siste til å bli trukket ut, sentrerer dem riktig
-    if (nr+1 === antall && (nr+2) % 3 === 0) flytt_x = -ett_hakk_x / 2 // nest siste, første kolonne
+    if (nr + 1 === antall && (nr + 2) % 3 === 0) flytt_x = -ett_hakk_x / 2 // nest siste, første kolonne
     else if (nr === antall) {
-        if ((nr+2) % 3 === 0) flytt_x = 0;  // siste, første kolonne
-        else if ((nr+1) % 3 === 0) flytt_x = ett_hakk_x / 2;    // siste, andre kolonne
+        if ((nr + 2) % 3 === 0) flytt_x = 0;  // siste, første kolonne
+        else if ((nr + 1) % 3 === 0) flytt_x = ett_hakk_x / 2;    // siste, andre kolonne
         // elev.style.height = '116px';   // margin nederst
         // let margin = document.createElement('div');
         // margin.style.height = '16px';
@@ -181,9 +177,9 @@ function posisjon_og_sentrering(nr, antall, elev) {
         // elev.appendChild(margin);
         // console.log(elev)
     }
-    let rad_nr = Math.floor((nr-1) /3) + 1;
+    let rad_nr = Math.floor((nr - 1) / 3) + 1;
     let flytt_y = ett_hakk_y * rad_nr + 100; // 100: klarering fra bunke og knapp
-    
+
     return [flytt_x, flytt_y];
 }
 
@@ -192,20 +188,20 @@ function trekk_inn(x, y, ut = true) {   // x, y = x_bunke, y_bunke
     if ($('#uten_tilbakelegging').checked && ut) {  // kortet går til siden hvis det er uten tilbakelegging
         for (const elev of elevkort) {
             elev.style.left = '-330px';
-            elev.style.opacity = '0'; 
+            elev.style.opacity = '0';
         }
     } else {    // tilbake til bunken
         for (const elev of elevkort) {
-            elev.style.left = (x - justering)+'px';
-            elev.style.top = (y + justering)+'px';
-            elev.style.transform = 'rotate(90deg)'; 
+            elev.style.left = (x - justering) + 'px';
+            elev.style.top = (y + justering) + 'px';
+            elev.style.transform = 'rotate(90deg)';
         }
     }
     // sjekker om det var elever som måtte trekkes inn
     if ($('#elev_utvalg').innerHTML === '') return false;
     else {
         setTimeout(() => {
-            $('#elev_utvalg').innerHTML ='';
+            $('#elev_utvalg').innerHTML = '';
         }, 1000);
         return true;
     }
@@ -214,7 +210,7 @@ function trekk_inn(x, y, ut = true) {   // x, y = x_bunke, y_bunke
 function flytt_elever() {
     let x_bunke = bunke.offsetLeft; // finner posisjon til bunke
     let elevkort = $('.elevkort');
-    for (const elev of elevkort) elev.style.left = (x_bunke - justering)+'px';
+    for (const elev of elevkort) elev.style.left = (x_bunke - justering) + 'px';
 }
 
 function bare2siffer() {  // lar det til en hver tid bare være to siffer i input

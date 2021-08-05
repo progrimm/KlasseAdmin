@@ -6,12 +6,9 @@ let elev1ID;
 
 let snudd = false; // Om kartet er snudd eller ikke
 
-// Henter data fra fil
-// const fs = require("fs");
-const { start } = require("repl");
-// const dataFilename = __dirname + "/js/data.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
+const { start } = require("repl"); // Husker ikke hva den gjør, men tørr ikke å fjerne den
 
+// Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
@@ -320,8 +317,6 @@ function nyttKlassekartAnimasjon() {
     let scaleValue = 1;
     let scaleDt = 0.005;
 
-    let lyd = new Audio('multimedia/popsound.mp3');
-
     let btnsElever = [...document.querySelectorAll("button.elev")]; // Legger alle elevene i en array
     let copyBtnsElever = [...btnsElever];
 
@@ -337,7 +332,6 @@ function nyttKlassekartAnimasjon() {
     $("#div_skygge").style.display = "block"; // Setter på mørk bakgrunn
 
     let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises
-        lyd.play();
 
         let btn = btnsElever.slice(-1)[0]
         btn.style.backgroundColor = "var(--lightColor)";
@@ -445,16 +439,9 @@ function lagrePlassbytter() {
 // Funksjon for å lagre de endringene som er gjort til data.js, og oppdatere variabler
 function lagreKlassekart() {
 
-    // let dataOppdatert = JSON.stringify(data, null, '\t');
-
-    // fs.writeFileSync(dataFilename, dataOppdatert, function (err) {
-    //     if (err) throw err;
-    // });
-
     store.set("data_klasser", data);
 
     // Oppdaterer variablene våre for sikkerhets skyld
-    // data = JSON.parse(fs.readFileSync(dataFilename));
     data = store.store.data_klasser;
     console.log("Lagret");
     klasse = data[valgtKlasse.klassekode];

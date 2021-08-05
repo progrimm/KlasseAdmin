@@ -1,7 +1,4 @@
-// const fs = require("fs");
-// const dataFilename = __dirname + "/js/data.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
-
+// Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
@@ -17,7 +14,7 @@ document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Gruppeinndeling
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-    
+
     $("#slcInndeling").onchange = valgfelt;
 
     // Tilbakestiller siden ved endring av checkbox
