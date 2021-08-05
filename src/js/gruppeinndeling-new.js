@@ -27,6 +27,11 @@ window.onload = () => {
         $("#utskrift").innerHTML = "";
         $("#slcInndeling").value = "Velg inndeling";
     }
+    // gjør at man ikke kan trykke tilbake med nettleser-navigering
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', () => {
+        history.pushState(null, null, document.URL);
+    });
 }
 
 function valgfelt() {

@@ -6,4 +6,9 @@ window.onload = () => {
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
     
     document.getElementById("overskrift").innerHTML = (valgtKlasse["klassekode"]);
+    // gjør at man ikke kan trykke tilbake med nettleser-navigering
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', () => {
+        history.pushState(null, null, document.URL);
+    });
 }

@@ -52,6 +52,11 @@ window.onload = () => {
         tilbakestill;
 
     onresize = flytt_elever;    // midtstiller elever 
+    // gjør at man ikke kan trykke tilbake med nettleser-navigering
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', () => {
+        history.pushState(null, null, document.URL);
+    });
 }
 
 function initialiser() {
