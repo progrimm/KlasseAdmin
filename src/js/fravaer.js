@@ -85,5 +85,6 @@ function eleverTilstede() {                                                     
         klassekode: valgtKlasse.klassekode,
         elever: elever
     }));
+    aktiverAnimasjon("Fravær lagret");
     window.location = 'klassebehandling.html'
 }
