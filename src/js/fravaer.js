@@ -25,31 +25,24 @@ function oppstart() {
     for (let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
         let elevDiv = document.createElement("div");
         elevDiv.id = elever[i];
-        elevDiv.className = "elevDiv";
+        elevDiv.className = "elevDiv green";
 
         let nyElevNavn = document.createElement("p");
         nyElevNavn.innerHTML = elever[i];
-
-        let nyBtnFravaer = document.createElement("button");
-        nyBtnFravaer.id = "btnFravaer" + elever[i];
-        nyBtnFravaer.className = "btnFravaer";
+        nyElevNavn.style.pointerEvents = "none";
 
         if (elever_tilstede.includes(elever[i])) {   // hvis eleven er tilstedeværende
-            nyBtnFravaer.value = "green";
-            nyBtnFravaer.innerHTML = "Tilstede";
+            elevDiv.className = "elevDiv green";
         }
         else {  // hvis fraværende
-            nyBtnFravaer.value = "red";
-            nyBtnFravaer.innerHTML = "Fravær";
-            nyBtnFravaer.style.backgroundColor = "red";
-            elevDiv.style.borderColor = "red";
+            elevDiv.className = "elevDiv red";
             eleverFravaer.push(elever[i]);
         }
-        nyBtnFravaer.onclick = fravaer;                                                     //Kjører funskjonen fravaer() når buttonen blir trykket
+        elevDiv.onclick = fravaer;                                                     //Kjører funskjonen fravaer() når buttonen blir trykket
 
         document.getElementById("elevListe").appendChild(elevDiv);                          //Legger til diven for eleven på nettsiden
         document.getElementById(elever[i]).appendChild(nyElevNavn);                         //Legger til navnet i den diven nettopp lagt til
-        document.getElementById(elever[i]).appendChild(nyBtnFravaer);                       //Legger til knappen også :)
+        // document.getElementById(elever[i]).appendChild(nyBtnFravaer);                       //Legger til knappen også :)
     }
     // kjører gjennom fraværende elever og sletter de fra elevlista
     for (const elev of eleverFravaer) {
@@ -64,24 +57,18 @@ function oppstart() {
 }
 
 function fravaer(event) {
-    let elevMedKode = event.target.id;                                                      //Finner id-en til den eleven som får registrert fravær
-    let elev = elevMedKode.replace("btnFravaer", "");                                       //Fjerner all fra id-en utenom navnet til eleven
+    let elev = event.target.id;                                                      //Finner id-en til den eleven som får registrert fravær
+    let farge = (event.target.className).replace("elevDiv ", "");
 
-    if (document.getElementById(elevMedKode).value === "green") {                            //Gjør diven rød og registrerer fravær hvis den er grønn
-        document.getElementById(elevMedKode).style.backgroundColor = "red";
-        document.getElementById(elev).style.borderColor = "red";
-        document.getElementById(elevMedKode).value = "red";
-        document.getElementById(elevMedKode).innerHTML = "Fravær";
+    if (farge === "green") {
+        document.getElementById(elev).className = "elevDiv red";
 
         let elevIndex = elever.indexOf(elev);                                               //Finner indexen til eleven registrert
         eleverFravaer.push(elever[elevIndex]);                                              //Legger til eleven i arrayet over de som får fravær
         elever.splice(elevIndex, 1);                                                        //Fjerner fra hovedlista
     }
     else {
-        document.getElementById(elevMedKode).style.backgroundColor = "green";               //Hvis den er rød, så gjør den diven grønn, slik at man kan rette opp i feil registrering
-        document.getElementById(elev).style.borderColor = "green";
-        document.getElementById(elevMedKode).value = "green";
-        document.getElementById(elevMedKode).innerHTML = "Tilstede";
+        document.getElementById(elev).className = "elevDiv green";
 
         let elevIndex = eleverFravaer.indexOf(elev);
         elever.push(eleverFravaer[elevIndex]);
