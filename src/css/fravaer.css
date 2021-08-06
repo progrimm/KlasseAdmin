@@ -9,6 +9,7 @@
     border-radius: 15px;
     width: 198px;
     word-wrap: break-word;
+    cursor: pointer;
 }
 
 p {

@@ -294,8 +294,7 @@ h3, h4 {
 
 #sventakk {
   font-weight: 500;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .card {

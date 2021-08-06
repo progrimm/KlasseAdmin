@@ -7,3 +7,7 @@
     color: var(--headerColor);
     font-weight: bold;
 }
+
+#bare_tilstedevaerende {
+    width: auto;
+}
