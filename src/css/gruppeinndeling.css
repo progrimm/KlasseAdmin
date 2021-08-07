@@ -11,3 +11,25 @@
 #bare_tilstedevaerende {
     width: auto;
 }
+
+#btnSubmit {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    font-size: 24px;
+}
+
+li {
+    padding-bottom: 15px;
+    transform: translateY(-100%);
+    transition: transform 1s, opacity 1.5s;
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0%);
+}

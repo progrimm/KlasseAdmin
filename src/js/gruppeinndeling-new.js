@@ -19,7 +19,8 @@ window.onload = () => {
 
     // Tilbakestiller siden ved endring av checkbox
     $("#bare_tilstedevaerende").onchange = () => {
-        $("#btnUserSubmit").style.display = "none";
+        $("#btnSubmit").style.display = "none";
+        $("#btnSubmit").classList.add("btn-disabled");
         $("#divAntall").innerHTML = "";
         $("#utskrift").innerHTML = "";
         $("#slcInndeling").value = "Velg inndeling";
@@ -41,14 +42,14 @@ function valgfelt() {
     }
 
     let typInndeling = $("#slcInndeling").value;
-    let btnAntall = $("#btnUserSubmit");
+    let btnUserSubmit = $("#btnSubmit");
     let divAntall = $("#divAntall");
 
     if (typInndeling === "gruppe") {
-        btnAntall.style.display = "initial";
+        btnUserSubmit.style.display ="initial";
         divAntall.innerHTML = "<p>Antall grupper: <select id='slcAntall'><option selected disabled>Velg antall grupper</option></select></p>"
     } else {
-        btnAntall.style.display = "initial";
+        btnUserSubmit.style.display ="initial";
         divAntall.innerHTML = "<p>Antall elever per gruppe: <select id='slcAntall'><option selected disabled>Velg antall elever</option></select></p>"
     }
 
@@ -63,12 +64,11 @@ function valgfelt() {
 }
 
 function enableBtn() {
-    $("#btnUserSubmit").disabled = false;
-    $("#btnUserSubmit").style.cursor = "pointer";
+    $("#btnSubmit").classList.remove("btn-disabled");
 
     let antallInndeling = $("#slcAntall").value;
     let typeInndeling = $("#slcInndeling").value;
-    $("#btnUserSubmit").onclick = () => {
+    $("#btnSubmit").onclick = () => {
         gruppeinndeling(antallInndeling, typeInndeling);
     }
 }
@@ -109,12 +109,6 @@ function gruppeinndeling(antall, type) {
                 j = 0;
             }
         }
-        // console.log(grupper.map(i => i.length));
-        // let sum = 0;
-        // grupper.forEach(x => {
-        //     sum += x.length;
-        // });
-        // console.log(sum);
     } else {
         if (~~(klasse.length / 2) < antallPerInndeling) {
             antallPerInndeling = ~~(klasse.length / 2);
@@ -159,23 +153,17 @@ function gruppeinndeling(antall, type) {
                 grupper.push(klasse);
             }
         }
-        // console.log(grupper.map(i => i.length));
-        // let sum = 0;
-        // grupper.forEach(x => {
-        //     sum += x.length;
-        // });
-        // console.log(sum);
     }
     utskrift(grupper);
 }
-
+// $("#gruppe" + (key + 1)).classList.add("show");
 function utskrift(grupper) {
     let utskriftGrupper = grupper;
     let utskriftArea = $("#utskrift");
     utskriftArea.innerHTML = "";
 
     utskriftGrupper.forEach((x, key) => {
-        utskriftArea.innerHTML += "<p id='gruppe" + (key + 1) + "'><span class='printaGrupper'>Gruppe " + (key + 1) + ":<span> </p>";
+        utskriftArea.innerHTML += "<li id='gruppe" + (key + 1) + "' class='gruppe'><span class='printaGrupper'>Gruppe " + (key + 1) + ":<span> </li>";
         x.forEach((y, last) => {
             if (x.length - 1 > last) {
                 $("#gruppe" + (key + 1)).innerHTML += y + ", ";
@@ -184,4 +172,18 @@ function utskrift(grupper) {
             }
         });
     });
+
+    let gruppe = document.getElementsByClassName("gruppe");
+    for (i = 0; i < gruppe.length; i++) {
+      let gruppeID = gruppe[i].id;
+      setTimeout(() => {
+          $("#" + gruppeID).classList.add("show");
+      }, 250*i);
+    }
+
+    // $("li").delay(500).each(function(i) {
+    //     $(this).delay(100 * i).queue(function() {
+    //       $(this).addClass("show");
+    //     })
+    // })
 }
