@@ -15,6 +15,8 @@ window.onload = oppstart;
 let eleverFravaer = [];                                                                     //Lagrer de som ikke har vært tilstede for seinere bruk
 
 function oppstart() {
+    includeHTML();
+
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
 
@@ -86,5 +88,7 @@ function eleverTilstede() {                                                     
         elever: elever
     }));
     aktiverAnimasjon("Fravær lagret");
-    window.location = 'klassebehandling.html'
+    setTimeout(() => {
+        window.location = 'klassebehandling.html'
+    }, 3200);
 }
