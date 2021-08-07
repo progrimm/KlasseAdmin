@@ -46,6 +46,17 @@ window.onscroll = () => {
     }
 }
 
+// Hvis zooming av kartet er på, skaler automatisk
+window.onresize = () => {
+    if (fullskjerm === true) {
+        let kartBredde = $("#tableKlassekart").offsetWidth;
+        let vinduBredde = window.innerWidth;
+        if (kartBredde >= vinduBredde) return // Ikke zoom hvis kartet allerede er større enn vinduet
+        let scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
+        $("#tableKlassekart").style.transform = `scale(${scaleTo})`;
+    }
+}
+
 window.onload = () => {
     includeHTML();
 
