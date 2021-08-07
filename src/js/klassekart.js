@@ -47,12 +47,11 @@ window.onscroll = () => {
 }
 
 // Hvis zooming av kartet er på, skaler automatisk
-window.onresize = () => {
+window.addEventListener("resize", () => {
     if (fullskjerm === true) {
         skalerKart();
     }
-
-}
+})
 
 window.onload = () => {
     includeHTML();
@@ -116,9 +115,13 @@ window.onload = () => {
 
 function aktiverSnuKlassekart() {
     $("#tableKlassekart").style.transform = "scaleY(0)";
+
     // Deaktiverer knappen og all trykking
     $('#btnSnuKlassekart').className = 'btn btn-disabled';
+
+    // Etter 750 ms, altså transitionstiden til klassekartet er skalert bort, snus kartet, før det blir skalert tilbake
     setTimeout(() => {
+        // Endrer på litt verdier i css
         if (snudd === true) {
             $("#tableKlassekart").style.paddingTop = "initial";
             $("#tableKlassekart").style.paddingBottom = "61px";
@@ -126,9 +129,11 @@ function aktiverSnuKlassekart() {
             $("#tableKlassekart").style.paddingTop = "61px";
             $("#tableKlassekart").style.paddingBottom = "initial";
         }
+
+        snuKlassekart();
+
         $("#tableKlassekart").style.transform = "";
         $('#btnSnuKlassekart').className = 'btn';
-        snuKlassekart();
     }, 750);
 }
 
@@ -151,7 +156,7 @@ function hentKlasse() {
     }
 }
 
-// Funksjon som lager det nye klassekartet
+// Funksjon som begynner produksjonen av det nye klassekartet
 function nyttKlassekart() {
     for (btn of [...$(".knapper")]) {
         btn.style.display = "flex"
@@ -346,7 +351,7 @@ function nyttKlassekartAnimasjon() {
     $("#tableKlassekart").style.zIndex = "678";
     $("#div_skygge").style.display = "block"; // Setter på mørk bakgrunn
 
-    let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises
+    let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises (ca.)
 
         let btn = btnsElever.slice(-1)[0]
         btn.style.backgroundColor = "var(--lightColor)";
@@ -514,6 +519,7 @@ function snuKlassekart() {
     snudd = !snudd; // Toggler snudd
 }
 
+// Setter i gang fullskjerm på klassekart
 function fullskjermKart() {
     let tableKlassekart = $("#tableKlassekart");
     if (fullskjerm === false) {
@@ -539,6 +545,7 @@ function fullskjermKart() {
     }
 }
 
+// Beregner hvor mye kartet skal skaleres
 function skalerKart() {
     let tableKlassekart = $("#tableKlassekart");
 
@@ -551,12 +558,12 @@ function skalerKart() {
 
     // Ikke zoom hvis kartet allerede er større enn vinduet
     if (kartBredde > kartHoyde) {
-        if (kartBredde >= vinduBredde) return;
-        scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
+        if (kartBredde >= vinduBredde) scaleTo = 1;
+        else scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
     }
     else {
-        if (kartHoyde >= vinduHoyde) return;
-        scaleTo = vinduHoyde / kartHoyde;
+        if (kartHoyde >= vinduHoyde) scaleTo = 1;
+        else scaleTo = vinduHoyde / kartHoyde;
     }
 
     if (scaleTo > 2.5) scaleTo = 2.5; // Ikke skaler mer enn 2.5 ganger så mye
