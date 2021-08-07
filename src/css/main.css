@@ -125,11 +125,6 @@ a {
   pointer-events: none;
 }
 
-.btn-disabled:hover {
-  background-color: #1D6BB3;
-  cursor: default;
-}
-
 hr {
   width: 100%;
 }
