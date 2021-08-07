@@ -1,0 +1,9 @@
+#operasjonsliste .card {
+    /* display: flex; */
+}
+
+#operasjonsliste .card .img{
+    float: left;
+    width: 70px;
+    padding-right: 20px;
+}
