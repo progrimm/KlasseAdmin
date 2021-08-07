@@ -75,13 +75,20 @@ window.onload = () => {
     }
 
     $("#btnNyttKlassekart").onclick = () => {
-        $("#warning_modal").style.display = "block";
-        $("#warning_header").innerHTML = "Er du sikker på at du vil lage nytt klassekart for " + valgtKlasse.klassekode + "?";
+        // $("#warning_modal").style.display = "block";
+        // $("#warning_header").innerHTML = "Er du sikker på at du vil lage nytt klassekart for " + valgtKlasse.klassekode + "?";
+        $("#warning-shade").style.display = "initial";
+        $("#modalStrukturKlassekart").style.display = "none";
+
     }
 
-    $("#warning_confirm").onclick = () => {
-        $("#warning_modal").style.display = "none";
+    $("#warning-confirm").onclick = () => {
+        $("#warning-shade").style.display = "none";
         nyttKlassekart();
+    }
+
+    $("#warning-deny").onclick = () => {
+        $("#warning-shade").style.display = "none";
     }
 
     $("#btnSnuKlassekart").onclick = aktiverSnuKlassekart;
