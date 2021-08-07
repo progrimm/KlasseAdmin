@@ -49,12 +49,9 @@ window.onscroll = () => {
 // Hvis zooming av kartet er på, skaler automatisk
 window.onresize = () => {
     if (fullskjerm === true) {
-        let kartBredde = $("#tableKlassekart").offsetWidth;
-        let vinduBredde = window.innerWidth;
-        if (kartBredde >= vinduBredde) return // Ikke zoom hvis kartet allerede er større enn vinduet
-        let scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
-        $("#tableKlassekart").style.transform = `scale(${scaleTo})`;
+        skalerKart();
     }
+
 }
 
 window.onload = () => {
@@ -520,11 +517,7 @@ function snuKlassekart() {
 function fullskjermKart() {
     let tableKlassekart = $("#tableKlassekart");
     if (fullskjerm === false) {
-        let kartBredde = tableKlassekart.offsetWidth;
-        let vinduBredde = window.innerWidth;
-        if (kartBredde >= vinduBredde) return // Ikke zoom hvis kartet allerede er større enn vinduet
-        let scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
-        tableKlassekart.style.transform = `scale(${scaleTo})`;
+        skalerKart();
 
         tableKlassekart.style.zIndex = "648";
         $("#div_skygge").style.display = "block";
@@ -544,6 +537,31 @@ function fullskjermKart() {
 
         fullskjerm = !fullskjerm;
     }
+}
+
+function skalerKart() {
+    let tableKlassekart = $("#tableKlassekart");
+
+    let kartBredde = tableKlassekart.offsetWidth;
+    let kartHoyde = tableKlassekart.offsetHeight;
+    let vinduBredde = window.innerWidth;
+    let vinduHoyde = window.innerHeight - 20;
+
+    let scaleTo;
+
+    // Ikke zoom hvis kartet allerede er større enn vinduet
+    if (kartBredde > kartHoyde) {
+        if (kartBredde >= vinduBredde) return;
+        scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
+    }
+    else {
+        if (kartHoyde >= vinduHoyde) return;
+        scaleTo = vinduHoyde / kartHoyde;
+    }
+
+    if (scaleTo > 2.5) scaleTo = 2.5; // Ikke skaler mer enn 2.5 ganger så mye
+
+    tableKlassekart.style.transform = `scale(${scaleTo})`;
 }
 
 
