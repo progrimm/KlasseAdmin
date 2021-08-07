@@ -509,16 +509,18 @@ function snuKlassekart() {
 function fullskjermKart() {
     let tableKlassekart = $("#tableKlassekart");
     if (fullskjerm === false) {
-        let scaleTo = 1.2 + klassekart.length * 0.005;
+        let kartBredde = tableKlassekart.offsetWidth;
+        let vinduBredde = window.innerWidth;
+        if (kartBredde >= vinduBredde) return // Ikke zoom hvis kartet allerede er større enn vinduet
+        let scaleTo = vinduBredde / kartBredde; // Forholdet mellom kart og vindu
         tableKlassekart.style.transform = `scale(${scaleTo})`;
-        tableKlassekart.style.zIndex = "69420";
+
+        tableKlassekart.style.zIndex = "648";
         $("#div_skygge").style.display = "block";
-        $("#btnFullskjermKart").style.transform = "rotate(180deg)";
+        $("#btnFullskjermKart").style.transform = "rotate(180deg)"; // Roter knappen
 
         document.body.style.pointerEvents = "none";
         $("#btnFullskjermKart").style.pointerEvents = "auto"; // Kan kun trykke på knappen
-
-        document.getElementsByTagName("TH")[0].style.color = "white";
 
         fullskjerm = !fullskjerm; // Toggler fullskjerm
     }
@@ -528,8 +530,6 @@ function fullskjermKart() {
         $("#btnFullskjermKart").style.transform = "none";
 
         document.body.style.pointerEvents = "auto";
-
-        document.getElementsByTagName("TH")[0].style.color = "var(--darkColor)";
 
         fullskjerm = !fullskjerm;
     }
