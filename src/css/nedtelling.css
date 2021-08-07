@@ -33,7 +33,7 @@ input {
 }
 
 #klokke {
-    margin-bottom: 16px;
+    margin: 20px 0px;
     background-color: white;
     border-radius: 69420px;
 }
