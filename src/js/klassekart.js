@@ -511,7 +511,7 @@ function fullskjermKart() {
     if (fullskjerm === false) {
         let scaleTo = 1.2 + klassekart.length * 0.005;
         tableKlassekart.style.transform = `scale(${scaleTo})`;
-        tableKlassekart.style.zIndex = "678";
+        tableKlassekart.style.zIndex = "69420";
         $("#div_skygge").style.display = "block";
         $("#btnFullskjermKart").style.transform = "rotate(180deg)";
 
