@@ -5,6 +5,7 @@ let antallKlikk = 0;
 let elev1ID;
 
 let snudd = false; // Om kartet er snudd eller ikke
+let fullskjerm = false // Om kartet er i fullskjerm eller ikke
 
 const { start } = require("repl"); // Husker ikke hva den gjør, men tørr ikke å fjerne den
 
@@ -110,6 +111,14 @@ function aktiverSnuKlassekart() {
     // Deaktiverer knappen og all trykking
     $('#btnSnuKlassekart').className = 'btn btn-disabled';
     setTimeout(() => {
+        let btnFSK = $("#btnFullskjermKart");
+        if (snudd === true) {
+            btnFSK.style.top = "5px";
+            btnFSK.style.bottom = "initial";
+        } else {
+            btnFSK.style.top = "initial";
+            btnFSK.style.bottom = "5px";
+        }
         $("#tableKlassekart").style.transform = "";
         $('#btnSnuKlassekart').className = 'btn';
         snuKlassekart();
@@ -179,7 +188,7 @@ function visKlassekart(nyGenerering) {
     rader = klasse["klassekart_oppsett"]["rader"];
     kolonner = klasse["klassekart_oppsett"]["kolonner"];
 
-    $("#tableKlassekart").innerHTML = ""; // Rensker tidligere kart
+    $("#tableKlassekart").innerHTML = `<img onclick='fullskjermKart()' draggable="false" src="multimedia/expand-arrows.svg" id="btnFullskjermKart"/>`; // Rensker tidligere kart
 
     let laererbord = lagLaererbord(); // Lager plassen til læreren
     $("#tableKlassekart").appendChild(laererbord);
@@ -318,7 +327,6 @@ function nyttKlassekartAnimasjon() {
     let scaleDt = 0.005;
 
     let btnsElever = [...document.querySelectorAll("button.elev")]; // Legger alle elevene i en array
-    let copyBtnsElever = [...btnsElever];
 
     for (btn of btnsElever) { // Gjør alle elevene gjennomsiktige og uttrykkbare
         btn.style.opacity = 0;
@@ -497,6 +505,31 @@ function snuKlassekart() {
     }
 
     snudd = !snudd; // Toggler snudd
+}
+
+function fullskjermKart() {
+    let tableKlassekart = $("#tableKlassekart");
+    if (fullskjerm === false) {
+        let scaleTo = 1.2 + klassekart.length * 0.005;
+        tableKlassekart.style.transform = `scale(${scaleTo})`;
+        tableKlassekart.style.zIndex = "678";
+        $("#div_skygge").style.display = "block";
+        $("#btnFullskjermKart").style.transform = "rotate(180deg)";
+
+        document.body.style.pointerEvents = "none";
+        $("#btnFullskjermKart").style.pointerEvents = "auto"; // Kan kun trykke på knappen
+
+        fullskjerm = !fullskjerm; // Toggler fullskjerm
+    }
+    else {
+        tableKlassekart.style.transform = "scale(1)";
+        $("#div_skygge").style.display = "none";
+        $("#btnFullskjermKart").style.transform = "none";
+
+        document.body.style.pointerEvents = "auto";
+
+        fullskjerm = !fullskjerm;
+    }
 }
 
 
