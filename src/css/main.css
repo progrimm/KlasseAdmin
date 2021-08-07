@@ -98,6 +98,7 @@ a {
   color: white;
   border: 1px solid rgba(0,0,0,.12);
   transition: 250ms;
+  user-select: none;
 }
 
 .btn:hover {

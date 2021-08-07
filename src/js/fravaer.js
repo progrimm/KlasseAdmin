@@ -32,6 +32,7 @@ function oppstart() {
         let nyElevNavn = document.createElement("p");
         nyElevNavn.innerHTML = elever[i];
         nyElevNavn.style.pointerEvents = "none";
+        nyElevNavn.style.userSelect = "none";
 
         if (elever_tilstede.includes(elever[i])) {   // hvis eleven er tilstedeværende
             elevDiv.className = "elevDiv green";
