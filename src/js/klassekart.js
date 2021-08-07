@@ -111,13 +111,12 @@ function aktiverSnuKlassekart() {
     // Deaktiverer knappen og all trykking
     $('#btnSnuKlassekart').className = 'btn btn-disabled';
     setTimeout(() => {
-        let btnFSK = $("#btnFullskjermKart");
         if (snudd === true) {
-            btnFSK.style.top = "5px";
-            btnFSK.style.bottom = "initial";
+            $("#tableKlassekart").style.paddingTop = "initial";
+            $("#tableKlassekart").style.paddingBottom = "61px";
         } else {
-            btnFSK.style.top = "initial";
-            btnFSK.style.bottom = "5px";
+            $("#tableKlassekart").style.paddingTop = "61px";
+            $("#tableKlassekart").style.paddingBottom = "initial";
         }
         $("#tableKlassekart").style.transform = "";
         $('#btnSnuKlassekart').className = 'btn';
@@ -519,6 +518,8 @@ function fullskjermKart() {
         document.body.style.pointerEvents = "none";
         $("#btnFullskjermKart").style.pointerEvents = "auto"; // Kan kun trykke på knappen
 
+        document.getElementsByTagName("TH")[0].style.color = "white";
+
         fullskjerm = !fullskjerm; // Toggler fullskjerm
     }
     else {
@@ -527,6 +528,8 @@ function fullskjermKart() {
         $("#btnFullskjermKart").style.transform = "none";
 
         document.body.style.pointerEvents = "auto";
+
+        document.getElementsByTagName("TH")[0].style.color = "var(--darkColor)";
 
         fullskjerm = !fullskjerm;
     }

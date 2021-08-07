@@ -8,6 +8,7 @@ body {
   transition-timing-function: ease-in-out;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-bottom: 61px;
 
   position: relative;
 }
@@ -43,6 +44,7 @@ td {
 th {
   border: 0;
   padding: 20px 0px;
+  transition: 0.5s;
 }
 
 .modalInputArea select{
@@ -69,4 +71,5 @@ th {
   right: 12px;
   width: 3%;
   transition: 0.25s;
+  cursor: pointer;
 }
