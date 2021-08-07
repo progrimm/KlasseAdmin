@@ -99,9 +99,9 @@
         </div>
     </div> -->
 
-    <div id="warning-shade">
-        <div id="warning-body" class="warning-body">
-            <div class="warning-surface">
+    <div id="warning-shade" class="shade">
+        <div id="warning-body" class="body">
+            <div class="surface">
                 <h2>Endre klassekart?</h2>
                 <div>Ved å lage et nytt klassekart, forsvinner det gamle. Dette kan ikke angres!</div>
                 <footer>
@@ -112,7 +112,19 @@
         </div>
     </div>
 
-    <!-- Modal for feilmelding -->
+    <div id="error-shade" class="shade">
+        <div id="error-body" class="body">
+            <div class="surface">
+                <h2>Oops!</h2>
+                <div>Klassekartet er for lite i forhold til antall elever. Juster innstillingene og prøv igjen!</div>
+                <footer>
+                    <p id="error-deny" class="btn btn-danger" onclick="document.getElementById('error-shade').style.display = 'none'">Lukk</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for feilmelding
     <div id='error_modal' class='modal'>
         <div class='modalContent modal-warning'>
             <div class='modalHeader'>
@@ -126,7 +138,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="back" onclick="window.location = 'klassebehandling.html'">
         <img draggable='false' src="multimedia/long-arrow-alt-left-solid.svg" alt="back">

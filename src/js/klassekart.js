@@ -191,8 +191,8 @@ function nyttKlassekart() {
 
     // Sjekker om strukturen oppgitt er gyldig
     if (rader * kolonner * perBord < elever.length) {
-        $("#warning_modal").style.display = "none";
-        $("#error_modal").style.display = "block";
+        $("#warning-shade").style.display = "none";
+        $("#error-shade").style.display = "initial";
         return
     }
 
