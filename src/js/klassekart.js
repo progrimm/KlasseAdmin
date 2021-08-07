@@ -145,6 +145,9 @@ function hentKlasse() {
         for (btn of [...$(".knapper")]) {
             btn.style.display = "none"
         };
+        for (element of [...$(".toHide")]) {
+            element.style.display = "none"
+        };
         $("#tableKlassekart").style.display = "none";
         $("#byttetips").style.display = "none";
         $("#btnVisModalStrukturNyttKart").style.display = "initial";
@@ -152,6 +155,10 @@ function hentKlasse() {
 
     // Viser klassekart om det finnes fra før
     else {
+        // Setter verdiene i select-elementene for struktur til det som eksisterende klassekart har
+        $("#inputEleverPerBord").value = klasse["klassekart_oppsett"]["per_bord"];
+        $("#inputAntallKolonner").value = klasse["klassekart_oppsett"]["kolonner"];
+        $("#inputAntallRader").value = klasse["klassekart_oppsett"]["rader"];
         visKlassekart();
     }
 }
@@ -160,6 +167,9 @@ function hentKlasse() {
 function nyttKlassekart() {
     for (btn of [...$(".knapper")]) {
         btn.style.display = "flex"
+    };
+    for (element of [...$(".toHide")]) {
+        element.style.display = "initial"
     };
     $("#tableKlassekart").style.display = "initial";
     $("#byttetips").style.display = "initial";
@@ -522,11 +532,12 @@ function snuKlassekart() {
 // Setter i gang fullskjerm på klassekart
 function fullskjermKart() {
     let tableKlassekart = $("#tableKlassekart");
+    let skygge = $("#div_skygge");
     if (fullskjerm === false) {
         skalerKart();
 
         tableKlassekart.style.zIndex = "648";
-        $("#div_skygge").style.display = "block";
+        skygge.style.display = "block";
         $("#btnFullskjermKart").style.transform = "rotate(180deg)"; // Roter knappen
 
         document.body.style.pointerEvents = "none";
@@ -536,7 +547,7 @@ function fullskjermKart() {
     }
     else {
         tableKlassekart.style.transform = "scale(1)";
-        $("#div_skygge").style.display = "none";
+        skygge.style.display = "none";
         $("#btnFullskjermKart").style.transform = "none";
 
         document.body.style.pointerEvents = "auto";
