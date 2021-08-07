@@ -34,6 +34,8 @@ input {
 
 #klokke {
     margin-bottom: 16px;
+    background-color: white;
+    border-radius: 69420px;
 }
 
 #null {
