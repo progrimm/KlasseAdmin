@@ -3,3 +3,7 @@
     width: 70px;
     padding-right: 20px;
 }
+
+#operasjonsliste .card .img img {
+    max-height: 55px;
+}
