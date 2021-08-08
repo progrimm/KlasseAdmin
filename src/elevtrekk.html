@@ -19,9 +19,25 @@
         </div>
 
         <div id='innstillinger'>
-            <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'>Trekk bare tilstedeværende elever</label>
-            <label><input type='checkbox' id ='uten_tilbakelegging'>Ta trukkede elever ut av bunken</label>
+            <!-- <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'>Trekk bare tilstedeværende elever</label> -->
+            <p>
+                Trekk bare tilstedeværende elever
+                <label class="switch">
+                    <input type="checkbox" id='bare_tilstedevaerende' checked>
+                    <span class="slider round"></span>
+                </label>
+            </p>
+            <!-- <label><input type='checkbox' id ='uten_tilbakelegging'>Ta trukkede elever ut av bunken</label> -->
+            <p>
+                Ta trukkede elever ut av bunken
+                <label class="switch">
+                    <input type="checkbox" id='uten_tilbakelegging'>
+                    <span class="slider round"></span>
+                </label>
+            </p>
         </div>
+
+
         
         <div class='row' id='inputrad'>
             <div class='row' id='input'>
