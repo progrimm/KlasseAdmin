@@ -235,9 +235,9 @@ function nyttKlassekart() {
     
     $("#modalStrukturKlassekart").style.display = "none"; // Skjuler modalen
     
+    fjern_advarsel_utdatert();
     visKlassekart(true);  // Viser/lager det nye klassekartet ved default oppsett (derav nyGenerering = true)
     lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med ".")
-    fjern_advarsel_utdatert();
 }
 
 // Viser klassekartet i form av en tabell med knapper
