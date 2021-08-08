@@ -94,21 +94,12 @@ function oppdaterData() {
 
 function slett_advarsel(klassekode) {
     $("#warning-shade").style.display = "initial";
+    $("#h2-msg").innerHTML = "Slette " + klassekode + "?";
+    $("#warning-msg").innerHTML = "Denne handlingen kan ikke angres.";
     $("#warning-confirm").onclick = () => {
         slettKlasse(klassekode);
     }   
 }
-
-// function rediger_advarsel(klassekode) {
-//     $("#warning_modal").style.display = "block";
-//     $("#warning_header").innerHTML = "Er du sikker på at du vil endre " + klassekode + '?';
-//     $('#warning_confirm').innerHTML = 'Lagre';
-//     $('#warning_confirm').className = 'btn btn-success';
-//     $('#warning_confirm').onclick = () => {
-//         $("#warning_modal").style.display = "none";
-//         lagreKlasse();
-//     }
-// }
 
 // Sletter klassa fra objektet data
 function slettKlasse(klassekode) {
@@ -205,8 +196,8 @@ function lagreKlasse() {
     // Sjekker om klassa finnes fra før
     for (klassekode in data) {
         if (klassekode === nyKlassekode) {
-            $("#error_modal_melding").innerHTML = "Oppgitt klassekode finnes fra før. Prøv igjen."
-            $("#error_modal").style.display = "block";
+            $("#error-msg").innerHTML = "Oppgitt klassekode finnes fra før. Prøv igjen."
+            $("#error-shade").style.display = "initial";
             return;
         }
     }
