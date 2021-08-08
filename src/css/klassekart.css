@@ -49,6 +49,7 @@ th {
   text-align: center;
   margin: 10px 0px;
   font-size: 20px;
+  background-color: var(--backgroundColor);
 }
 
 .modalInputArea select{
