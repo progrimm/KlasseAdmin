@@ -206,26 +206,25 @@ function nyttKlassekart() {
         element.style.display = "initial"
     };
 
-    fjern_advarsel_utdatert();
-
+    
     $("#tableKlassekart").style.display = "initial";
     $("#byttetips").style.display = "initial";
     $("#btnVisModalStrukturNyttKart").style.display = "none";
-
+    
     // Henter strukturen klassekartet skal genereres på fra input-felt
     perBord = parseInt($("#inputEleverPerBord").value);
     rader = parseInt($("#inputAntallRader").value);
     kolonner = parseInt($("#inputAntallKolonner").value);
-
+    
     elever = elever.filter(navn => navn !== "."); // Fjerner de tomme plassene, slik at bare navnene gjenstår
-
+    
     // Sjekker om strukturen oppgitt er gyldig
     if (rader * kolonner * perBord < elever.length) {
         $("#warning-shade").style.display = "none";
         $("#error-shade").style.display = "initial";
         return
     }
-
+    
     elever = stokkElever(elever);  // Stokker elevene tilfeldig til klassekartet
     // Endrer data 
     klasse["klassekart"] = elever;
@@ -233,11 +232,12 @@ function nyttKlassekart() {
     klasse["klassekart_oppsett"]["per_bord"] = perBord + "";
     klasse["klassekart_oppsett"]["rader"] = rader + "";
     klasse["klassekart_oppsett"]["kolonner"] = kolonner + "";
-
+    
     $("#modalStrukturKlassekart").style.display = "none"; // Skjuler modalen
-
+    
     visKlassekart(true);  // Viser/lager det nye klassekartet ved default oppsett (derav nyGenerering = true)
     lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med ".")
+    fjern_advarsel_utdatert();
 }
 
 // Viser klassekartet i form av en tabell med knapper
