@@ -94,7 +94,8 @@ function oppdaterData() {
 
 function slett_advarsel(klassekode) {
     $("#warning-shade").style.display = "initial";
-    $("#warning-msg").innerHTML = "Ved å slette " + klassekode + " forsvinner den for alltid. Dette kan ikke angres!"
+    $("#h2-msg").innerHTML = "Slette " + klassekode + "?";
+    $("#warning-msg").innerHTML = "Denne handlingen kan ikke angres.";
     $("#warning-confirm").onclick = () => {
         slettKlasse(klassekode);
     }   
