@@ -196,8 +196,8 @@ function lagreKlasse() {
     // Sjekker om klassa finnes fra før
     for (klassekode in data) {
         if (klassekode === nyKlassekode) {
-            $("#error_modal_melding").innerHTML = "Oppgitt klassekode finnes fra før. Prøv igjen."
-            $("#error_modal").style.display = "block";
+            $("#error-msg").innerHTML = "Oppgitt klassekode finnes fra før. Prøv igjen."
+            $("#error-shade").style.display = "initial";
             return;
         }
     }
