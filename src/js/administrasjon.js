@@ -102,16 +102,16 @@ function slett_advarsel(klassekode) {
     }
 }
 
-function rediger_advarsel(klassekode) {
-    $("#warning_modal").style.display = "block";
-    $("#warning_header").innerHTML = "Er du sikker på at du vil endre " + klassekode + '?';
-    $('#warning_confirm').innerHTML = 'Lagre';
-    $('#warning_confirm').className = 'btn btn-success';
-    $('#warning_confirm').onclick = () => {
-        $("#warning_modal").style.display = "none";
-        lagreKlasse();
-    }
-}
+// function rediger_advarsel(klassekode) {
+//     $("#warning_modal").style.display = "block";
+//     $("#warning_header").innerHTML = "Er du sikker på at du vil endre " + klassekode + '?';
+//     $('#warning_confirm').innerHTML = 'Lagre';
+//     $('#warning_confirm').className = 'btn btn-success';
+//     $('#warning_confirm').onclick = () => {
+//         $("#warning_modal").style.display = "none";
+//         lagreKlasse();
+//     }
+// }
 
 // Sletter klassa fra objektet data
 function slettKlasse(klassekode) {
@@ -133,7 +133,7 @@ function leggTilKlasse() {
     $("#inpElever").value = "";
 
     $("#inpKlassekode").placeholder = "Eks.: 2MATR";
-    $("#inpElever").placeholder = "Skill elevene med komma. Eks.: 'Åmund,Jon,Erik,Kjell'";
+    $("#inpElever").placeholder = "Skill elevene med komma. Eks.: 'Åmund, Jon, Erik, Kjell'";
     valgtKlasse = "";  // fjerner valgt klasse
 }
 
@@ -141,9 +141,7 @@ function redigerKlasse(klassekode) {
     $("#wholeModal").style.display = "block";
     $("#modalHeaderText").innerHTML = "Rediger - " + klassekode;
     $("#btnLagreKlasse").innerHTML = "Lagre";
-    $("#btnLagreKlasse").onclick = () => {
-        rediger_advarsel(klassekode);
-    }
+    $("#btnLagreKlasse").onclick = lagreKlasse;
 
     $("#inpKlassekode").value = klassekode;
     let elever = data[klassekode]["elever"];

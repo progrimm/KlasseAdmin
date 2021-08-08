@@ -84,7 +84,7 @@ function tilbakestill() {
     bunke.style.backgroundColor = 'var(--headerColor)';
     bunke.style.borderStyle = 'solid';
     bunke.style.color = 'white';
-    bunke.style.fontSize = '48px';
+    bunke.style.fontSize = '60px';
     bunke.style.zIndex = '100';
     // trekker inn eventuelle elever
     trekk_inn(bunke.offsetLeft, bunke.offsetTop, false);
