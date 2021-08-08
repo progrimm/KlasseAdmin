@@ -164,12 +164,12 @@ function lagreKlasse() {
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
     if (!nyKlassekode) {    // hvis klassekode ikke er skrevet inn eller bare er mellomrom
-        $("#error_modal_melding").innerHTML = "Vennligst oppgi en klassekode. Prøv igjen.";
-        $("#error_modal").style.display = "block";
+        $("#error-msg").innerHTML = "Vennligst oppgi en klassekode.";
+        $("#error-shade").style.display = "initial";
         return;
     } else if (!nyeElever[0]) {
-        $("#error_modal_melding").innerHTML = "Vennligst legg til elever. Prøv igjen.";
-        $("#error_modal").style.display = "block";
+        $("#error-msg").innerHTML = "Vennligst legg til elever.";
+        $("#error-shade").style.display = "initial";
         return;
     }
     // sjekker om det er elever som heter det samme
@@ -177,8 +177,8 @@ function lagreKlasse() {
         let liste_uten_elev_nr_i = nyeElever.slice();
         liste_uten_elev_nr_i.splice(i, 1);
         if (liste_uten_elev_nr_i.includes(nyeElever[i])) {
-            $("#error_modal_melding").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
-            $("#error_modal").style.display = "block";
+            $("#error-msg").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
+            $("#error-shade").style.display = "initial";
             return;
         }
     }

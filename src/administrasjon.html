@@ -58,20 +58,6 @@
         </div>
     </div>
 
-    <!-- <div id='warning_modal' class='modal'>
-        <div class='modalContent modal-warning'>
-            <div class='modalHeader'>
-                <span class='modalClose'
-                    onClick='document.getElementById(`warning_modal`).style.display = `none`'>&times;</span>
-                <h2 id='warning_header'></h2>
-            </div>
-            <div class='modalBody row'>
-                <p>Denne handlingen kan ikke angres.</p>
-                <p id="warning_confirm" class="btn btn-success"></p>
-            </div>
-        </div>
-    </div> -->
-
     <div id="warning-shade" class="shade">
         <div id="warning-body" class="body">
             <div class="surface">
@@ -85,18 +71,14 @@
         </div>
     </div>
 
-    <!-- Modal for feilmelding -->
-    <div id='error_modal' class='modal'>
-        <div class='modalContent modal-warning'>
-            <div class='modalHeader'>
-                <span class='modalClose'
-                    onClick='document.getElementById(`error_modal`).style.display = `none`'>&times;</span>
+    <div id="error-shade" class="shade">
+        <div id="error-body" class="body">
+            <div class="surface">
                 <h2>Oops!</h2>
-            </div>
-            <div class='modalBody row'>
-                <p id="error_modal_melding">Oppgitt klassekode finnes fra før. Prøv igjen!</p>
-                <p class="btn btn-danger" onClick='document.getElementById(`error_modal`).style.display = `none`'>Lukk
-                </p>
+                <div id="error-msg"></div>
+                <footer>
+                    <p id="error-deny" class="btn btn-danger" onclick="document.getElementById('error-shade').style.display = 'none'">Lukk</p>
+                </footer>
             </div>
         </div>
     </div>
