@@ -186,19 +186,21 @@ function lagreKlasse() {
         }
     }
 
-    // klassekart til den nye klassa
+    // klassekart til den nye klassa + utdatert kart status
     let klassekart = [];
     let klassekart_oppsett = {
         per_bord: 0,
         rader: 0,
         kolonner: 0
     };
+    let utdatert_kart = false;
 
     let melding_fullfort_endring = `${nyKlassekode} lagt til`
 
     if (valgtKlasse !== "") {   // hvis klassen redigeres
         klassekart = data[valgtKlasse].klassekart;   // tar vare på klassekartet
         klassekart_oppsett = data[valgtKlasse].klassekart_oppsett;
+        utdatert_kart = true;
         delete data[valgtKlasse];   // fjerner klasse, for så å legge til igjen med oppdatert data
         melding_fullfort_endring = `${nyKlassekode} er lagret`;
     }
@@ -217,7 +219,8 @@ function lagreKlasse() {
         [nyKlassekode]: {
             elever: nyeElever,
             klassekart: klassekart,
-            klassekart_oppsett: klassekart_oppsett
+            klassekart_oppsett: klassekart_oppsett,
+            utdatert_kart: utdatert_kart
         }
     };
 
