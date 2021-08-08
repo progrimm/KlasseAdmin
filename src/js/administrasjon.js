@@ -18,12 +18,12 @@ window.onload = () => {
         if (evt.target == $("#wholeModal")) {
             $("#wholeModal").style.display = "none";
         }
-        else if (evt.target == $("#warning_modal")) {
-            $("#warning_modal").style.display = "none";
-        }
-        else if (evt.target == $("#error_modal")) {
-            $("#error_modal").style.display = "none";
-        }
+        // else if (evt.target == $("#warning_modal")) {
+        //     $("#warning_modal").style.display = "none";
+        // }
+        // else if (evt.target == $("#error_modal")) {
+        //     $("#error_modal").style.display = "none";
+        // }
     }
     // gjør at man ikke kan trykke tilbake med nettleser-navigering
     history.pushState(null, null, document.URL);
@@ -93,13 +93,10 @@ function oppdaterData() {
 }
 
 function slett_advarsel(klassekode) {
-    $("#warning_modal").style.display = "block";
-    $("#warning_header").innerHTML = "Er du sikker på at du vil slette " + klassekode + '?';
-    $('#warning_confirm').innerHTML = 'Slett';
-    $('#warning_confirm').className = 'btn btn-danger';
-    $('#warning_confirm').onclick = () => {
+    $("#warning-shade").style.display = "initial";
+    $("#warning-confirm").onclick = () => {
         slettKlasse(klassekode);
-    }
+    }   
 }
 
 // function rediger_advarsel(klassekode) {
@@ -116,7 +113,7 @@ function slett_advarsel(klassekode) {
 // Sletter klassa fra objektet data
 function slettKlasse(klassekode) {
     delete data[klassekode];
-    $("#warning_modal").style.display = "none";
+    $("#warning-shade").style.display = "none";
     $("#wholeModal").style.display = "none";
     oppdaterData();
     oppdaterTabell();
@@ -167,12 +164,12 @@ function lagreKlasse() {
     nyeElever = tekstbehandling(nyeElever); // Formaterer input-tekst, returnerer array
 
     if (!nyKlassekode) {    // hvis klassekode ikke er skrevet inn eller bare er mellomrom
-        $("#error_modal_melding").innerHTML = "Vennligst oppgi en klassekode. Prøv igjen.";
-        $("#error_modal").style.display = "block";
+        $("#error-msg").innerHTML = "Vennligst oppgi en klassekode.";
+        $("#error-shade").style.display = "initial";
         return;
     } else if (!nyeElever[0]) {
-        $("#error_modal_melding").innerHTML = "Vennligst legg til elever. Prøv igjen.";
-        $("#error_modal").style.display = "block";
+        $("#error-msg").innerHTML = "Vennligst legg til elever.";
+        $("#error-shade").style.display = "initial";
         return;
     }
     // sjekker om det er elever som heter det samme
@@ -180,8 +177,8 @@ function lagreKlasse() {
         let liste_uten_elev_nr_i = nyeElever.slice();
         liste_uten_elev_nr_i.splice(i, 1);
         if (liste_uten_elev_nr_i.includes(nyeElever[i])) {
-            $("#error_modal_melding").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
-            $("#error_modal").style.display = "block";
+            $("#error-msg").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
+            $("#error-shade").style.display = "initial";
             return;
         }
     }
