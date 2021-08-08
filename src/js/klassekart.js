@@ -98,6 +98,7 @@ window.onload = () => {
 
     $("#warning-deny").onclick = () => {
         $("#warning-shade").style.display = "none";
+        $("#modalStrukturKlassekart").style.display = "block";
     }
 
     $("#btnSnuKlassekart").onclick = aktiverSnuKlassekart;
@@ -109,9 +110,11 @@ window.onload = () => {
         }
         else if (evt.target == $("#warning_modal")) {
             $("#warning_modal").style.display = "none";
+            $("#modalStrukturKlassekart").style.display = "block";
         }
         else if (evt.target == $("#error_modal")) {
             $("#error_modal").style.display = "none";
+            $("#modalStrukturKlassekart").style.display = "block";
         }
     }
 
@@ -615,5 +618,7 @@ function skalerKart() {
     tableKlassekart.style.transform = `scale(${scaleTo})`;
 }
 
-
-
+function lukkError() {
+    document.getElementById('error-shade').style.display = 'none';
+    document.getElementById('modalStrukturKlassekart').style.display = 'block';
+}
