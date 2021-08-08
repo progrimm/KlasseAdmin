@@ -94,21 +94,11 @@ function oppdaterData() {
 
 function slett_advarsel(klassekode) {
     $("#warning-shade").style.display = "initial";
+    $("#warning-msg").innerHTML = "Ved å slette " + klassekode + " forsvinner den for alltid. Dette kan ikke angres!"
     $("#warning-confirm").onclick = () => {
         slettKlasse(klassekode);
     }   
 }
-
-// function rediger_advarsel(klassekode) {
-//     $("#warning_modal").style.display = "block";
-//     $("#warning_header").innerHTML = "Er du sikker på at du vil endre " + klassekode + '?';
-//     $('#warning_confirm').innerHTML = 'Lagre';
-//     $('#warning_confirm').className = 'btn btn-success';
-//     $('#warning_confirm').onclick = () => {
-//         $("#warning_modal").style.display = "none";
-//         lagreKlasse();
-//     }
-// }
 
 // Sletter klassa fra objektet data
 function slettKlasse(klassekode) {
