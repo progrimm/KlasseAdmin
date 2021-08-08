@@ -610,10 +610,10 @@ th, td {
 /* The switch - the box around the slider */
 .switch {
   position: relative;
-  display: inline-block;
   width: 47px;
   height: 20px;
   margin-left: 10px;
+  float: right;
 }
 
 /* Hide default HTML checkbox */
