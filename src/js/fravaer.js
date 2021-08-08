@@ -85,10 +85,10 @@ function eleverTilstede() {                                                     
         klassekode: valgtKlasse.klassekode,
         elever: elever
     }));
-    aktiverAnimasjon("Fravær lagret", 3000);
+    aktiverAnimasjon("Fravær lagret",3100);
     setTimeout(() => {
         document.body.onclick = () => {
             window.location = 'klassebehandling.html';
         }
-    }, 100);
+    }, 200);
 }
