@@ -18,6 +18,7 @@ const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter
 let klasse = data[valgtKlasse.klassekode]; // Henter objektet fra data
 let elever = klasse["elever"]; // Henter elevene
 let klassekart = klasse["klassekart"]; // Henter klassekartet
+let utdatert_kart = klasse["utdatert_kart"];
 
 document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode + " - Klassekart";
 
@@ -60,6 +61,11 @@ window.onload = () => {
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
 
     hentKlasse();
+
+    // Ikke vis NB om kart ikke er utdatert
+    if (utdatert_kart === false) {
+        $("#advarsel_utdatert").style.display = "none";
+    }
 
     // Vise modal
     $("#btnVisModalStruktur").onclick = () => {
@@ -123,6 +129,12 @@ window.onload = () => {
     });
 }
 
+function fjern_advarsel_utdatert() {
+    $("#advarsel_utdatert").style.display = "none";
+    klasse["utdatert_kart"] = false; // Midlertidig endring av data (venter på direkte endring gjennom egen funksjon). For funksjonen nyttKlassekart.
+    store.set(`data_klasser.${valgtKlasse.klassekode}.utdatert_kart`, false); // Direkte endring
+}
+
 function aktiverSnuKlassekart() {
     $("#tableKlassekart").style.transform = "scaleY(0)";
 
@@ -160,7 +172,7 @@ function hentKlasse() {
         };
         $("#tableKlassekart").style.display = "none";
         $("#byttetips").style.display = "none";
-        $("#btnVisModalStrukturNyttKart").style.display = "initial";
+        $("#btnVisModalStrukturNyttKart").style.display = "initial"; // Viser kun egen knapp for første klassekartet
     }
 
     // Viser klassekart om det finnes fra før
@@ -175,6 +187,7 @@ function hentKlasse() {
 
 // Funksjon som begynner produksjonen av det nye klassekartet
 function nyttKlassekart() {
+
     // Snur kartet tilbake til default før animasjon (unngå tukling med lagringa)
     if (snudd === true) {
         snuKlassekart();
@@ -216,6 +229,8 @@ function nyttKlassekart() {
     klasse["klassekart_oppsett"]["kolonner"] = kolonner + "";
 
     $("#modalStrukturKlassekart").style.display = "none"; // Skjuler modalen
+
+    fjern_advarsel_utdatert();
     visKlassekart(true);  // Viser/lager det nye klassekartet ved default oppsett (derav nyGenerering = true)
     lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med ".")
 }
