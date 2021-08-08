@@ -36,6 +36,7 @@ input {
     margin: 20px 0px;
     background-color: white;
     border-radius: 69420px;
+    border: 2px solid var(--headerColor);
 }
 
 #null {
