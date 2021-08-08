@@ -21,8 +21,6 @@ Hensikten er at læreren skal ha et nytt og moderne verktøy som kan utføre han
   - Legge til klasse
   - Redigere klasse
   - Slette klasse
-- Innstillinger
-  - Endre fargetema (dark/light)
 - Avslutt programmet
 - Info-modal
 
