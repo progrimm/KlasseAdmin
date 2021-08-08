@@ -19,7 +19,8 @@ function oppstart() {
 
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-
+    
+    $('#fravaerBtn').onclick = eleverTilstede;
     document.getElementById("elevListe").innerHTML = "";    // sletter alt i hoveddiven
     eleverFravaer = [];     // tømmer lista med fraværende elever
 
@@ -79,17 +80,15 @@ function fravaer(event) {
     }
 }
 
-function eleverTilstede() {                                                                 //En test, slik at man får sett resultatet i console.log. !KUN FOR TEST, IKKE FOR FERDIG PROGRAM!
-    console.log("Elever som er tilstede: " + elever);
-    console.log("Fravær: " + eleverFravaer);
-    console.log("----------------------------");
-
+function eleverTilstede() {                                                             // lagrer fravær
     sessionStorage.setItem("valgtKlasse", JSON.stringify({
         klassekode: valgtKlasse.klassekode,
         elever: elever
     }));
-    aktiverAnimasjon("Fravær lagret");
+    aktiverAnimasjon("Fravær lagret", 3000);
     setTimeout(() => {
-        window.location = 'klassebehandling.html'
-    }, 3200);
+        document.body.onclick = () => {
+            window.location = 'klassebehandling.html';
+        }
+    }, 100);
 }

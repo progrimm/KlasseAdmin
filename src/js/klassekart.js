@@ -370,7 +370,7 @@ function nyttKlassekartAnimasjon() {
 
     let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises (ca.)
 
-        let btn = btnsElever.slice(-1)[0]
+        let btn = btnsElever.slice(-1)[0];
         btn.style.backgroundColor = "var(--lightColor)";
         btn.style.opacity = 1;
         btnsElever.pop();

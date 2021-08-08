@@ -39,7 +39,7 @@ function includeHTML() {
 }
 
 // råtøff animasjon ved endring
-function aktiverAnimasjon(tekst) { // tekst = melding under checkmark
+function aktiverAnimasjon(tekst, timeout=3500) { // tekst = melding under checkmark
 	// Checkmark
 	$("#div_fullfort_endring").style.display = "flex";
 	$("#melding_fullfort_endring").innerHTML = tekst;
@@ -49,12 +49,18 @@ function aktiverAnimasjon(tekst) { // tekst = melding under checkmark
 	$("#div_skygge").style.display = "block";
 	$("#div_skygge").classList.add("class_animasjon_skygge");
 
-	// Fjerner det
 	setTimeout(() => {
-		$("#div_fullfort_endring").style.display = "none";
-		$("#div_skygge").style.display = "none";
-		$("#div_skygge").classList.remove("class_animasjon_skygge");
-	}, 3500);
+		document.body.onclick = () => {	// fjerner animasjon hvis bruker klikker på skjermen
+			$("#div_fullfort_endring").style.display = "none";
+			$("#div_skygge").style.display = "none";
+			$("#div_skygge").classList.remove("class_animasjon_skygge");
+			document.body.onclick = '';
+			document.body.classList.remove('pointer');
+		}
+	}, 100);
+	// Fjerner det uansett etter 3,5 sek
+	setTimeout(() => { document.body.click(); }, timeout);
 
 	document.body.style.pointerEvents = "auto";
+	document.body.classList.add('pointer');
 }
