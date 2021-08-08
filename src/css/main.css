@@ -598,6 +598,10 @@ th, td {
   border-top: 1px solid transparent;
 }
 
+.body .surface footer p {
+  margin: 8px;
+}
+
 .pointer:hover {
   cursor: pointer;
 }
