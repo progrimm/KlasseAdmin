@@ -57,7 +57,7 @@ function aktiverAnimasjon(tekst, timeout=3500) { // tekst = melding under checkm
 			document.body.onclick = '';
 			document.body.classList.remove('pointer');
 		}
-	}, 100);
+	}, 200);
 	// Fjerner det uansett etter 3,5 sek
 	setTimeout(() => { document.body.click(); }, timeout);
 

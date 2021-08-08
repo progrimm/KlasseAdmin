@@ -4,8 +4,7 @@ body {
 
 #tableKlassekart {
   display: block;
-  transition: 0.3s;
-  transition-timing-function: ease-in-out;
+  transition: 0.3s ease-in-out;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 61px;

@@ -75,11 +75,14 @@ window.onload = () => {
     }
 
     $("#btnNyttKlassekart").onclick = () => {
-        // $("#warning_modal").style.display = "block";
-        // $("#warning_header").innerHTML = "Er du sikker på at du vil lage nytt klassekart for " + valgtKlasse.klassekode + "?";
-        $("#warning-shade").style.display = "initial";
-        $("#modalStrukturKlassekart").style.display = "none";
-
+        // Viser kun modal om det finnes fra før
+        if (klassekart.length === 0) {
+            nyttKlassekart();
+        }
+        else {
+            $("#warning-shade").style.display = "initial";
+            $("#modalStrukturKlassekart").style.display = "none";
+        }
     }
 
     $("#warning-confirm").onclick = () => {
@@ -172,6 +175,14 @@ function hentKlasse() {
 
 // Funksjon som begynner produksjonen av det nye klassekartet
 function nyttKlassekart() {
+    // Snur kartet tilbake til default før animasjon (unngå tukling med lagringa)
+    if (snudd === true) {
+        snuKlassekart();
+        $("#tableKlassekart").style.transition = "0s"; // Skrur av animasjon
+        $("#tableKlassekart").style.paddingTop = "initial";
+        $("#tableKlassekart").style.paddingBottom = "61px";
+        setTimeout(() => { $("#tableKlassekart").style.transition = "0.3s ease-in-out"; }, 1); // Skrur på igjen animasjon
+    }
     for (btn of [...$(".knapper")]) {
         btn.style.display = "flex"
     };
