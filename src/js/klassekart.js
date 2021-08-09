@@ -430,6 +430,9 @@ function nyttKlassekartAnimasjon() {
                 $("#tableKlassekart").style.zIndex = "0";
             }, 2700 - removeDelay);
             setTimeout(() => {
+                // Må resette verdier for å unngå glitch
+                elev1ID = "";
+                antallKlikk = 0;
                 aktiverAnimasjon(`Nytt klassekart for ${valgtKlasse.klassekode}`);
                 $("#btnFullskjermKart").style.pointerEvents = "auto";
             }, 3000 - removeDelay);
@@ -439,17 +442,18 @@ function nyttKlassekartAnimasjon() {
         }
     }, 300 - klassekart.length * 5);
 
-    // Avslutt animasjon ved trykk (tilgjengelig etter 1 sekund)
+    // Avslutt animasjon ved trykk (tilgjengelig etter 0.5 sekund)
     setTimeout(() => {
-        document.body.onclick = () => {
+        document.body.onclick = (event) => {
             removeDelay = 2300;
             stopp = true;
             visKlassekart();
             $("#btnFullskjermKart").style.pointerEvents = "none";
             document.body.classList.add('pointer');
             $("#meldingHoppOver").style.display = "none";
+            event.preventDefault()
         }
-    }, 750);
+    }, 500);
 }
 
 function plasserElev(rad, kolonne, nr, id) {
