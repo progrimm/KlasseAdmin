@@ -398,16 +398,16 @@ function nyttKlassekartAnimasjon() {
     for (btn of btnsElever) { // Gjør alle elevene gjennomsiktige og uttrykkbare
         btn.style.opacity = 0;
         btn.style.backgroundColor = "var(--linkColor)";
-        btn.style.pointerEvents = "none";
+        // btn.style.pointerEvents = "none";
     }
+    document.body.style.pointerEvents = "none";
 
-
-    $("#btnFullskjermKart").style.pointerEvents = "none";
+    // $("#btnFullskjermKart").style.pointerEvents = "none";
     $("#tableKlassekart").style.zIndex = "666";
     $("#div_skygge").style.display = "block"; // Setter på mørk bakgrunn
 
-    document.body.classList.add('pointer');
-    $("#meldingHoppOver").style.display = "initial";
+    // document.body.classList.add('pointer');
+    // $("#meldingHoppOver").style.display = "initial";
 
     let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises (ca.)
 
@@ -420,7 +420,9 @@ function nyttKlassekartAnimasjon() {
         scaleValue += scaleDt;
 
         if (btnsElever.length === 0 || stopp === true) {
-            $("#meldingHoppOver").style.display = "none";
+
+            // $("#meldingHoppOver").style.display = "none";
+
             // Animasjonen, kan gjøres om til css animasjon
             setTimeout(() => {
                 $("#tableKlassekart").style.transform = `scale(${scaleValue + 0.2})`;
@@ -434,7 +436,7 @@ function nyttKlassekartAnimasjon() {
                 elev1ID = "";
                 antallKlikk = 0;
                 aktiverAnimasjon(`Nytt klassekart for ${valgtKlasse.klassekode}`);
-                $("#btnFullskjermKart").style.pointerEvents = "auto";
+                // $("#btnFullskjermKart").style.pointerEvents = "auto";
             }, 3000 - removeDelay);
 
             clearInterval(iLoveErikAndJon); // stopper animasjonen
@@ -443,17 +445,17 @@ function nyttKlassekartAnimasjon() {
     }, 300 - klassekart.length * 5);
 
     // Avslutt animasjon ved trykk (tilgjengelig etter 0.5 sekund)
-    setTimeout(() => {
-        document.body.onclick = (event) => {
-            removeDelay = 2300;
-            stopp = true;
-            visKlassekart();
-            $("#btnFullskjermKart").style.pointerEvents = "none";
-            document.body.classList.add('pointer');
-            $("#meldingHoppOver").style.display = "none";
-            event.preventDefault()
-        }
-    }, 500);
+    // setTimeout(() => {
+    //     document.body.onclick = (event) => {
+    //         removeDelay = 2300;
+    //         stopp = true;
+    //         visKlassekart();
+    //         $("#btnFullskjermKart").style.pointerEvents = "none";
+    //         document.body.classList.add('pointer');
+    //         $("#meldingHoppOver").style.display = "none";
+    //         event.preventDefault()
+    //     }
+    // }, 500);
 }
 
 function plasserElev(rad, kolonne, nr, id) {
