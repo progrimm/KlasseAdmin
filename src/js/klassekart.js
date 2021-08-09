@@ -108,14 +108,6 @@ window.onload = () => {
         if (evt.target == $("#modalStrukturKlassekart")) {
             $("#modalStrukturKlassekart").style.display = "none";
         }
-        else if (evt.target == $("#warning-shade")) {
-            $("#warning-shade").style.display = "none";
-            $("#modalStrukturKlassekart").style.display = "block";
-        }
-        else if (evt.target == $("#error-shade")) {
-            $("#error-shade").style.display = "none";
-            $("#modalStrukturKlassekart").style.display = "block";
-        }
     }
 
     $("#btnLagreEndringer").onclick = lagrePlassbytter;
