@@ -39,7 +39,7 @@ function includeHTML() {
 }
 
 // råtøff animasjon ved endring
-function aktiverAnimasjon(tekst, timeout=3500) { // tekst = melding under checkmark
+function aktiverAnimasjon(tekst, timeout = 3500) { // tekst = melding under checkmark
 	// Checkmark
 	$("#div_fullfort_endring").style.display = "flex";
 	$("#melding_fullfort_endring").innerHTML = tekst;

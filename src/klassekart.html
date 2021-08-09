@@ -24,13 +24,14 @@
     </div>
     <p id="advarsel_utdatert" class="toHide">
         <span style="color: var(--red); font-weight: bold;">NB!</span>
-        Klassen har blitt redigert. Klassekartet kan derfor være utdatert (<a style="cursor: pointer;" onclick="fjern_advarsel_utdatert();">ignorer</a>).
+        Klassen er blitt redigert. Klassekartet kan derfor være utdatert (<a style="cursor: pointer;" onclick="fjern_advarsel_utdatert();">ignorer</a>).
     </p>
     <br class="toHide">
     <hr class="toHide">
-    <table id="tableKlassekart"></table>
+    <table class="toHide" id="tableKlassekart"></table>
+    <p id="meldingHoppOver">Trykk for å hoppe over animasjon</p>
     <hr class="toHide">
-    <p id="byttetips">Tips! Trykk på to elever for å bytte plass. Husk å lagre endringene.</p>
+    <p class="toHide" id="byttetips">Tips! Trykk på to elever for å bytte plass. Husk å lagre endringene.</p>
     <div class="knapper">
         <p disabled id="btnLagreEndringer" class="btn btn-disabled">Lagre endringer</p>
         <p disabled id="btnFjerneEndringer" class="btn btn-danger btn-disabled">Fjern endringer</button>

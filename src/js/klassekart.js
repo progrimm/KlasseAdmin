@@ -108,12 +108,12 @@ window.onload = () => {
         if (evt.target == $("#modalStrukturKlassekart")) {
             $("#modalStrukturKlassekart").style.display = "none";
         }
-        else if (evt.target == $("#warning_modal")) {
-            $("#warning_modal").style.display = "none";
+        else if (evt.target == $("#warning-shade")) {
+            $("#warning-shade").style.display = "none";
             $("#modalStrukturKlassekart").style.display = "block";
         }
-        else if (evt.target == $("#error_modal")) {
-            $("#error_modal").style.display = "none";
+        else if (evt.target == $("#error-shade")) {
+            $("#error-shade").style.display = "none";
             $("#modalStrukturKlassekart").style.display = "block";
         }
     }
@@ -199,6 +199,8 @@ function nyttKlassekart() {
         $("#tableKlassekart").style.paddingBottom = "61px";
         setTimeout(() => { $("#tableKlassekart").style.transition = "0.3s ease-in-out"; }, 1); // Skrur på igjen animasjon
     }
+
+    // Vis alle elementene på siden
     for (btn of [...$(".knapper")]) {
         btn.style.display = "flex"
     };
@@ -206,25 +208,27 @@ function nyttKlassekart() {
         element.style.display = "initial"
     };
 
-    
-    $("#tableKlassekart").style.display = "initial";
-    $("#byttetips").style.display = "initial";
+    // Utenom NB om kart ikke er utdatert
+    if (utdatert_kart === false) {
+        $("#advarsel_utdatert").style.display = "none";
+    }
+
     $("#btnVisModalStrukturNyttKart").style.display = "none";
-    
+
     // Henter strukturen klassekartet skal genereres på fra input-felt
     perBord = parseInt($("#inputEleverPerBord").value);
     rader = parseInt($("#inputAntallRader").value);
     kolonner = parseInt($("#inputAntallKolonner").value);
-    
+
     elever = elever.filter(navn => navn !== "."); // Fjerner de tomme plassene, slik at bare navnene gjenstår
-    
+
     // Sjekker om strukturen oppgitt er gyldig
     if (rader * kolonner * perBord < elever.length) {
         $("#warning-shade").style.display = "none";
         $("#error-shade").style.display = "initial";
         return
     }
-    
+
     elever = stokkElever(elever);  // Stokker elevene tilfeldig til klassekartet
     // Endrer data 
     klasse["klassekart"] = elever;
@@ -232,9 +236,9 @@ function nyttKlassekart() {
     klasse["klassekart_oppsett"]["per_bord"] = perBord + "";
     klasse["klassekart_oppsett"]["rader"] = rader + "";
     klasse["klassekart_oppsett"]["kolonner"] = kolonner + "";
-    
+
     $("#modalStrukturKlassekart").style.display = "none"; // Skjuler modalen
-    
+
     fjern_advarsel_utdatert();
     visKlassekart(true);  // Viser/lager det nye klassekartet ved default oppsett (derav nyGenerering = true)
     lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med ".")
@@ -383,21 +387,27 @@ function visKlassekart(nyGenerering) {
 
 // Animasjon ved nytt klassekart hvor 1 og 1 elev vises
 function nyttKlassekartAnimasjon() {
+    let removeDelay = 0;
+    let stopp = false;
     let scaleValue = 1;
     let scaleDt = 0.005;
 
     let btnsElever = [...document.querySelectorAll("button.elev")]; // Legger alle elevene i en array
+    btnsElever = stokkElever(btnsElever); // Stokker elevene så de vises tilfeldig
 
     for (btn of btnsElever) { // Gjør alle elevene gjennomsiktige og uttrykkbare
         btn.style.opacity = 0;
         btn.style.backgroundColor = "var(--linkColor)";
-        document.body.style.pointerEvents = "none";
+        btn.style.pointerEvents = "none";
     }
 
-    btnsElever = stokkElever(btnsElever); // Stokker elevene så de vises tilfeldig
 
-    $("#tableKlassekart").style.zIndex = "678";
+    $("#btnFullskjermKart").style.pointerEvents = "none";
+    $("#tableKlassekart").style.zIndex = "666";
     $("#div_skygge").style.display = "block"; // Setter på mørk bakgrunn
+
+    document.body.classList.add('pointer');
+    $("#meldingHoppOver").style.display = "initial";
 
     let iLoveErikAndJon = setInterval(() => { // 0.2 sekunder mellom hver elev som vises (ca.)
 
@@ -409,24 +419,37 @@ function nyttKlassekartAnimasjon() {
         $("#tableKlassekart").style.transform = `scale(${scaleValue})`;
         scaleValue += scaleDt;
 
-        if (btnsElever.length === 0) {
-
+        if (btnsElever.length === 0 || stopp === true) {
+            $("#meldingHoppOver").style.display = "none";
             // Animasjonen, kan gjøres om til css animasjon
             setTimeout(() => {
                 $("#tableKlassekart").style.transform = `scale(${scaleValue + 0.2})`;
-            }, 2300);
+            }, 2300 - removeDelay);
             setTimeout(() => {
                 $("#tableKlassekart").style.transform = `scale(1.0)`;
                 $("#tableKlassekart").style.zIndex = "0";
-            }, 2700);
+            }, 2700 - removeDelay);
             setTimeout(() => {
                 aktiverAnimasjon(`Nytt klassekart for ${valgtKlasse.klassekode}`);
-            }, 3000);
+                $("#btnFullskjermKart").style.pointerEvents = "auto";
+            }, 3000 - removeDelay);
 
             clearInterval(iLoveErikAndJon); // stopper animasjonen
             // Gjør knappene trykkbare igjen når animasjonen er ferdig
         }
     }, 300 - klassekart.length * 5);
+
+    // Avslutt animasjon ved trykk (tilgjengelig etter 1 sekund)
+    setTimeout(() => {
+        document.body.onclick = () => {
+            removeDelay = 2300;
+            stopp = true;
+            visKlassekart();
+            $("#btnFullskjermKart").style.pointerEvents = "none";
+            document.body.classList.add('pointer');
+            $("#meldingHoppOver").style.display = "none";
+        }
+    }, 750);
 }
 
 function plasserElev(rad, kolonne, nr, id) {

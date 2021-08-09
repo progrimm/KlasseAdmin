@@ -78,3 +78,14 @@ th {
   transition: 0.25s;
   cursor: pointer;
 }
+
+#meldingHoppOver {
+  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translate(-50%);
+  font-size: 15pt;
+  color: #ffffff;
+  z-index: 700;
+}

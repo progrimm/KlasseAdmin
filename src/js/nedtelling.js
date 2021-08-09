@@ -159,7 +159,7 @@ function bare2siffer() {  // lar det til en hver tid bare være to siffer i inpu
 }
 
 function oppdater_standard_tid() {
-    aktiverAnimasjon(`Ny standartid: ${minutt.value}:${sekund.value}`);
+    aktiverAnimasjon(`Ny standardtid: ${minutt.value}:${sekund.value}`);
     let tid = {
         min: minutt.value,
         sek: sekund.value
