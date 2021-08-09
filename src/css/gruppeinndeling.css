@@ -27,6 +27,7 @@ li {
     transform: translateY(-100%);
     transition: transform 1s, opacity 1.5s;
     opacity: 0;
+    word-break: break-word;
 }
 
 .show {
