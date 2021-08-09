@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 0px;
+}
+
 #btnUserSubmit {
     cursor: not-allowed;
     margin: 16px;
