@@ -37,7 +37,7 @@ function includeHTML() {
 		}
 	}
 }
-
+let animasjon_timeout;
 // råtøff animasjon ved endring
 function aktiverAnimasjon(tekst, timeout = 3500) { // tekst = melding under checkmark
 	// Checkmark
@@ -56,10 +56,11 @@ function aktiverAnimasjon(tekst, timeout = 3500) { // tekst = melding under chec
 			$("#div_skygge").classList.remove("class_animasjon_skygge");
 			document.body.onclick = '';
 			document.body.classList.remove('pointer');
+			clearTimeout(animasjon_timeout);
 		}
 	}, 200);
 	// Fjerner det uansett etter 3,5 sek
-	setTimeout(() => { document.body.click(); }, timeout);
+	animasjon_timeout = setTimeout(() => { document.body.click(); }, timeout);
 
 	document.body.style.pointerEvents = "auto";
 	document.body.classList.add('pointer');
