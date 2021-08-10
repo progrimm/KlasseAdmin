@@ -7,3 +7,12 @@
 #operasjonsliste .card .img img {
     max-height: 55px;
 }
+
+#ikke_vis_varsel {
+    width: auto;
+}
+
+footer label {
+    padding-right: 3px;
+    border-right: 1px solid var(--darkColor);
+}
