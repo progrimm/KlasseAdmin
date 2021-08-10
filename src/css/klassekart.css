@@ -50,6 +50,7 @@ th {
   margin: 10px 0px;
   font-size: 20px;
   background-color: var(--backgroundColor);
+  min-width: 70px;
 }
 
 .modalInputArea select{
