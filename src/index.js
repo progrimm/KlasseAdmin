@@ -22,6 +22,7 @@ if (Object.keys(allData).length === 0) {
   };
   store.store = allData;
 }
+
 Store.initRenderer(); // Gjør at man kan bruke electron-store i renderer-processes, altså i alle andre filer
 
 
