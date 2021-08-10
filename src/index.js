@@ -13,6 +13,11 @@ if (Object.keys(allData).length === 0) {
     "data_nedtelling": {
       "min": "00",
       "sek": "00"
+    },
+    "data_varsel": {
+      "fravaer_varsel": true,
+      "slett_varsel": true,
+      "nytt_klassekart_varsel": true
     }
   };
   store.store = allData;

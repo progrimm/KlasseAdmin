@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="aamgrim">
-    <title>Klassebehandling</title>
+    <title>KlasseAdmin</title>
     <link rel="stylesheet" href="css\main.css">
     <link rel="stylesheet" href="css\klassebehandling.css">
     <script src="js\klassebehandling.js"></script>
@@ -56,7 +56,21 @@
         </div>
     </div>
 
-    <div class="back" onclick="window.location = 'index.html'">
+    <div id="warning-shade" class="shade">
+        <div id="warning-body" class="body">
+            <div class="surface">
+                <h2 id="h2-msg">Gå ut av klasse?</h2>
+                <div id="warning-msg">Ved å gå ut av klassen slettes fraværet.</div>
+                <footer>
+                    <label><input type='checkbox' id='ikke_vis_varsel' />Ikke vis dette igjen</label>
+                    <p id="warning-confirm" class="btn btn-success">Fortsett</p>
+                    <p id="warning-deny" class="btn btn-danger" onclick="document.getElementById('warning-shade').style.display = 'none'">Avbryt</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div id='back' class="back" onclick="window.location = 'index.html'">
         <img draggable='false' src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >
     </div>
     <img draggable='false' 

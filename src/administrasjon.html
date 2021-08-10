@@ -33,6 +33,8 @@
         <p id="btnLeggTil" class="btn btn-success">Ny klasse</p>
     </div>
 
+    <p id='nullstill_varsler' class='btn btn-danger'>Nullstill alle varsler</p>
+
     <div id='wholeModal' class='modal'>
         <div class='modalContent'>
             <div class='modalHeader'>
@@ -64,6 +66,7 @@
                 <h2 id="h2-msg">Slette klasse?</h2>
                 <div id="warning-msg"></div>
                 <footer>
+                    <label><input type='checkbox' id='ikke_vis_varsel' />Ikke vis dette igjen</label>
                     <p id="warning-confirm" class="btn btn-success">Godta</p>
                     <p id="warning-deny" class="btn btn-danger" onclick="document.getElementById('warning-shade').style.display = 'none'">Avbryt</p>
                 </footer>

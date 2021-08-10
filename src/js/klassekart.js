@@ -13,6 +13,7 @@ const { start } = require("repl"); // Husker ikke hva den gjør, men tørr ikke 
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
+let vis_varsel = store.store.data_varsel.nytt_klassekart_varsel;
 
 const valgtKlasse = JSON.parse(sessionStorage.getItem("valgtKlasse")); // Henter valgte klassa
 let klasse = data[valgtKlasse.klassekode]; // Henter objektet fra data
@@ -81,8 +82,8 @@ window.onload = () => {
     }
 
     $("#btnNyttKlassekart").onclick = () => {
-        // Viser kun modal om det finnes fra før
-        if (klassekart.length === 0) {
+        // Viser kun modal om klassekart finnes fra før eller bruker ikke har deaktivert varsel
+        if (klassekart.length === 0 || !vis_varsel) {
             nyttKlassekart();
         }
         else {
@@ -92,6 +93,11 @@ window.onload = () => {
     }
 
     $("#warning-confirm").onclick = () => {
+        if ($('#ikke_vis_varsel').checked) {
+            vis_varsel = false; // momentan endring
+            store.set('data_varsel.nytt_klassekart_varsel', false)  // viser ikke varsler lenger hvis bruker krysser av for det
+        }
+        $('#ikke_vis_varsel').checked = false;
         $("#warning-shade").style.display = "none";
         nyttKlassekart();
     }

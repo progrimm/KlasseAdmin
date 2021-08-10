@@ -2,16 +2,17 @@
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;
+let vis_varsel = store.store.data_varsel.slett_varsel;
 
 let valgtKlasse = ""; // Husker valgt klasse ved redigering, brukes som sjekk om det er ny klasse eller redigering
 
 window.onload = () => {
     includeHTML(); // Aktiverer importert html fil
     oppdaterTabell();
-
+    // lyttere
     $("#btnLeggTil").onclick = leggTilKlasse;
-
     $("#btnLagreKlasse").onclick = lagreKlasse;
+    $('#nullstill_varsler').onclick = nullstill_varsler;
 
     // Lukk modal ved trykk utenfor innholdet
     window.onmousedown = (evt) => {
@@ -60,7 +61,8 @@ function oppdaterTabell() {
         btnSlett.innerHTML = "Slett";
         btnSlett.className = 'btn btn-danger';
         btnSlett.onclick = () => {
-            slett_advarsel(klassekode); // åpne modal
+            if (vis_varsel) slett_advarsel(klassekode); // åpne varselmodal
+            else slettKlasse(klassekode);   // ikke varsel
         };
         slett_celle.appendChild(btnSlett);
 
@@ -97,6 +99,11 @@ function slett_advarsel(klassekode) {
     $("#h2-msg").innerHTML = "Slette " + klassekode + "?";
     $("#warning-msg").innerHTML = "Denne handlingen kan ikke angres.";
     $("#warning-confirm").onclick = () => {
+        if ($('#ikke_vis_varsel').checked) {
+            vis_varsel = false; // momentan endring
+            store.set('data_varsel.slett_varsel', false)    // viser ikke varsler lenger hvis bruker krysser av for det
+        }
+        $('#ikke_vis_varsel').checked = false;
         slettKlasse(klassekode);
     }   
 }
@@ -259,4 +266,12 @@ function tekstbehandling_klasse(klassekode) {
         else i++;
     }
     return klassekode.join(' ');
+}
+
+function nullstill_varsler() {
+    store.set('data_varsel.fravaer_varsel', true);
+    store.set('data_varsel.slett_varsel', true);
+    store.set('data_varsel.nytt_klassekart_varsel', true);
+    vis_varsel = true;  // momentan endring
+    aktiverAnimasjon("Alle varsler er nullstilt");
 }
