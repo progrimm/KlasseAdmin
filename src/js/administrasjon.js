@@ -10,6 +10,7 @@ window.onload = () => {
     includeHTML(); // Aktiverer importert html fil
     oppdaterTabell();
     // lyttere
+    $("#btnForsteKlasse").onclick = leggTilKlasse
     $("#btnLeggTil").onclick = leggTilKlasse;
     $("#btnLagreKlasse").onclick = lagreKlasse;
     $('#nullstill_varsler').onclick = nullstill_varsler;
@@ -19,12 +20,6 @@ window.onload = () => {
         if (evt.target == $("#wholeModal")) {
             $("#wholeModal").style.display = "none";
         }
-        // else if (evt.target == $("#warning_modal")) {
-        //     $("#warning_modal").style.display = "none";
-        // }
-        // else if (evt.target == $("#error_modal")) {
-        //     $("#error_modal").style.display = "none";
-        // }
     }
     // gjør at man ikke kan trykke tilbake med nettleser-navigering
     history.pushState(null, null, document.URL);
@@ -34,6 +29,20 @@ window.onload = () => {
 }
 
 function oppdaterTabell() {
+    // Sjekker om det finnes noen klasser fra før og hvordan visningen skal være
+    if (JSON.stringify(data) === '{}') {
+        for (element of [...$(".toHide")]) {
+            element.style.display = "none"
+        };
+        $("#btnForsteKlasse").style.display = "initial"; // Viser kun egen knapp for første klassekartet
+    }
+    else {
+        for (element of [...$(".toHide")]) {
+            element.style.display = "initial"
+        };
+        $("#btnForsteKlasse").style.display = "none";
+    }
+
     valgtKlasse = "";
     $("#tableOversiktKlasser").innerHTML = "";
 
@@ -105,7 +114,7 @@ function slett_advarsel(klassekode) {
         }
         $('#ikke_vis_varsel').checked = false;
         slettKlasse(klassekode);
-    }   
+    }
 }
 
 // Sletter klassa fra objektet data
@@ -273,5 +282,5 @@ function nullstill_varsler() {
     store.set('data_varsel.slett_varsel', true);
     store.set('data_varsel.nytt_klassekart_varsel', true);
     vis_varsel = true;  // momentan endring
-    aktiverAnimasjon("Alle varsler er nullstilt");
+    aktiverAnimasjon("Alle varsler er aktivert");
 }

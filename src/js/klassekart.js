@@ -179,8 +179,6 @@ function hentKlasse() {
         for (element of [...$(".toHide")]) {
             element.style.display = "none"
         };
-        $("#tableKlassekart").style.display = "none";
-        $("#byttetips").style.display = "none";
         $("#btnVisModalStrukturNyttKart").style.display = "initial"; // Viser kun egen knapp for første klassekartet
     }
 

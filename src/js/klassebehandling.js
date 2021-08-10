@@ -14,15 +14,15 @@ document.title = 'KlasseAdmin - ' + valgtKlasse.klassekode;
 window.onload = () => {
     // Husker hvilken side man gikk til nedtelling fra
     sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-    
+
     document.getElementById("overskrift").innerHTML = (valgtKlasse["klassekode"]);
     // gjør at man ikke kan trykke tilbake med nettleser-navigering
     history.pushState(null, null, document.URL);
     window.addEventListener('popstate', () => {
         history.pushState(null, null, document.URL);
     });
-    
-    $('#h2-msg').innerHTML = 'Gå ut av '+valgtKlasse.klassekode+'?';
+
+    $('#h2-msg').innerHTML = 'Forlate ' + valgtKlasse.klassekode + '?';
     // lyttere
     $('#warning-confirm').onclick = () => {
         if ($('#ikke_vis_varsel').checked) {

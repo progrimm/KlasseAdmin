@@ -16,7 +16,7 @@
         <h1>Administrasjon</h1>
         <hr>
     </div>
-    <div id="adminTable">
+    <div class="toHide" id="adminTable">
         <table>
             <thead>
                 <tr>
@@ -29,12 +29,16 @@
         </table>
     </div>
 
-    <div id="divBtnLeggTil">
+    <div class="toHide" id="divBtnLeggTil">
         <p id="btnLeggTil" class="btn btn-success">Ny klasse</p>
     </div>
 
+    <p style="display: none; width: 500px;" id="btnForsteKlasse" class="btn btn-success">Ny klasse</p>
+
     <hr>
-    <p id='nullstill_varsler' class='btn btn-danger'>Nullstill alle varsler</p>
+    <p id='nullstill_varsler' class='btn btn-danger tooltip'>Aktiver alle varsler
+        <span class="tooltiptext">Aktiverer varsel før handlingene: "Slett klasse", "Slett fravær" og "Nytt klassekart"</span>
+    </p>
 
     <div id='wholeModal' class='modal'>
         <div class='modalContent'>
