@@ -50,6 +50,7 @@ th {
   margin: 10px 0px;
   font-size: 20px;
   background-color: var(--backgroundColor);
+  min-width: 70px;
 }
 
 .modalInputArea select{
@@ -88,4 +89,13 @@ th {
   font-size: 15pt;
   color: #ffffff;
   z-index: 700;
+}
+
+#ikke_vis_varsel {
+  width: auto;
+}
+
+footer label {
+  padding-right: 3px;
+  border-right: 1px solid var(--darkColor);
 }
