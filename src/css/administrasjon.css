@@ -25,3 +25,12 @@ td {
 #divBtnLeggTil p {
     float: left;
 }
+
+#ikke_vis_varsel {
+    width: auto;
+}
+
+footer label {
+    padding-right: 3px;
+    border-right: 1px solid var(--darkColor);
+}
