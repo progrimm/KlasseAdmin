@@ -58,15 +58,15 @@ window.addEventListener("resize", () => {
 window.onload = () => {
     includeHTML();
 
-    // Husker hvilken side man gikk til nedtelling fra
-    sessionStorage.setItem("nedtelling_ref", window.location.pathname);
-
-    hentKlasse();
-
     // Ikke vis NB om kart ikke er utdatert
     if (utdatert_kart === false) {
         $("#advarsel_utdatert").style.display = "none";
     }
+
+    // Husker hvilken side man gikk til nedtelling fra
+    sessionStorage.setItem("nedtelling_ref", window.location.pathname);
+
+    hentKlasse();
 
     // Vise modal
     $("#btnVisModalStruktur").onclick = () => {
@@ -133,7 +133,7 @@ window.onload = () => {
 function fjern_advarsel_utdatert() {
     $("#advarsel_utdatert").style.display = "none";
     klasse["utdatert_kart"] = false; // Midlertidig endring av data (venter på direkte endring gjennom egen funksjon). For funksjonen nyttKlassekart.
-    store.set(`data_klasser.${valgtKlasse.klassekode}.utdatert_kart`, false); // Direkte endring
+    store.set(`data_klasser.${valgtKlasse.klassekode}.utdatert_kart`, false); // Direkte endring (momentan)
 }
 
 function aktiverSnuKlassekart() {
@@ -487,7 +487,7 @@ function byttePlass(evt) {
         $("#" + elev1ID).style.color = "";
         antallKlikk--;
         // Bytt kun hvis det er forskjellige personer og ikke to tomme plasser
-        if (elev1ID !== evt.target.id && !(elev1 === "&nbsp" && elev2 === "&nbsp")) {
+        if (elev1ID !== evt.target.id && !(elev1 === "&nbsp;" && elev2 === "&nbsp;")) {
             $("#" + elev1ID).innerHTML = elev2;
             evt.target.innerHTML = elev1;
             $("#btnLagreEndringer").classList = "btn"; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
