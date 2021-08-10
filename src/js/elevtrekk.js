@@ -27,8 +27,8 @@ window.onload = () => {
     antall_elever.focus();  // fokuserer på inputfeltet
     $('#klasse').innerHTML = klasse;
     // lyttere
-    $('#btn_elever').onclick = () => {
-        if ($('#btn_elever').className === 'btn') trekk()
+    bunke.onclick = () => {
+        if (!(bunke.className === 'disabled')) trekk();
     };
     antall_elever.oninput = () => {
         bare2siffer();
@@ -37,7 +37,7 @@ window.onload = () => {
     }
     onkeydown = function (evt) {    // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && antall_elever === document.activeElement) {
-            if ($('#btn_elever').className === 'btn') {
+            if (!(bunke.className === 'disabled')) {
                 trekk();
             }
         }
@@ -90,7 +90,7 @@ function tilbakestill() {
     trekk_inn(bunke.offsetLeft, bunke.offsetTop, false);
 
     $('#nytt_trekk').hidden = true;
-    $('#btn_elever').className = 'btn';  // reaktiverer trekknapp
+    bunke.className = '';     // reaktiverer trekknapp
     if ($('#bare_tilstedevaerende').checked) {  // hvis bare tilstedeværende elever skal trekkes
         jobbeliste_elever = elever.slice(0);
     } else jobbeliste_elever = alle_elever.slice(0);
@@ -106,7 +106,7 @@ function trekk() {
     else if (+antall_elever.value > jobbeliste_elever.length) {
         antall_elever.value = jobbeliste_elever.length; // ved overskridelse
     }
-    $('#btn_elever').className = 'btn btn-disabled';    // deaktiverer trekknapp
+    bunke.className = 'disabled';    // deaktiverer trekknapp
     // finner posisjon til bunke
     let x_bunke = bunke.offsetLeft;
     let y_bunke = bunke.offsetTop;
@@ -117,13 +117,13 @@ function trekk() {
         }, 1010);
         setTimeout(() => {
             if (jobbeliste_elever.length > 0)
-                $('#btn_elever').className = 'btn';  // reaktiverer trekknapp
+                bunke.className = '';  // reaktiverer trekknapp
         }, 1900);
     } else {    // hvis bordet var tomt
         trekk_elever(x_bunke, y_bunke);
         setTimeout(() => {
             if (jobbeliste_elever.length > 0)
-                $('#btn_elever').className = 'btn';  // reaktiverer trekknapp
+                bunke.className = '';  // reaktiverer trekknapp
         }, 1000);
     }
 }

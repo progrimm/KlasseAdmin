@@ -2,10 +2,6 @@ body {
     overflow: overlay;
 }
 
-.row {
-    width: 100%;
-}
-
 .row > * {
     margin: 8px;
 }
@@ -16,7 +12,6 @@ input::-webkit-inner-spin-button {
 }
 
 #innstillinger {
-    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,10 +24,10 @@ input {
 
 #inputrad {
     width: 365px;
+    width: 585px;
 }
 
 #input {
-    width: 150%;
     justify-content: left;
 }
 
@@ -100,11 +95,16 @@ input {
     font-size: 60px;
     width: 100px;
     height: 152px;
+    user-select: none;
+    transition: background-color 0.25s;
 }
 
+#bunkekort:hover {
+    cursor: pointer;
+    background-color: #6c95b3;
+}
 
 .elevkort {
-    background-color: #d2dce9;
     background-color: var(--lightColor);
     position: absolute;
     padding: 0 4px;
@@ -124,4 +124,9 @@ input {
 
 #nytt_trekk {
     margin-top: 20px;
+}
+
+.disabled {
+    background-color: #6c95b3 !important; 
+    pointer-events: none;
 }

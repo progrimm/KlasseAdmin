@@ -657,3 +657,10 @@ function lukkError() {
     document.getElementById('error-shade').style.display = 'none';
     document.getElementById('modalStrukturKlassekart').style.display = 'block';
 }
+
+
+
+
+
+
+// ehehe

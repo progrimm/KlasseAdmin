@@ -14,39 +14,36 @@
 
     <body>
         <div class="header">
-            <h1>Tilfeldig trekk av elever</h1>
+            <h1>Tilfeldig elevtrekk</h1>
             <hr>
         </div>
-
-        <div id='innstillinger'>
-            <!-- <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'>Trekk bare tilstedeværende elever</label> -->
-            <p>
-                Trekk bare tilstedeværende elever
-                <label class="switch">
-                    <input type="checkbox" id='bare_tilstedevaerende' checked>
-                    <span class="slider round"></span>
-                </label>
-            </p>
-            <!-- <label><input type='checkbox' id ='uten_tilbakelegging'>Ta trukkede elever ut av bunken</label> -->
-            <p>
-                Ta trukkede elever ut av bunken
-                <label class="switch">
-                    <input type="checkbox" id='uten_tilbakelegging'>
-                    <span class="slider round"></span>
-                </label>
-            </p>
-        </div>
-
-
-        
         <div class='row' id='inputrad'>
+            <div id='innstillinger'>
+                <!-- <label><input type='checkbox' id ='bare_tilstedevaerende' checked='true'>Trekk bare tilstedeværende elever</label> -->
+                <p>
+                    Trekk bare tilstedeværende elever
+                    <label class="switch">
+                        <input type="checkbox" id='bare_tilstedevaerende' checked>
+                        <span class="slider round"></span>
+                    </label>
+                </p>
+                <!-- <label><input type='checkbox' id ='uten_tilbakelegging'>Ta trukkede elever ut av bunken</label> -->
+                <p>
+                    Ta trukkede elever ut av bunken
+                    <label class="switch">
+                        <input type="checkbox" id='uten_tilbakelegging'>
+                        <span class="slider round"></span>
+                    </label>
+                </p>
+            </div>
+        
             <div class='row' id='input'>
                 <input type="number" id="antall_elever" min='1' max='99' placeholder='0'>
                 <h3 id='elevertxt'>elever</h3>
             </div>
-            <div class='row' id='trekk'>
+            <!-- <div class='row' id='trekk'>
                 <p id='btn_elever' class='btn'>Trekk</p>
-            </div>
+            </div> -->
         </div>
         <hr id='linje'>
 
