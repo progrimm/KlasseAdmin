@@ -28,6 +28,10 @@ button.elev {
     box-shadow: 0px 0px 5px grey;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 td, tr {
     display: flex;
     justify-content: center;
@@ -97,5 +101,4 @@ th {
 
 footer label {
   padding-right: 3px;
-  border-right: 1px solid var(--darkColor);
 }

@@ -136,8 +136,8 @@ function leggTilKlasse() {
     $("#inpKlassekode").value = "";
     $("#inpElever").value = "";
 
-    $("#inpKlassekode").placeholder = "Eks.: 2MATR";
-    $("#inpElever").placeholder = "Skill elevene med komma. Eks.: 'Åmund, Jon, Erik, Kjell'";
+    $("#inpKlassekode").placeholder = "Eks.: 2MATR  |  Maks 30 tegn";
+    $("#inpElever").placeholder = "Skill elevene med komma | Eks.: 'Åmund, Jon, Erik, Kjell'";
     valgtKlasse = "";  // fjerner valgt klasse
 }
 
@@ -184,7 +184,7 @@ function lagreKlasse() {
         let liste_uten_elev_nr_i = nyeElever.slice();
         liste_uten_elev_nr_i.splice(i, 1);
         if (liste_uten_elev_nr_i.includes(nyeElever[i])) {
-            $("#error-msg").innerHTML = "To elever kan ikke ha samme navn. Prøv å legge til første bokstav i etternavnet til elevene i tillegg.";
+            $("#error-msg").innerHTML = "To elever kan ikke ha samme navn. <br><strong>Tips:</strong> legg til første bokstav i etternavnet til elevene i tillegg.";
             $("#error-shade").style.display = "initial";
             return;
         }

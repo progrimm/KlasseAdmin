@@ -224,7 +224,7 @@ function nyttKlassekart() {
     rader = parseInt($("#inputAntallRader").value);
     kolonner = parseInt($("#inputAntallKolonner").value);
 
-    elever = elever.filter(navn => navn !== "."); // Fjerner de tomme plassene, slik at bare navnene gjenstår
+    elever = elever.filter(navn => navn !== "&nbsp"); // Fjerner de tomme plassene, slik at bare navnene gjenstår
 
     // Sjekker om strukturen oppgitt er gyldig
     if (rader * kolonner * perBord < elever.length) {
@@ -245,7 +245,7 @@ function nyttKlassekart() {
 
     fjern_advarsel_utdatert();
     visKlassekart(true);  // Viser/lager det nye klassekartet ved default oppsett (derav nyGenerering = true)
-    lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med ".")
+    lagrePlassbytter(); // Lagrer kartet via lagrePlassbytter funksjonen (for å få med "&nbsp")
 }
 
 // Viser klassekartet i form av en tabell med knapper
@@ -290,7 +290,7 @@ function visKlassekart(nyGenerering) {
                 // Ved nytt kart
                 if (nyGenerering) {
                     if (elevID >= antallElever - restElever) {
-                        elevNavn = ".";
+                        elevNavn = "&nbsp";
                     } else {
                         elevID++
                     }
@@ -298,7 +298,7 @@ function visKlassekart(nyGenerering) {
                 // Ved allerede eksisterende kart
                 else {
                     if (elevNavn === undefined) {
-                        elevNavn = ".";
+                        elevNavn = "&nbsp";
                     }
                     elevID++
                 }
@@ -495,7 +495,7 @@ function byttePlass(evt) {
         $("#" + elev1ID).style.color = "";
         antallKlikk--;
         // Bytt kun hvis det er forskjellige personer og ikke to tomme plasser
-        if (elev1ID !== evt.target.id && !(elev1 === "." && elev2 === ".")) {
+        if (elev1ID !== evt.target.id && !(elev1 === "&nbsp" && elev2 === "&nbsp")) {
             $("#" + elev1ID).innerHTML = elev2;
             evt.target.innerHTML = elev1;
             $("#btnLagreEndringer").classList = "btn"; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
@@ -520,9 +520,9 @@ function lagrePlassbytter() {
     }
     if (snudd === false) elever.reverse(); // Avhenger av om kartet er snudd eller ikke
 
-    // Looper gjennom navnene, og fjerner alle "." under siste navn på kartet. Lagrer resten.
+    // Looper gjennom navnene, og fjerner alle "&nbsp" under siste navn på kartet. Lagrer resten.
     for (let i = 0; i < elever.length; i++) {
-        if (elever[i] !== ".") {
+        if (elever[i] !== "&nbsp") {
             elever.splice(0, i);
             break;
         }
