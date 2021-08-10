@@ -11,22 +11,26 @@
 </head>
 
 <body>
-    <!-- <main> -->
-        <div class="header">
-            <h1>Fravær</h1>
-            <hr>
-        </div>
-
-        <div id="fravaerBtn" class="btn btn-success tooltip">
-            Lagre fravær
-            <span class="tooltiptext">Fraværende elever kan sorteres ut ved handlingene: "Gruppeinndeling" og "Elevtrekk".</span>
-        </div>
-        <br>
+    <div class="header">
+        <h1>Fravær</h1>
         <hr>
-        <br>
-        <div id="elevListe">
-        </div>
-    <!-- </main> -->
+    </div>
+    <div class='col' style='align-items: center; justify-content: flex-start;'>
+        <p style='margin: 0;'><span style='display: inline-block; background-color: #02B345; width: 10px; height: 10px;'></span> Tilstede</p>
+        <p style='margin: 0;'><span style='display: inline-block; background-color: var(--red); width: 10px; height: 10px;'></span> Fraværende</p>
+    </div>
+    
+    <br>
+    <hr>
+    <br>
+    <div id="elevListe">
+    </div>
+    <hr>
+    <br>
+    <div id="fravaerBtn" class="btn btn-success tooltip">
+        Lagre fravær
+        <span class="tooltiptext">Fraværende elever kan sorteres ut ved handlingene: "Gruppeinndeling" og "Elevtrekk".</span>
+    </div>
 
     <div class="back" onclick="window.location = 'klassebehandling.html'">
         <img draggable='false' src="multimedia/long-arrow-alt-left-solid.svg" alt="back" >

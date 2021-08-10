@@ -410,11 +410,15 @@ th, td {
   text-align: center;
 }
 
-.row {
+.row, .col {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.col {
+  flex-direction: column;
 }
 
 #nedtelling_ikon {
