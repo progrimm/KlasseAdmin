@@ -118,7 +118,6 @@ input {
     white-space: nowrap;
     text-overflow: ellipsis;
     line-height: 100px;
-    margin-bottom: 32px;
 }
 
 #nytt_trekk {

@@ -38,10 +38,8 @@ window.onload = () => {
         else $('#elevertxt').innerHTML = 'elever';
     }
     onkeydown = (evt) => {    // hvis brukeren trykker på enter
-        if (evt.keyCode === 13 && antall_elever === document.activeElement) {
-            if (!(bunke.classList.contains('disabled'))) {
+        if (evt.keyCode === 13 && !(bunke.classList.contains('disabled'))) {
                 trekk();
-            }
         }
     }
     $('#bare_tilstedevaerende').onclick =
@@ -73,11 +71,6 @@ function initialiser() {
             bunke.innerHTML = '<span>Tomt!</span>';
             bunke.classList.remove('full');
             bunke.classList.add('tom');
-            // bunke.style.backgroundColor = 'transparent';
-            // bunke.style.borderStyle = 'dashed';
-            // bunke.style.color = 'black';
-            // bunke.style.fontSize = '24px';
-            // bunke.style.zIndex = '-100';
         }
     }, 100);
 }
@@ -156,6 +149,18 @@ function trekk_elever(x_bunke, y_bunke) {
             elevkort.style.transform = 'translate(' + flytt_x + 'px, ' + flytt_y + 'px)';
         }, 100);
     }
+    // for margin nederst, legger til usynlig element
+    let margin_y = (Math.floor((antall-1) / 3) + 3) * ett_hakk_y - 45;
+    let margin = document.createElement('div');
+    margin.className = 'elevkort';
+    margin.style.left = x_bunke + 'px';
+    margin.style.top = (y_bunke + margin_y) + 'px';
+    margin.style.height = '50px';
+    margin.style.zIndex = -1000;
+    margin.style.backgroundColor = margin.style.color = 'transparent';
+    margin.style.border = 'none';
+    em.appendChild(margin);
+
     initialiser();  // reinitialiserer
 }
 
