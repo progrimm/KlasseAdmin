@@ -25,7 +25,9 @@
       "uninstallerIcon": "src/multimedia/klasseadminLogo.ico",
       "uninstallDisplayName": "KlasseAdmin",
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "installerSidebar": "src/multimedia/ultramegagutta.bmp",
+      "uninstallerSidebar": "src/multimedia/Ikkeforlatossda.bmp"
     }
   },
   "keywords": [],

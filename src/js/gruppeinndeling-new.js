@@ -1,3 +1,6 @@
+//Hei til deg som driver å ser på koden min. Jeg forstår ikke lenger hva den gjør, og du kommer ikke til å forstå hva den gjør heller.
+//Kom deg heller ut og prøv å snakk med en jente. Antar at det blir din første gang siden du leser dette :p Jeg heier på deg fremmede!
+
 // Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
@@ -75,10 +78,10 @@ function enableBtn() {
 
 function sortRandom(element) {
     let liste = element, indeks = [], randomListe = [...Array(liste.length).keys()];    //Deklarerer tre arrayer som brukes og gir viktige verdier
-    while (indeks.length < liste.length) {                                                //Løkke for å fylle indeks med like mange randome indekser som lengden på innsendt liste
+    while (indeks.length < liste.length) {                                              //Løkke for å fylle indeks med like mange randome indekser som lengden på innsendt liste
         let randomIndex = ~~(Math.random() * liste.length);                             //Lager random tall. ~~ = Math.floor
         indeks.includes(randomIndex) ? null : indeks.push(randomIndex)
-    };                //Hvis array for random indeks inneholder random tall, legges det ikke til i arrayet
+    };                                                                                  //Hvis array for random indeks inneholder random tall, legges det ikke til i arrayet
     randomListe = randomListe.map(x => liste[indeks[x]]);                               //For hvert element i randomListe, henter den et element i innsendt liste som tilsvarer indeks i arrayet indeks
     return randomListe;
 }
@@ -156,7 +159,7 @@ function gruppeinndeling(antall, type) {
     }
     utskrift(grupper);
 }
-// $("#gruppe" + (key + 1)).classList.add("show");
+
 function utskrift(grupper) {
     let utskriftGrupper = grupper;
     let utskriftArea = $("#utskrift");
@@ -180,10 +183,4 @@ function utskrift(grupper) {
           $("#" + gruppeID).classList.add("show");
       }, 250*i);
     }
-
-    // $("li").delay(500).each(function(i) {
-    //     $(this).delay(100 * i).queue(function() {
-    //       $(this).addClass("show");
-    //     })
-    // })
 }
