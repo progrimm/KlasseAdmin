@@ -26,7 +26,8 @@
       "uninstallDisplayName": "KlasseAdmin",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "installerSidebar": "src/multimedia/gutta.bmp"
+      "installerSidebar": "src/multimedia/ultramegagutta.bmp",
+      "uninstallerSidebar": "src/multimedia/Ikkeforlatossda.bmp"
     }
   },
   "keywords": [],
