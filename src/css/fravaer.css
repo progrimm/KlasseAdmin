@@ -36,6 +36,7 @@ p {
     flex: 1 1 auto;
     margin-bottom: 25px;
     width: 98vw;
+    max-width: 1200px;
 }
 
 #fravaerBtn {

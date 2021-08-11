@@ -10,7 +10,7 @@ window.onload = () => {
     includeHTML(); // Aktiverer importert html fil
     oppdaterTabell();
     // lyttere
-    $("#btnForsteKlasse").onclick = leggTilKlasse
+    $("#btnForsteKlasse").onclick = leggTilKlasse;
     $("#btnLeggTil").onclick = leggTilKlasse;
     $("#btnLagreKlasse").onclick = lagreKlasse;
     $('#nullstill_varsler').onclick = nullstill_varsler;
@@ -32,7 +32,7 @@ function oppdaterTabell() {
     // Sjekker om det finnes noen klasser fra før og hvordan visningen skal være
     if (JSON.stringify(data) === '{}') {
         for (element of [...$(".toHide")]) {
-            element.style.display = "none"
+            element.style.display = "none";
         };
         $("#btnForsteKlasse").style.display = "initial"; // Viser kun egen knapp for første klassekartet
     }

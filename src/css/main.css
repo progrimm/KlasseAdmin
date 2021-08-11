@@ -56,11 +56,9 @@ label:hover, label input:hover{
   color: var(--headerColor);
   font-size: 50px;
   margin: 0px;
-  max-width: 600px;
+  max-width: 550px;
   text-align: center;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
 }
 
 
