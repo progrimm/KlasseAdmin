@@ -160,8 +160,6 @@ function redigerKlasse(klassekode) {
 }
 
 function lagreKlasse() {
-    // Henter data på nytt for at ting skal funke
-    // data = JSON.parse(fs.readFileSync(dataFilename));
     data = store.store.data_klasser;
 
     // Henter verdier fra inputfeltene

@@ -1,8 +1,5 @@
 // Henter data fra fil
 const { Console } = require("console");
-// const fs = require("fs");
-// const dataFilename = __dirname + "/js/data.json";
-// let data = JSON.parse(fs.readFileSync(dataFilename));
 
 const Store = require('electron-store');
 const store = new Store();
