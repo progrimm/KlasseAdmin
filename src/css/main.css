@@ -13,7 +13,7 @@ body {
 
   background-color: var(--backgroundColor);
 
-  animation: fadeNyside 0.15s ease-in-out;
+  animation: fadeNyside 0.2s ease-in-out;
 }
 
 @keyframes fadeNyside {

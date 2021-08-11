@@ -233,10 +233,6 @@ function lagreKlasse() {
     oppdaterData();
     oppdaterTabell();
     aktiverAnimasjon(melding_fullfort_endring);
-
-    // 
-    // gi link til klassekart
-    // 
 }
 
 // Takk til Jon for kreativt innslag                // bare hyggelig :) -Jon       //Jon er flink og søt! -Erik     // <3 -Jon

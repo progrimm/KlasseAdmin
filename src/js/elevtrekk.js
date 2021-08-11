@@ -30,12 +30,14 @@ window.onload = () => {
     bunke.onclick = () => {
         if (!(bunke.classList.contains('disabled'))) trekk();
     };
+    bunke.onmouseover = () => { $('#spm_tegn').style.height = '88px' };
+    bunke.onmouseout = () => { $('#spm_tegn').style.height = '80px' };
     antall_elever.oninput = () => {
         bare2siffer();
         if (antall_elever.value == 1) $('#elevertxt').innerHTML = 'elev';
         else $('#elevertxt').innerHTML = 'elever';
     }
-    onkeydown = function (evt) {    // hvis brukeren trykker på enter
+    onkeydown = (evt) => {    // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && antall_elever === document.activeElement) {
             if (!(bunke.classList.contains('disabled'))) {
                 trekk();
@@ -82,14 +84,9 @@ function initialiser() {
 
 function tilbakestill() {
     // tilbakestiller kortbunke
-    bunke.innerHTML = '<span>?</span>';
+    bunke.innerHTML = '<span id="spm_tegn">?</span>';
     bunke.classList.remove('tom');
     bunke.classList.add('full');
-// bunke.style.backgroundColor = 'var(--headerColor)';
-// bunke.style.borderStyle = 'solid';
-// bunke.style.color = 'white';
-// bunke.style.fontSize = '60px';
-// bunke.style.zIndex = '100';
     // trekker inn eventuelle elever
     trekk_inn(bunke.offsetLeft, bunke.offsetTop, false);
 
