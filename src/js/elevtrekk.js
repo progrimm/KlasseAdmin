@@ -28,7 +28,7 @@ window.onload = () => {
     $('#klasse').innerHTML = klasse;
     // lyttere
     bunke.onclick = () => {
-        if (!(bunke.className === 'disabled')) trekk();
+        if (!(bunke.classList.contains('disabled'))) trekk();
     };
     antall_elever.oninput = () => {
         bare2siffer();
@@ -37,7 +37,7 @@ window.onload = () => {
     }
     onkeydown = function (evt) {    // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && antall_elever === document.activeElement) {
-            if (!(bunke.className === 'disabled')) {
+            if (!(bunke.classList.contains('disabled'))) {
                 trekk();
             }
         }
@@ -69,11 +69,13 @@ function initialiser() {
             $('#nytt_trekk').hidden = false;
             // viser at bunken er tom;
             bunke.innerHTML = '<span>Tomt!</span>';
-            bunke.style.backgroundColor = 'transparent';
-            bunke.style.borderStyle = 'dashed';
-            bunke.style.color = 'black';
-            bunke.style.fontSize = '24px';
-            bunke.style.zIndex = '-100';
+            bunke.classList.remove('full');
+            bunke.classList.add('tom');
+            // bunke.style.backgroundColor = 'transparent';
+            // bunke.style.borderStyle = 'dashed';
+            // bunke.style.color = 'black';
+            // bunke.style.fontSize = '24px';
+            // bunke.style.zIndex = '-100';
         }
     }, 100);
 }
@@ -81,16 +83,18 @@ function initialiser() {
 function tilbakestill() {
     // tilbakestiller kortbunke
     bunke.innerHTML = '<span>?</span>';
-    bunke.style.backgroundColor = 'var(--headerColor)';
-    bunke.style.borderStyle = 'solid';
-    bunke.style.color = 'white';
-    bunke.style.fontSize = '60px';
-    bunke.style.zIndex = '100';
+    bunke.classList.remove('tom');
+    bunke.classList.add('full');
+// bunke.style.backgroundColor = 'var(--headerColor)';
+// bunke.style.borderStyle = 'solid';
+// bunke.style.color = 'white';
+// bunke.style.fontSize = '60px';
+// bunke.style.zIndex = '100';
     // trekker inn eventuelle elever
     trekk_inn(bunke.offsetLeft, bunke.offsetTop, false);
 
     $('#nytt_trekk').hidden = true;
-    bunke.className = '';     // reaktiverer trekknapp
+    bunke.classList.remove('disabled');     // reaktiverer trekknapp
     if ($('#bare_tilstedevaerende').checked) {  // hvis bare tilstedeværende elever skal trekkes
         jobbeliste_elever = elever.slice(0);
     } else jobbeliste_elever = alle_elever.slice(0);
@@ -106,7 +110,7 @@ function trekk() {
     else if (+antall_elever.value > jobbeliste_elever.length) {
         antall_elever.value = jobbeliste_elever.length; // ved overskridelse
     }
-    bunke.className = 'disabled';    // deaktiverer trekknapp
+    bunke.classList.add('disabled');    // deaktiverer trekknapp
     // finner posisjon til bunke
     let x_bunke = bunke.offsetLeft;
     let y_bunke = bunke.offsetTop;
@@ -117,13 +121,13 @@ function trekk() {
         }, 1010);
         setTimeout(() => {
             if (jobbeliste_elever.length > 0)
-                bunke.className = '';  // reaktiverer trekknapp
+                bunke.classList.remove('disabled');  // reaktiverer trekknapp
         }, 1900);
     } else {    // hvis bordet var tomt
         trekk_elever(x_bunke, y_bunke);
         setTimeout(() => {
             if (jobbeliste_elever.length > 0)
-                bunke.className = '';  // reaktiverer trekknapp
+                bunke.classList.remove('disabled');  // reaktiverer trekknapp
         }, 1000);
     }
 }

@@ -23,12 +23,12 @@ input {
 }
 
 #inputrad {
-    width: 365px;
     width: 585px;
 }
 
 #input {
     justify-content: left;
+    width: 41%;
 }
 
 #antall_elever {
@@ -129,4 +129,24 @@ input {
 .disabled {
     background-color: #6c95b3 !important; 
     pointer-events: none;
+}
+
+.tom {
+    background-color: transparent !important;
+    border-style: dashed !important;
+    color: black !important;
+    font-size: 24px !important;
+    z-index: -100 !important;
+}
+
+.full {
+    background-color: var(--headerColor);
+    border-style: solid;
+    color: white;
+    font-size: 60px;
+    z-index: 100;
+}
+
+.innstillinger {
+    margin: 4px 0;
 }
