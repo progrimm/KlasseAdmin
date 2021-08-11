@@ -159,6 +159,7 @@ function gruppeinndeling(antall, type) {
     }
     utskrift(grupper);
 }
+
 function utskrift(grupper) {
     let utskriftGrupper = grupper;
     let utskriftArea = $("#utskrift");
