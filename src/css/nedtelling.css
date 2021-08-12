@@ -49,3 +49,7 @@ input {
 .header hr {
     margin-bottom: 4px;
 }
+
+#veksle_start_stopp {
+    width: 70px;
+}
