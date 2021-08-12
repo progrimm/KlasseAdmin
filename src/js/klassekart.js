@@ -485,15 +485,28 @@ function lagLaererbord() {
 // Funksjon for å bytte plasser
 function byttePlass(evt) {
     if (antallKlikk === 1) {
-        let elev1 = $("#" + elev1ID).innerHTML;
-        let elev2 = evt.target.innerHTML;
-        $("#" + elev1ID).style.backgroundColor = "";
-        $("#" + elev1ID).style.color = "";
+        let elev1 = $("#" + elev1ID);
+        let elev1Navn = elev1.innerHTML;
+        let elev2 = evt.target;
+        let elev2Navn = elev2.innerHTML;
+        elev1.style.backgroundColor = "";
+        elev1.style.color = "";
         antallKlikk--;
         // Bytt kun hvis det er forskjellige personer og ikke to tomme plasser
-        if (elev1ID !== evt.target.id && !(elev1 === "&nbsp;" && elev2 === "&nbsp;")) {
-            $("#" + elev1ID).innerHTML = elev2;
-            evt.target.innerHTML = elev1;
+        if (elev1ID !== evt.target.id && !(elev1Navn === "&nbsp;" && elev2Navn === "&nbsp;")) {
+            elev1.innerHTML = elev2Navn;
+            elev2.innerHTML = elev1Navn;
+            // Tar hensyn til å bytte titlene
+            if (elev1.innerHTML === "&nbsp;" || elev1.innerHTML === "&nbsp") {
+                elev1.title = "";
+            } else {
+                elev1.title = "" + elev1.innerHTML;
+            }
+            if (elev2.innerHTML == "&nbsp;" || elev2.innerHTML == "&nbsp") {
+                elev2.title = "";
+            } else {
+                elev2.title = "" + elev2.innerHTML;
+            }
             $("#btnLagreEndringer").classList = "btn"; // Gjør knapp for lagring og knapp for å fjerne endringer klikkbar
             $("#btnFjerneEndringer").classList = "btn btn-danger";
         }
