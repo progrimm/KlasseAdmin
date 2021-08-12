@@ -27,7 +27,9 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "installerSidebar": "src/multimedia/ultramegagutta.bmp",
-      "uninstallerSidebar": "src/multimedia/Ikkeforlatossda.bmp"
+      "uninstallerSidebar": "src/multimedia/Ikkeforlatossda.bmp",
+      "createStartMenuShortcut": true,
+      "createDesktopShortcut": true
     }
   },
   "keywords": [],
