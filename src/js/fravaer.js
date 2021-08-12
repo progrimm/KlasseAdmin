@@ -28,28 +28,30 @@ function oppstart() {
     for (let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
         let elevDiv = document.createElement("div");
         elevDiv.id = elever[i];
-        elevDiv.className = "elevDiv";
+        elevDiv.className = "elevDiv green";
         elevDiv.title = elever[i];
 
         let nyElevNavn = document.createElement("p");
         nyElevNavn.innerHTML = elever[i];
-
         nyElevNavn.style.pointerEvents = "none";
         nyElevNavn.style.userSelect = "none";
 
         if (elever_tilstede.includes(elever[i])) {   // hvis eleven er tilstedeværende
-            elevDiv.classList.add('green');
+            elevDiv.className = "elevDiv green";
         }
         else {  // hvis fraværende
-            elevDiv.classList.add('red');
+            elevDiv.className = "elevDiv red";
             eleverFravaer.push(elever[i]);
-            elever.splice(i,1);
         }
-        let elev = elever[i];
-        elevDiv.onclick = () => { fravaer(elev) };                                                  //Kjører funskjonen fravaer() når buttonen blir trykket
+        elevDiv.onclick = fravaer;                                                     //Kjører funskjonen fravaer() når buttonen blir trykket
 
         document.getElementById("elevListe").appendChild(elevDiv);                          //Legger til diven for eleven på nettsiden
-        elevDiv.appendChild(nyElevNavn);                         //Legger til navnet i den diven nettopp lagt til
+        document.getElementById(elever[i]).appendChild(nyElevNavn);                         //Legger til navnet i den diven nettopp lagt til
+    }
+    // kjører gjennom fraværende elever og sletter de fra elevlista
+    for (const elev of eleverFravaer) {
+        index = elever.indexOf(elev);
+        elever.splice(index, 1);
     }
     // gjør at man ikke kan trykke tilbake med nettleser-navigering
     history.pushState(null, null, document.URL);
@@ -58,20 +60,19 @@ function oppstart() {
     });
 }
 
-function fravaer(elev) {
-    let elev_div = $('#'+elev);
-    
-    if (elev_div.classList.contains("green")) {
-        elev_div.classList.remove('green');
-        elev_div.classList.add('red');
-        
+function fravaer(event) {
+    let elev = event.target.id;                                                      //Finner id-en til den eleven som får registrert fravær
+    let farge = (event.target.className).replace("elevDiv ", "");
+
+    if (farge === "green") {
+        document.getElementById(elev).className = "elevDiv red";
+
         let elevIndex = elever.indexOf(elev);                                               //Finner indexen til eleven registrert
         eleverFravaer.push(elever[elevIndex]);                                              //Legger til eleven i arrayet over de som får fravær
         elever.splice(elevIndex, 1);                                                        //Fjerner fra hovedlista
     }
     else {
-        elev_div.classList.remove('red');
-        elev_div.classList.add('green');
+        document.getElementById(elev).className = "elevDiv green";
 
         let elevIndex = eleverFravaer.indexOf(elev);
         elever.push(eleverFravaer[elevIndex]);
