@@ -697,7 +697,7 @@ input:checked + .slider:before {
   z-index: 1;
   top: calc(100% + 10px);
   left: 50%;
-  margin-left: -150px;
+  margin-left: -165px;
 
   /* Fade in tooltip */
   opacity: 0;
