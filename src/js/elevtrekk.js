@@ -26,6 +26,7 @@ window.onload = () => {
     antall_elever = $('#antall_elever');
     antall_elever.focus();  // fokuserer på inputfeltet
     $('#klasse').innerHTML = klasse;
+    $('#klasse').title = klasse;
     // lyttere
     bunke.onclick = () => {
         if (!(bunke.classList.contains('disabled'))) trekk();
