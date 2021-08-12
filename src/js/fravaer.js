@@ -28,22 +28,11 @@ function oppstart() {
     for (let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
         let elevDiv = document.createElement("div");
         elevDiv.id = elever[i];
-        elevDiv.className = "elevDiv tooltip";
+        elevDiv.className = "elevDiv";
+        elevDiv.title = elever[i];
 
         let nyElevNavn = document.createElement("p");
         nyElevNavn.innerHTML = elever[i];
-        setTimeout(() => {
-            if (nyElevNavn.clientWidth < nyElevNavn.scrollWidth) {  //  hvis innholdet er større enn boksen
-                let span = document.createElement('span');
-                span.onclick = () => { fravaer(elever[i]) };
-                span.className = 'tooltiptext';
-                span.innerHTML = elever[i];
-                nyElevNavn.appendChild(span);
-                setTimeout(() => {
-                    span.style.marginLeft = (span.offsetWidth /-2) +'px';
-                }, 50);
-            }
-        }, 50);
 
         nyElevNavn.style.pointerEvents = "none";
         nyElevNavn.style.userSelect = "none";

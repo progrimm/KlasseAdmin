@@ -142,6 +142,7 @@ function trekk_elever(x_bunke, y_bunke) {
         elevkort.style.left = (x_bunke - justering) + 'px';
         elevkort.style.top = (y_bunke + justering) + 'px';
         elevkort.style.transform = 'rotate(-90deg)';
+        elevkort.title = tilfeldig_trukket_elev;
         em.appendChild(elevkort);
         let [flytt_x, flytt_y] = posisjon_og_sentrering(i + 1, antall, elevkort);
 
@@ -174,14 +175,6 @@ function posisjon_og_sentrering(nr, antall, elev) {
     else if (nr === antall) {
         if ((nr + 2) % 3 === 0) flytt_x = 0;  // siste, første kolonne
         else if ((nr + 1) % 3 === 0) flytt_x = ett_hakk_x / 2;    // siste, andre kolonne
-        // elev.style.height = '116px';   // margin nederst
-        // let margin = document.createElement('div');
-        // margin.style.height = '16px';
-        // margin.style.padding = '20px 0 -50px 0';
-        // margin.style.padding = '16px';
-        // margin.innerHTML='df';
-        // elev.appendChild(margin);
-        // console.log(elev)
     }
     let rad_nr = Math.floor((nr - 1) / 3) + 1;
     let flytt_y = ett_hakk_y * rad_nr + 100; // 100: klarering fra bunke og knapp
