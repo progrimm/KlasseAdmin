@@ -295,7 +295,9 @@ function visKlassekart(nyGenerering) {
                     elevID++
                 }
                 btnElev.innerHTML = elevNavn;
-                btnElev.title = "" + elevNavn;
+                if (elevNavn !== "&nbsp;") {
+                    btnElev.title = "" + elevNavn;
+                }
                 btnElev.addEventListener("click", byttePlass);  // Legger til hendelseslytter på elevene så man kan bytte plasser
                 $("#rad" + i + "kolonne" + j).appendChild(btnElev);
             }
