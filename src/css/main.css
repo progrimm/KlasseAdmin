@@ -324,6 +324,7 @@ h3, h4 {
 .card .textArea { 
   float: left;
   pointer-events: none;
+  max-width: 560px;
 }
 
 .card .arrowRight {
