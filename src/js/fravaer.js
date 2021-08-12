@@ -28,12 +28,12 @@ function oppstart() {
     for (let i = 0; i < listeLengde; i++) {                                                  //Lager en div til hver elev
         let elevDiv = document.createElement("div");
         elevDiv.id = elever[i];
-        elevDiv.className = "elevDiv green tooltip";
+        elevDiv.className = "elevDiv tooltip";
 
         let nyElevNavn = document.createElement("p");
         nyElevNavn.innerHTML = elever[i];
         setTimeout(() => {
-            if (nyElevNavn.clientWidth < nyElevNavn.scrollWidth) {
+            if (nyElevNavn.clientWidth < nyElevNavn.scrollWidth) {  //  hvis innholdet er større enn boksen
                 let span = document.createElement('span');
                 span.onclick = () => { fravaer(elever[i]) };
                 span.className = 'tooltiptext';
@@ -54,17 +54,13 @@ function oppstart() {
         else {  // hvis fraværende
             elevDiv.classList.add('red');
             eleverFravaer.push(elever[i]);
+            elever.splice(i,1);
         }
-        elevDiv.onclick = () => { fravaer(elever[i]) };                                                     //Kjører funskjonen fravaer() når buttonen blir trykket
+        let elev = elever[i];
+        elevDiv.onclick = () => { fravaer(elev) };                                                  //Kjører funskjonen fravaer() når buttonen blir trykket
 
         document.getElementById("elevListe").appendChild(elevDiv);                          //Legger til diven for eleven på nettsiden
-        document.getElementById(elever[i]).appendChild(nyElevNavn);                         //Legger til navnet i den diven nettopp lagt til
-        // document.getElementById(elever[i]).appendChild(nyBtnFravaer);                       //Legger til knappen også :)
-    }
-    // kjører gjennom fraværende elever og sletter de fra elevlista
-    for (const elev of eleverFravaer) {
-        index = elever.indexOf(elev);
-        elever.splice(index, 1);
+        elevDiv.appendChild(nyElevNavn);                         //Legger til navnet i den diven nettopp lagt til
     }
     // gjør at man ikke kan trykke tilbake med nettleser-navigering
     history.pushState(null, null, document.URL);
@@ -74,19 +70,19 @@ function oppstart() {
 }
 
 function fravaer(elev) {
-    console.log(elev)
+    let elev_div = $('#'+elev);
     
-    if ($('#'+elev).classList.contains("green")) {
-        document.getElementById(elev).classList.remove('green');
-        document.getElementById(elev).classList.add('red');
+    if (elev_div.classList.contains("green")) {
+        elev_div.classList.remove('green');
+        elev_div.classList.add('red');
         
         let elevIndex = elever.indexOf(elev);                                               //Finner indexen til eleven registrert
         eleverFravaer.push(elever[elevIndex]);                                              //Legger til eleven i arrayet over de som får fravær
         elever.splice(elevIndex, 1);                                                        //Fjerner fra hovedlista
     }
     else {
-        document.getElementById(elev).classList.remove('red');
-        document.getElementById(elev).classList.add('green');
+        elev_div.classList.remove('red');
+        elev_div.classList.add('green');
 
         let elevIndex = eleverFravaer.indexOf(elev);
         elever.push(eleverFravaer[elevIndex]);

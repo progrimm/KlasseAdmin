@@ -701,6 +701,7 @@ input:checked + .slider:before {
   /* Fade in tooltip */
   opacity: 0;
   transition: opacity 0.3s;
+  transition-delay: 1s;
 }
 
 /* Tooltip arrow */
