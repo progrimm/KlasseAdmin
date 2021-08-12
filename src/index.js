@@ -1,6 +1,6 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-//Menu.setApplicationMenu(false);
+Menu.setApplicationMenu(false);
 
 const Store = require('electron-store');
 const store = new Store(); // Henter basically lagringsfila (blir ikke lagd ny)
