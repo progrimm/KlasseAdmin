@@ -4,7 +4,7 @@
 
 ### Overordnet beskrivelse
 Klasseadmin skal være en app hvor læreren kan utføre ulike funksjonelle handlinger for sine klasser.
-Inkluderer da gruppeinndeling, klassekart, tilfeldig utvalg, nedtelling, bursdagshilsen og fravær.
+Inkluderer da gruppeinndeling, klassekart, tilfeldig utvalg, nedtelling og fravær.
 Læreren skal kunne legge til/endre/slette klasser, og elever.
 
 ### Hensikt
@@ -28,10 +28,3 @@ Hensikten er at læreren skal ha et nytt og moderne verktøy som kan utføre han
 Lærere som har ansvar for én eller flere klasser.
 De skal laste ned programmet og bruke det.
 
-## Planlegging
-
-### Wireframe
-Se egen fil.
-
-### Handlingsdiagram
-Se egen fil.
