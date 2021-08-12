@@ -295,7 +295,7 @@ function visKlassekart(nyGenerering) {
                     elevID++
                 }
                 btnElev.innerHTML = elevNavn;
-                if (elevNavn !== "&nbsp;") {
+                if (elevNavn !== "&nbsp;" && elevNavn !== "&nbsp") {
                     btnElev.title = "" + elevNavn;
                 }
                 btnElev.addEventListener("click", byttePlass);  // Legger til hendelseslytter på elevene så man kan bytte plasser
@@ -413,6 +413,9 @@ function nyttKlassekartAnimasjon() {
         let btn = btnsElever.slice(-1)[0];
         btn.style.backgroundColor = "var(--lightColor)";
         btn.style.opacity = 1;
+        if (btn.innerHTML !== "&nbsp;" && btn.innerHTML !== "&nbsp") {
+            btn.title = "" + btn.innerHTML;
+        }
         btnsElever.pop();
 
         $("#tableKlassekart").style.transform = `scale(${scaleValue})`;
