@@ -1,6 +1,4 @@
 // Henter data fra fil
-const { Console } = require("console");
-
 const Store = require('electron-store');
 const store = new Store();
 let data = store.store.data_klasser;

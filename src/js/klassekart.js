@@ -7,8 +7,6 @@ let elev1ID;
 let snudd = false; // Om kartet er snudd eller ikke
 let fullskjerm = false // Om kartet er i fullskjerm eller ikke
 
-const { start } = require("repl"); // Husker ikke hva den gjør, men tørr ikke å fjerne den
-
 // Henter lagret data
 const Store = require('electron-store');
 const store = new Store();

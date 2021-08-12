@@ -1,5 +1,3 @@
-const { SSL_OP_NETSCAPE_CA_DN_BUG } = require("constants");
-
 // Henter lagret data
 const Store = require('electron-store');
 const store = new Store();
