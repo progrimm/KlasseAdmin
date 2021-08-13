@@ -31,7 +31,7 @@ De kan få tilsendt en setup.exe-fil slik at de kan laste ned programmet.
 
 ### Utviklere
 - Jon Tomter
-  - Mail: jom.tomter@gmail.com
+  - Mail: jon.tomter@gmail.com
 - Erik Masovn Haave
   - Mail: erik.haave@hotmail.no
 - Åmund Grimstad
