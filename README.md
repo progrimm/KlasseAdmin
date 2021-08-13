@@ -29,7 +29,8 @@ Appen var i utgangspunktet et skoleprosjekt i faget IT2 ved Lillehammer VGS Avde
 Anbefalt til lærere som har ansvar for én eller flere klasser, og bruker operativsystemet Windows.
 De kan få tilsendt en setup-fil slik at de kan laste ned programmet.
 
-## Utviklere (kontakt oss for setup-fil)
+## Utviklere 
+> Kontakt oss for setup-fil
 - Jon Tomter
   - Mail: jon.tomter@gmail.com
 - Erik Masovn Haave
