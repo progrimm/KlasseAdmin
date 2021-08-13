@@ -9,7 +9,7 @@ Appen var i utgangspunktet et skoleprosjekt i faget IT2 ved Lillehammer VGS Avde
 
 
 ## Teknologier
-- [Electron.js] (https://www.electronjs.org/)
+- [Electron.js](https://www.electronjs.org/)
 - JavaScript, HTML og CSS
 
 ### Funksjonaliteter
