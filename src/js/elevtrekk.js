@@ -91,14 +91,18 @@ function tilbakestill() {
 
     if ($('#uten_tilbakelegging').checked) {
         $('#elevantall').style.color = 'black';
-    } else $('#elevantall').style.color = '#bbb';   // viser at antall er fast
+    } else $('#elevantall').style.color = 'var(--grayColor)';   // viser at antall er fast
 }
 
 function trekk() {
-    if (+antall_elever.value === 0) return;
-    else if (+antall_elever.value > jobbeliste_elever.length) {
+    if (+antall_elever.value === 0 || antall_elever.value % 1 !== 0) return;
+    else if (Math.abs(+antall_elever.value) > jobbeliste_elever.length) {
         antall_elever.value = jobbeliste_elever.length; // ved overskridelse
     }
+    // negative tall i input
+    if (+antall_elever.value < 0) antall_elever.value = Math.abs(+antall_elever.value);
+
+    let antall = +antall_elever.value;
     bunke.classList.add('disabled');    // deaktiverer trekknapp
     // finner posisjon til bunke
     let x_bunke = bunke.offsetLeft;
@@ -106,14 +110,14 @@ function trekk() {
     // trekker inn eventuelle elever og trekker nye
     if (trekk_inn(x_bunke, y_bunke)) { // hvis det var elevkort på bordet
         setTimeout(() => {
-            trekk_elever(x_bunke, y_bunke);
+            trekk_elever(x_bunke, y_bunke, antall);
         }, 1010);
         setTimeout(() => {
             if (jobbeliste_elever.length > 0)
                 bunke.classList.remove('disabled');  // reaktiverer trekknapp
         }, 1900);
     } else {    // hvis bordet var tomt
-        trekk_elever(x_bunke, y_bunke);
+        trekk_elever(x_bunke, y_bunke, antall);
         setTimeout(() => {
             if (jobbeliste_elever.length > 0)
                 bunke.classList.remove('disabled');  // reaktiverer trekknapp
@@ -121,13 +125,12 @@ function trekk() {
     }
 }
 
-function trekk_elever(x_bunke, y_bunke) {
+function trekk_elever(x_bunke, y_bunke, antall) {
     let em = $('#elev_utvalg');
     if (jobbeliste_elever.length === 0) {
         em.innerHTML = '<div><h3>Tomt for elever!</h3></div>';   // bare unntaksvis
         return;
     }
-    let antall = +antall_elever.value;
     for (var i = 0; i < antall; i++) {
         // tilfeldig trekk av elev fra klasse
         let tilfeldig_index = Math.floor((Math.random() * jobbeliste_elever.length));
@@ -176,8 +179,11 @@ function posisjon_og_sentrering(nr, antall, elev) {
         else if ((nr + 1) % 3 === 0) flytt_x = ett_hakk_x / 2;    // siste, andre kolonne
     }
     let rad_nr = Math.floor((nr - 1) / 3) + 1;
-    let flytt_y = ett_hakk_y * rad_nr + 100; // 100: klarering fra bunke og knapp
-
+    let flytt_y = ett_hakk_y * rad_nr + 50; // 50: klarering fra bunke
+    // hvis resten av elevene blir trukket og det er uten tilbakelegging
+    if ((jobbeliste_elever.length+nr) - antall <= 0 && $('#uten_tilbakelegging').checked) {
+        flytt_y += 50;  // +50: klarering fra knapp;
+    }
     return [flytt_x, flytt_y];
 }
 

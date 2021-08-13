@@ -50,6 +50,6 @@ input {
     margin-bottom: 4px;
 }
 
-#veksle_start_stopp {
+#knapper > * {
     width: 70px;
 }
