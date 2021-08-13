@@ -1,6 +1,6 @@
 # KlasseAdmin
 
-### Om prosjektet
+## Om prosjektet
 KlasseAdmin er en app hvor lærere kan utføre ulike funksjonelle handlinger for sine klasser.
 Hensikten er at lærere skal ha et nytt og moderne verktøy som kan utføre handlinger
 i klasserommet som ellers ville vært tidkrevende. 
@@ -12,7 +12,7 @@ Appen var i utgangspunktet et skoleprosjekt i faget IT2 ved Lillehammer VGS Avde
 - [Electron.js](https://www.electronjs.org/)
 - JavaScript, HTML og CSS
 
-### Funksjonaliteter
+## Funksjonaliteter
 - Velge klasse
   - Lage/endre klassekart
   - Gruppeinndeling
@@ -25,11 +25,11 @@ Appen var i utgangspunktet et skoleprosjekt i faget IT2 ved Lillehammer VGS Avde
   - Slette klasse
 - Info-modal
 
-### Bruker
+## Bruker
 Anbefalt til lærere som har ansvar for én eller flere klasser, og bruker operativsystemet Windows.
 De kan få tilsendt en setup.exe-fil slik at de kan laste ned programmet.
 
-### Utviklere
+## Utviklere
 - Jon Tomter
   - Mail: jon.tomter@gmail.com
 - Erik Masovn Haave
