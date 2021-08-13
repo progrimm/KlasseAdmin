@@ -72,6 +72,10 @@
     justify-content: space-around;
 }
 
+#sventakk {
+    margin-bottom: 20px;
+}
+
 #option {
   width: 50px;
   position: fixed;
