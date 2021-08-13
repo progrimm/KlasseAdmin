@@ -1,30 +1,39 @@
-# Klasseadmin
+# KlasseAdmin
 
-## Kravspesifikaksjon
+### Om prosjektet
+Klasseadmin er en app hvor lærere kan utføre ulike funksjonelle handlinger for sine klasser.
+Hensikten er at læreren skal ha et nytt og moderne verktøy som kan utføre handlinger
+i klasserommet som ellers ville vært tidkrevende.
 
-### Overordnet beskrivelse
-Klasseadmin skal være en app hvor læreren kan utføre ulike funksjonelle handlinger for sine klasser.
-Inkluderer da gruppeinndeling, klassekart, tilfeldig utvalg, nedtelling og fravær.
-Læreren skal kunne legge til/endre/slette klasser, og elever.
 
-### Hensikt
-Hensikten er at læreren skal ha et nytt og moderne verktøy som kan utføre handlinger i klasserommet som ellers ville vært tidkrevende.
+## Teknologier
+- [Electron.js] https://www.electronjs.org/
+- JavaScript, HTML og CSS
 
-### Funksjonelle krav
+### Funksjonaliteter
 - Velge klasse
-  - Ta fravær
+- - Lage/endre klassekart
   - Gruppeinndeling
   - Velge antall tilfeldige elever
-  - Lage/endre klassekart
+  - Ta fravær
   - Nedtelling
-- Administrer klasser
+- Administrere klasser
   - Legge til klasse
   - Redigere klasse
   - Slette klasse
-- Avslutt programmet
 - Info-modal
 
 ### Bruker
-Lærere som har ansvar for én eller flere klasser.
-De skal laste ned programmet og bruke det.
+Anbefalt til lærere som har ansvar for én eller flere klasser.
+De kan få tilsendt en setup.exe-fil slik at de kan laste ned programmet.
 
+### Utviklere
+- Jon Tomter
+  - jom.tomter@gmail.com
+- Erik Masovn Haave
+  - Mail: erik.haave@hotmail.no
+- Åmund Grimstad
+  - Mail: aamgrim@gmail.com 
+
+### Lisens
+Dette prosjektet er 
